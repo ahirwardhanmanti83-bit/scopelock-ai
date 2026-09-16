@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScopeLock AI | B2B Scope-Creep Detection & Statutory Change Orders</title>
+  <meta name="description" content="Statutory Scope Freeze & Change Order Generator for B2B Digital Agencies, Dev Studios, and High-Ticket Freelancers." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mono { font-family: 'Space Grotesk', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
+
+  <!-- Top Announcement -->
+  <div class="bg-gradient-to-r from-cyan-950 via-slate-900 to-cyan-950 border-b border-cyan-800/40 text-xs py-2 px-4 text-center text-cyan-300">
+    🛡️ Enforceable Under Statutory UCC § 2-209 & Standard B2B Commercial Law. Zero Server Storage & 100% Client Privacy.
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20">
+          SL
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            ScopeLock <span class="text-xs px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">AI v2.4</span>
+          </h1>
+          <p class="text-xs text-slate-400">B2B Scope-Creep Defense & Change-Order Engine</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://patreon.com/c/AestheticFindsUSA" target="_blank" class="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 hover:brightness-110 transition shadow-sm">
+          Agency Pass ($199)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Engine -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- Left Column: Scope Inputs & Calculator -->
+    <div class="lg:col-span-6 space-y-6">
+      
+      <!-- Card 1: Project & Client Details -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+          <span>01</span> Project & Contract Parameters
+        </h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Client / Company Name</label>
+            <input id="clientName" type="text" value="Apex Global Media" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Project Code / Name</label>
+            <input id="projectName" type="text" value="Platform Redesign 2026" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Agreed Hourly Rate ($/hr)</label>
+            <input id="hourlyRate" type="number" value="125" oninput="calculateScope()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Contract Execution Date</label>
+            <input id="contractDate" type="date" value="2026-09-16" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Out-of-Scope Change Detection -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+            <span>02</span> Out-of-Scope Task Audit
+          </h2>
+          <span class="text-xs text-slate-400">Add requests made via Slack/Email</span>
+        </div>
+        
+        <div>
+          <label class="text-xs font-medium text-slate-400 block mb-1">Client Unbudgeted Request Description</label>
+          <textarea id="taskDesc" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="e.g. Client requested 3 additional custom CRM integrations, automated PDF invoice dispatch, and live webhook syncing that was not in Original Exhibit A.">Client requested 3 additional third-party payment gateway integrations, custom webhook reconcilers, and an automated PDF invoice generator not specified in Master Agreement Exhibit A.</textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Additional Dev Hours</label>
+            <input id="additionalHours" type="number" value="24" oninput="calculateScope()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-400 block mb-1">Delay Impact (Days)</label>
+            <input id="delayDays" type="number" value="7" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+          </div>
+        </div>
+
+        <!-- Calculated Summary Banner -->
+        <div class="p-4 rounded-xl bg-cyan-950/40 border border-cyan-800/60 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-cyan-300 block">Total Unbudgeted Cost Variance</span>
+            <span id="varianceCost" class="text-2xl font-black text-cyan-400 mono">$3,000.00</span>
+          </div>
+          <button onclick="generateChangeOrder()" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs tracking-wider uppercase transition shadow-lg shadow-cyan-500/20">
+            Generate SOW
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Templates -->
+      <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Preset Scope Presets</span>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="applyPreset('CRM Integration', 18, 125, 5)" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">Custom CRM (+18 hrs)</button>
+          <button onclick="applyPreset('Figma UI Revamp', 32, 125, 8)" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">UI Complete Revamp (+32 hrs)</button>
+          <button onclick="applyPreset('Multi-Tenancy Auth', 40, 150, 14)" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">Enterprise SSO Auth (+40 hrs)</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Statutory Document Output -->
+    <div class="lg:col-span-6 space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex flex-col h-full">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div>
+            <h2 class="text-sm font-bold uppercase tracking-wider text-white">Legal SOW Change Order</h2>
+            <p class="text-xs text-slate-400">Statutory UCC § 2-209 Amendment Document</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="copyDocument()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200">
+              Copy Legal Text
+            </button>
+            <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-xs font-semibold text-cyan-300">
+              Print / PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 flex-1">
+          <pre id="legalOutput" class="w-full h-[420px] bg-slate-950 border border-slate-800/80 rounded-xl p-4 text-xs mono text-slate-300 whitespace-pre-wrap overflow-y-auto leading-relaxed selection:bg-cyan-900">
+Click "Generate SOW" to build legal amendment document...
+          </pre>
+        </div>
+
+        <!-- Clearance & Payment Gateway Box -->
+        <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+          <div class="text-xs text-slate-400">
+            Official Beneficiary / Direct Settlement:<br/>
+            <span class="text-slate-200 font-semibold">ahirwardhanmanti83@gmail.com</span>
+          </div>
+          <div class="flex gap-2">
+            <a href="https://patreon.com/c/AestheticFindsUSA" target="_blank" class="px-3 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">
+              Patreon Tier ($19 / $199)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-600">
+    ScopeLock AI &copy; 2026. All rights reserved. Zero-Data Cloud Clearance Architecture.
+  </footer>
+
+  <script>
+    function calculateScope() {
+      const hours = parseFloat(document.getElementById('additionalHours').value) || 0;
+      const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+      const total = hours * rate;
+      document.getElementById('varianceCost').innerText = '$' + total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function generateChangeOrder() {
+      const client = document.getElementById('clientName').value;
+      const project = document.getElementById('projectName').value;
+      const hours = document.getElementById('additionalHours').value;
+      const rate = document.getElementById('hourlyRate').value;
+      const days = document.getElementById('delayDays').value;
+      const task = document.getElementById('taskDesc').value;
+      const date = document.getElementById('contractDate').value;
+      const total = (parseFloat(hours) || 0) * (parseFloat(rate) || 0);
+
+      const documentText = `FORMAL STATEMENT OF WORK (SOW) AMENDMENT & CHANGE ORDER
+PURSUANT TO UNIFORM COMMERCIAL CODE (UCC) § 2-209 & EXCLUSIVE IP GOVERNANCE
+
+DATE OF AMENDMENT: ${new Date().toISOString().split('T')[0]}
+ORIGINAL CONTRACT DATE: ${date}
+PROJECT NAME: ${project}
+CLIENT ENTITY: ${client}
+
+1. RECITALS & FINDING OF UNBUDGETED SCOPE CREEP:
+This Amendment formally ratifies that the Client has requested substantive functional, architectural, or visual alterations that strictly exceed the defined scope of services articulated in the executed Statement of Work (Exhibit A).
+
+2. DETAILED SPECIFICATION OF OUT-OF-SCOPE WORK:
+${task}
+
+3. FINANCIAL & TIMELINE IMPACT RATIFICATION:
+- Additional Engineering Effort: ${hours} billable hours
+- Contractual Engineering Rate: $${rate}.00 USD per hour
+- Total Unbudgeted SOW Variance: $${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
+- Project Milestone Extension: +${days} Calendar Days to Initial Delivery Schedule
+
+4. PAYMENT TERMS & CLEARANCE PROTOCOL:
+Pursuant to contractual governance, all work on requested amendments is suspended until the approved variance fee of $${total.toFixed(2)} USD is remitted via authorized settlement rails:
+- Payoneer Corporate Wire / ID: ahirwardhanmanti83@gmail.com
+- Authorized Clearing Portal: https://patreon.com/c/AestheticFindsUSA
+
+5. STATUTORY GOVERNANCE & SIGNATURES:
+Executed in accordance with statutory contract standards. Continued verbal, electronic, or written instruction to proceed with aforementioned tasks constitutes binding commercial acceptance.
+
+ACCEPTED & AGREED:
+
+Client Representative: _______________________      Date: ______________
+
+Authorized Legal Signatory: Dhanmanti Ahirwar         Date: ${new Date().toISOString().split('T')[0]}`;
+
+      document.getElementById('legalOutput').innerText = documentText;
+    }
+
+    function applyPreset(name, hours, rate, days) {
+      document.getElementById('taskDesc').value = 'Client requested unbudgeted module: ' + name + ' requiring additional architecture, testing, and implementation beyond initial deliverables.';
+      document.getElementById('additionalHours').value = hours;
+      document.getElementById('hourlyRate').value = rate;
+      document.getElementById('delayDays').value = days;
+      calculateScope();
+      generateChangeOrder();
+    }
+
+    function copyDocument() {
+      const text = document.getElementById('legalOutput').innerText;
+      navigator.clipboard.writeText(text);
+      alert('SOW Amendment successfully copied to clipboard!');
+    }
+
+    // Auto-run on initial load
+    calculateScope();
+    generateChangeOrder();
+  </script>
+</body>
+          </html>
