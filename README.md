@@ -2,15 +2,12 @@
 > **B2B Scope-Creep Detection, Cost Variance Calculator & Instant Change-Order Generator for Digital Agencies, Dev Studios & Freelance Engineers.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Live Engine](https://img.shields.io/badge/Live_Engine-Active-success)](https://ais-pre-4jnyl34caf3cfwxtgefqlp-529379495544.asia-southeast1.run.app)
 [![Distribution](https://img.shields.io/badge/SourceForge-Verified-blue)](https://sourceforge.net/projects/scopelock-ai/)
 
 ---
 
 ## ⚡ Access the Live Cloud Engine
-👉 **[Open ScopeLock AI Web Application](https://ais-pre-4jnyl34caf3cfwxtgefqlp-529379495544.asia-southeast1.run.app)**
-
----
+---**[Open ScopeLock AI Web Application](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)****
 
 ## 🚀 Key Features
 
@@ -29,7 +26,7 @@ This repository includes free open-source contract defense clauses compliant wit
 2. **UCC § 2-209 Formal Modification Agreement**
 3. **Hourly Rate Variance & Delay Liability Disclaimers**
 
-*Access all interactive templates directly at the [Live Engine](https://ais-pre-4jnyl34caf3cfwxtgefqlp-529379495544.asia-southeast1.run.app).*
+*Access all interactive templates directly at the https://ahirwardhanmanti83-bit.github.io/scopelock-ai/
 
 ---
 
