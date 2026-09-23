@@ -9,6 +9,9 @@ echo "===================================================="
 echo "[1/3] Compiling high-performance production build..."
 npm run build
 
+# Copy fresh dist to root for direct GitHub Pages static hosting
+cp -r dist/* .
+
 # 2. Check if git is initialized
 if [ ! -d ".git" ]; then
   echo "[2/3] Initializing git repository..."
@@ -21,17 +24,12 @@ git config user.name "Krishna Ahirwar"
 git config user.email "ahirwardhanmanti83@gmail.com"
 
 # 3. Commit & Push
-echo "[3/3] Synchronizing all 3 channels (AI Studio -> GitHub -> SourceForge)..."
+echo "[3/3] Synchronizing all 3 channels (AI Studio -> GitHub Pages -> Mirrors)..."
 git add .
-git commit -m "Auto-sync: Public Scope-Creep Defense Vault, SEO & UCC § 2-209 Amendments" || true
+git commit -m "Auto-sync: ScopeLock AI Production Update" || true
 
-if [ -n "$GITHUB_TOKEN" ]; then
-  echo "Pushing using provided GITHUB_TOKEN..."
-  git push -u "https://${GITHUB_TOKEN}@github.com/ahirwardhanmanti83-bit/scopelock-ai.git" main --force
-else
-  echo "Pushing changes to GitHub repository..."
-  git push -u origin main --force || echo "Authentication required. Please set GITHUB_TOKEN or push using your credentials."
-fi
+echo "Pushing changes to GitHub repository..."
+git push -u origin main --force
 
 echo "===================================================="
 echo " SUCCESS: All changes synchronized across GitHub & Mirrors!"
