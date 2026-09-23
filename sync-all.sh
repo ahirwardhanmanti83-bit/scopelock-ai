@@ -17,13 +17,21 @@ if [ ! -d ".git" ]; then
   git branch -M main
 fi
 
+git config user.name "Krishna Ahirwar"
+git config user.email "ahirwardhanmanti83@gmail.com"
+
 # 3. Commit & Push
 echo "[3/3] Synchronizing all 3 channels (AI Studio -> GitHub -> SourceForge)..."
 git add .
-git commit -m "Auto-sync: Public Scope-Creep Defense Vault, SEO & UCC § 2-209 Amendments"
+git commit -m "Auto-sync: Public Scope-Creep Defense Vault, SEO & UCC § 2-209 Amendments" || true
 
-echo "Pushing changes to GitHub repository..."
-git push -u origin main --force
+if [ -n "$GITHUB_TOKEN" ]; then
+  echo "Pushing using provided GITHUB_TOKEN..."
+  git push -u "https://${GITHUB_TOKEN}@github.com/ahirwardhanmanti83-bit/scopelock-ai.git" main --force
+else
+  echo "Pushing changes to GitHub repository..."
+  git push -u origin main --force || echo "Authentication required. Please set GITHUB_TOKEN or push using your credentials."
+fi
 
 echo "===================================================="
 echo " SUCCESS: All changes synchronized across GitHub & Mirrors!"
