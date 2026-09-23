@@ -10,7 +10,7 @@
 import { execSync } from 'node:child_process';
 import readline from 'node:readline';
 
-const LIVE_PORTAL_URL = 'https://ais-pre-4jnyl34caf3cfwxtgefqlp-529379495544.asia-southeast1.run.app';
+const LIVE_PORTAL_URL = 'https://ahirwardhanmanti83-bit.github.io/scopelock-ai/';
 
 console.log('\x1b[36m%s\x1b[0m', '══════════════════════════════════════════════════════════════════════════════');
 console.log('\x1b[1m\x1b[32m%s\x1b[0m', '  ⚡ SCOPELOCK AI : AUTONOMOUS SCOPE CREEP AUDITOR & LEGAL DEFENSE CLI ⚡');

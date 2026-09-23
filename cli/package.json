@@ -1,0 +1,30 @@
+{
+  "name": "scopelock-audit",
+  "version": "1.0.0",
+  "description": "Autonomous Scope Creep Auditor & Statutory UCC § 2-209 Legal Change Order Engine CLI for software agencies and freelancers.",
+  "main": "scopelock-audit.js",
+  "bin": {
+    "scopelock-audit": "./scopelock-audit.js",
+    "scopelock": "./scopelock-audit.js"
+  },
+  "keywords": [
+    "scope-creep",
+    "freelance",
+    "agency",
+    "change-order",
+    "ucc-2-209",
+    "software-audit",
+    "git-audit",
+    "contract-generator",
+    "upwork",
+    "fiverr"
+  ],
+  "author": "Krishna Ahirwar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai"
+  },
+  "homepage": "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/",
+  "type": "module"
+}
