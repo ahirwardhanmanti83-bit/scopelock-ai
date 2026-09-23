@@ -23,6 +23,29 @@ npx scopelock-audit
 
 ---
 
+## 🤖 GitHub Action CI/CD Integration
+Automate scope creep detection in your team's pull requests and sprint merges. Add this to `.github/workflows/scopelock.yml`:
+
+```yaml
+name: ScopeLock Audit
+on: [pull_request, push]
+
+jobs:
+  audit-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Audit Scope Creep & Margin Bleed
+        uses: ahirwardhanmanti83-bit/scopelock-ai@v1
+        with:
+          hourly_rate: '125'
+          fail_on_creep: 'false'
+```
+
+---
+
 ## 🌐 Launch Free Web Application
 Click below to audit scope creep, calculate developer loss, and generate binding change orders directly in your browser:
 
