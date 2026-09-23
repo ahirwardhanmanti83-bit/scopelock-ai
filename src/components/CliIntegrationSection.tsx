@@ -64,7 +64,15 @@ export function CliIntegrationSection() {
               <ShieldAlert className="w-3 h-3 text-amber-400" />
               100% Client-Side / Zero-Telemetry Privacy
             </span>
-            <span className="text-emerald-400 font-medium">No npm install required</span>
+            <a
+              href="https://www.npmjs.com/package/scopelock-audit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center gap-1 hover:underline"
+            >
+              <span>Verified on npmjs.com</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </div>
       </div>

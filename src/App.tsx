@@ -176,6 +176,23 @@ export function App() {
             Combines algorithmic contract forensics, automated margin recovery ($/hr), and UCC-enforceable legal change orders into an untouchable monopoly engine.
           </p>
 
+          {/* Quick Terminal Run Badge in Hero */}
+          <div className="pt-2 flex items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 rounded-lg px-3 py-1.5 font-mono text-xs text-slate-300 shadow-md">
+              <span className="text-emerald-400 font-bold">$</span>
+              <span className="text-slate-200">npx scopelock-audit</span>
+              <span className="text-[10px] text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 px-1.5 py-0.5 rounded ml-1 font-sans font-medium">NPM Live</span>
+            </div>
+            <a
+              href="https://www.npmjs.com/package/scopelock-audit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-slate-400 hover:text-emerald-400 font-medium transition-colors hidden sm:inline-flex items-center gap-1"
+            >
+              npm v1.0.0 ↗
+            </a>
+          </div>
+
           {/* Navigation Tab Bar */}
           <div className="pt-4 flex items-center justify-center">
             <div className="inline-flex items-center p-1 rounded-xl bg-slate-900/90 border border-slate-800 shadow-xl overflow-x-auto max-w-full">

@@ -1,14 +1,29 @@
 # ScopeLock AI 🛡️
 > **Automated B2B Scope-Creep Detection, Developer Cost-Variance Calculator & Statutory UCC § 2-209 Change-Order Generator for Digital Agencies, Dev Studios & Independent Engineers.**
 
+[![NPM Version](https://img.shields.io/npm/v/scopelock-audit?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/scopelock-audit)
 [![Deploy Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Verification](https://img.shields.io/badge/Google%20Verified-Search%20Console-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 [![Pricing](https://img.shields.io/badge/Single%20Unlock-$2-emerald?style=for-the-badge)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 
 ---
 
-## ⚡ Launch Free Web Engine
+## ⚡ Instant Terminal CLI Audit (Zero Install via NPX)
+Run the autonomous git repository scope auditor directly in your project terminal:
+
+```bash
+npx scopelock-audit
+```
+*(or simply `npx scopelock`)*
+
+**What it does in 3 seconds:**
+1. Scans your git commits and uncommitted diffs for out-of-scope feature creep.
+2. Calculates exact hours leaked and dollar variance owed by client.
+3. Generates the direct legal link to produce court-admissible UCC § 2-209 change orders.
+
+---
+
+## 🌐 Launch Free Web Application
 Click below to audit scope creep, calculate developer loss, and generate binding change orders directly in your browser:
 
 ### 👉 [🚀 **OPEN SCOPELOCK AI WEB APPLICATION (FREE)**](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
