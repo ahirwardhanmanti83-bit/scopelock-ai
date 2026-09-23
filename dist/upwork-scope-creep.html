@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upwork Scope Creep Calculator & Free Legal Contract Template | ScopeLock AI</title>
+  <meta name="description" content="Calculate unbilled Upwork client scope creep, hourly financial loss, and generate free UCC § 2-209 legal change order templates to protect your agency margins.">
+  <meta name="keywords" content="upwork scope creep calculator, upwork out of scope request, upwork milestone dispute, how to say no to upwork client, upwork change order template, UCC 2-209">
+  <link rel="canonical" href="https://ahirwardhanmanti83-bit.github.io/scopelock-ai/upwork-scope-creep.html">
+  <meta property="og:title" content="Upwork Scope Creep Calculator & Free Legal Template">
+  <meta property="og:description" content="Stop working for free on Upwork. Audit client requests, calculate developer hourly loss, and generate binding UCC § 2-209 change orders.">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ScopeLock AI - Upwork Scope Creep Calculator",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Calculates billable developer hour variance and generates statutory change orders for Upwork freelancers."
+  }
+  </script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #020617; color: #f8fafc; margin: 0; padding: 20px; line-height: 1.6; }
+    .container { max-width: 860px; margin: 0 auto; padding: 20px 0; }
+    .badge { display: inline-block; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); color: #818cf8; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 9999px; text-transform: uppercase; margin-bottom: 12px; }
+    h1 { font-size: 28px; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+    p.lead { font-size: 16px; color: #94a3b8; margin-bottom: 24px; }
+    .card { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 24px; margin-bottom: 24px; }
+    .input-box { width: 100%; box-sizing: border-box; background: #020617; border: 1px solid #334155; color: #f8fafc; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 13px; min-height: 110px; margin-top: 8px; }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 14px; transition: opacity 0.2s; border: none; cursor: pointer; }
+    .cta-btn:hover { opacity: 0.9; }
+    .script-box { background: #020617; border-left: 4px solid #6366f1; padding: 16px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #cbd5e1; white-space: pre-wrap; margin-top: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+    .metric { background: #020617; border: 1px solid #1e293b; padding: 16px; border-radius: 8px; }
+    .metric-val { font-size: 22px; font-weight: 800; color: #38bdf8; font-family: monospace; }
+    .footer { text-align: center; color: #64748b; font-size: 12px; border-top: 1px solid #1e293b; padding-top: 24px; margin-top: 40px; }
+    a.link { color: #818cf8; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">Upwork Freelancer Contract Shield • 100% Free Tool</span>
+    <h1>Upwork Scope Creep Calculator & Free Legal Template</h1>
+    <p class="lead">Did your Upwork client say <em>“Can we just quickly add this small feature before releasing milestone?”</em> Stop doing unbilled free work. Calculate your exact dollar loss and issue an enforceable UCC § 2-209 change order.</p>
+
+    <!-- Interactive Problem Scanner -->
+    <div class="card">
+      <h2 style="font-size: 18px; margin-top: 0; color: #e2e8f0;">⚡ Instant Upwork Scope Creep Scanner</h2>
+      <p style="font-size: 13px; color: #94a3b8;">Paste your Upwork client's message below to audit unbudgeted feature creep:</p>
+      <textarea id="upworkMsg" class="input-box" placeholder="Example: Hey, we also need you to integrate an AI chatbot and create 3 more dashboard screens before we approve the milestone..."></textarea>
+      
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+        <button onclick="calculateUpworkCreep()" class="cta-btn">Calculate Hourly Variance & Generate Change Order</button>
+        <span style="font-size: 12px; color: #64748b;">Zero server storage. 100% private in-browser.</span>
+      </div>
+
+      <div id="outputArea" style="display: none; margin-top: 20px; padding-top: 16px; border-top: 1px solid #1e293b;">
+        <div class="grid">
+          <div class="metric">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">Estimated Unbilled Hours</div>
+            <div id="outHours" class="metric-val">35 - 60 hrs</div>
+          </div>
+          <div class="metric">
+            <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">Financial Loss (@ $75/hr)</div>
+            <div id="outLoss" class="metric-val" style="color: #f43f5e;">$2,625 - $4,500</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 14px; margin-top: 20px; color: #e2e8f0;">Copypaste Upwork Diplomatic Reply (UCC § 2-209 Protected):</h3>
+        <div id="scriptContent" class="script-box"></div>
+        <div style="margin-top: 16px;">
+          <a href="./index.html" class="cta-btn" style="background: linear-gradient(135deg, #10b981, #059669);">
+            Open Full ScopeLock AI Suite (Export PDF & Signable Change Order) →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <div class="card">
+      <h2 style="font-size: 18px; margin-top: 0; color: #e2e8f0;">Why Upwork Fixed-Price Milestones Bleed Your Profit</h2>
+      <p style="font-size: 14px; color: #94a3b8;">On Upwork, clients routinely treat Milestone Acceptance as hostage leverage: demanding 20-40 hours of uncontracted additions before clicking "Release Payment". Under the Uniform Commercial Code (UCC § 2-209) and international contracting law, milestone approval only governs the exact Statement of Work (SOW) documented at contract initiation.</p>
+      <p style="font-size: 14px; color: #94a3b8;">When you submit a statutory ScopeLock Change Order, the client cannot dispute the milestone on Upwork arbitration because you provide an objective, audit-grade record of technical variance.</p>
+    </div>
+
+    <div class="footer">
+      <p>© 2026 ScopeLock AI™ — B2B Scope Defense Engine. Verified Corporate Signatory: Dhanmanti Ahirwar (<a href="mailto:ahirwardhanmanti83@gmail.com" class="link">ahirwardhanmanti83@gmail.com</a>).</p>
+      <p>Payoneer Direct Wire Clearance & Patreon Gateway Supported.</p>
+    </div>
+  </div>
+
+  <script>
+    function calculateUpworkCreep() {
+      const msg = document.getElementById('upworkMsg').value.trim();
+      const area = document.getElementById('outputArea');
+      const script = document.getElementById('scriptContent');
+      area.style.display = 'block';
+
+      script.textContent = `Hi [Client Name],\\n\\nThank you for sharing these additional requirements!\\n\\nOur active Upwork milestone covers the deliverables specified in our original agreement. The requested features (${msg.slice(0, 80) || 'additional functionality'}...) represent out-of-scope architectural additions requiring approximately 35-50 dedicated engineering hours.\\n\\nTo ensure we maintain code quality without delaying our delivery, I have prepared a formal UCC § 2-209 Change Order. We can either execute this under a new Upwork milestone or schedule it for Phase 2 once the current milestone is approved.\\n\\nOfficial Verification Link: https://ahirwardhanmanti83-bit.github.io/scopelock-ai/`;
+    }
+  </script>
+</body>
+</html>

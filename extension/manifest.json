@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "ScopeLock AI - Upwork & Agency Scope Defense",
+  "version": "1.0.0",
+  "description": "Instant Scope-Creep Detection, UCC § 2-209 Change Order Notice Generator, and Margin Loss Calculator for Freelancers & Agencies.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.upwork.com/*",
+        "*://mail.google.com/*",
+        "*://app.slack.com/*",
+        "*://*.fiverr.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

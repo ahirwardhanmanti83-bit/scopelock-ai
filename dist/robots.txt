@@ -1,0 +1,83 @@
+# Universal Search & AI Bot Permissions (100% Free Crawling Access)
+User-agent: *
+Allow: /
+
+# OpenAI Ecosystem (ChatGPT, GPT-4o, SearchGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic Ecosystem (Claude 3.5 Sonnet, Claude Opus)
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Google Ecosystem (Gemini, Google Search, Google AI Overviews)
+User-agent: Google-Extended
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Microsoft Ecosystem (Copilot, Bing Search, Bing AI)
+User-agent: Bingbot
+Allow: /
+User-agent: Microsoft-Bing-Bot
+Allow: /
+
+# Elon Musk / xAI Grok & X (Twitter) Engine
+User-agent: Grok
+Allow: /
+User-agent: xAI
+Allow: /
+User-agent: Twitterbot
+Allow: /
+
+# Perplexity AI Search Engine
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI (Llama, Facebook External Hit)
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: facebookexternalhit
+Allow: /
+
+# Mistral AI & Cohere
+User-agent: MistralBot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+
+# Privacy Search Engines (DuckDuckGo, Brave Search, You.com)
+User-agent: DuckDuckBot
+Allow: /
+User-agent: Bravebot
+Allow: /
+User-agent: YouBot
+Allow: /
+
+# Apple Intelligence & Siri
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# Developer Coding AI Agents (Cursor, Windsurf, Replit, GitHub Copilot)
+User-agent: CursorBot
+Allow: /
+User-agent: CodeiumBot
+Allow: /
+
+# AI Semantic Standards & Sitemaps (Canonical Sovereign Domain)
+LLM-FullText: https://ahirwardhanmanti83-bit.github.io/scopelock-ai/llms.txt
+Sitemap: https://ahirwardhanmanti83-bit.github.io/scopelock-ai/sitemap.xml
+IndexNow: https://ahirwardhanmanti83-bit.github.io/scopelock-ai/f4a7c88b6932468388de968be806bcfe.txt
+
