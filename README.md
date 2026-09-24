@@ -1,6 +1,8 @@
 # ScopeLock AI 🛡️
 > **Automated B2B Scope-Creep Detection, Developer Cost-Variance Calculator & Statutory UCC § 2-209 Change-Order Generator for Digital Agencies, Dev Studios & Independent Engineers.**
-
+[![GitHub Marketplace](https://img.shields.io/badge/GitHub_Marketplace-ScopeLock_AI_v1.0.0-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor)
+[![GitHub Stars](https://img.shields.io/github/stars/ahirwardhanmanti83-bit/scopelock-ai?style=for-the-badge&logo=github&color=gold)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/stargazers)
+[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://patreon.com/c/AestheticFindsUSA)
 [![NPM Version](https://img.shields.io/npm/v/scopelock-audit?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/scopelock-audit)
 [![Deploy Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
