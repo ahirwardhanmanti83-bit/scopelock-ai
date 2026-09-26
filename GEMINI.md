@@ -13,7 +13,6 @@
 - Legal Signatory: Dhanmanti Ahirwar (`ahirwardhanmanti83@gmail.com`).
 - Live Rails: Payoneer (`ahirwardhanmanti83@gmail.com`) & Patreon (`https://patreon.com/c/AestheticFindsUSA`).
 - Doctrine: Mass ₹100 ($2) unlocks + $19, $199, $499 subscriptions = $1B Enterprise.
-- Approved Distribution: SourceForge, AlternativeTo, SaaSHub, Direct Software Indexing.
-- SYSTEM CLOCK: 22 September 2026. Hard Deadline: 30 September 2026. Target: $100 - $1,000 cash.
-- STRICT BANS: NO GitHub PRs, NO SourceForge/AlternativeTo re-asking (already done), NO repeating questions about previously submitted assets (Google, Bing, NPM, Extension, SourceForge, AlternativeTo all handled), NO asking user to re-do work.
+- Approved Distribution: Official VS Code Marketplace, Official NPM Registry (scopelock-audit), Official GitHub Action (.github/workflows), Direct Search & AI LLM Indexing (Googlebot, Bing IndexNow, ChatGPT, Claude, Grok).
+- PERMANENT ABSOLUTE BANS: NO SaaSHub, NO Slant, NO directories, NO cold emails/Gmail outreach, NO social media (Reddit, LinkedIn, Twitter/X), NO GitHub PRs, NO asking user to re-do work, NO buyouts/selling software ($50K / $499 buyout banned forever).
 - MISSION: First $100 to $1,000 cash sales into Payoneer / Patreon by 30 September 2026.

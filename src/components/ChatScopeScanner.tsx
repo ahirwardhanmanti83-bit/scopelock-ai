@@ -21,6 +21,7 @@ import { copyToClipboard } from '../utils/clipboard';
 interface ChatScopeScannerProps {
   onApplyToAudit?: (detectedTitle: string, detectedScope: string, estHours: number) => void;
   onOpenLicense?: () => void;
+  onTriggerUnlock?: () => void;
   hourlyRate?: number;
 }
 
@@ -42,6 +43,7 @@ const SAMPLE_CLIENT_MESSAGES = [
 export const ChatScopeScanner: React.FC<ChatScopeScannerProps> = ({
   onApplyToAudit,
   onOpenLicense,
+  onTriggerUnlock,
   hourlyRate = 125
 }) => {
   const [inputText, setInputText] = useState(SAMPLE_CLIENT_MESSAGES[0].text);
@@ -276,11 +278,10 @@ export const ChatScopeScanner: React.FC<ChatScopeScannerProps> = ({
                 if (onApplyToAudit) {
                   onApplyToAudit('Client Scope Variance', inputText, detectedCreep.estimatedHours);
                 }
-                if (onOpenLicense) {
+                if (onTriggerUnlock) {
+                  onTriggerUnlock();
+                } else if (onOpenLicense) {
                   onOpenLicense();
-                } else {
-                  const modalTrigger = document.getElementById('open-license-btn');
-                  if (modalTrigger) modalTrigger.click();
                 }
                 return;
               }
@@ -316,11 +317,10 @@ export const ChatScopeScanner: React.FC<ChatScopeScannerProps> = ({
                 if (onApplyToAudit) {
                   onApplyToAudit('Client Scope Variance', inputText, detectedCreep.estimatedHours);
                 }
-                if (onOpenLicense) {
+                if (onTriggerUnlock) {
+                  onTriggerUnlock();
+                } else if (onOpenLicense) {
                   onOpenLicense();
-                } else {
-                  const modalTrigger = document.getElementById('open-license-btn');
-                  if (modalTrigger) modalTrigger.click();
                 }
                 return;
               }

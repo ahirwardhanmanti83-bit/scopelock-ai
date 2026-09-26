@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
+import { VSIX_BASE64, VSIX_FILENAME } from './data/vsixBase64';
 import { ScopeInputForm } from './components/ScopeInputForm';
 import { CostImpactDashboard } from './components/CostImpactDashboard';
 import { ScopeForensicsPanel } from './components/ScopeForensicsPanel';
@@ -19,6 +20,7 @@ import { FounderTelemetryDashboard } from './components/FounderTelemetryDashboar
 import { ChromeExtensionModal } from './components/ChromeExtensionModal';
 import { UnlockPaymentModal } from './components/UnlockPaymentModal';
 import { AgencyPortalModal } from './components/AgencyPortalModal';
+import { ApexAuthorityBanner } from './components/ApexAuthorityBanner';
 import { ScopeAuditReport, AgencyBranding } from './types';
 import { parseScopeComparison } from './utils/parser';
 import { SeoTemplate } from './data/seoTemplates';
@@ -33,7 +35,8 @@ import {
   Calculator, 
   Terminal, 
   BarChart3,
-  BookOpen
+  BookOpen,
+  Github
 } from 'lucide-react';
 
 const DEFAULT_BRANDING: AgencyBranding = {
@@ -42,6 +45,31 @@ const DEFAULT_BRANDING: AgencyBranding = {
 };
 
 export function App() {
+  const [downloadedVsixBanner, setDownloadedVsixBanner] = useState(false);
+  const handleDirectVsixDownload = () => {
+    try {
+      const byteCharacters = atob(VSIX_BASE64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "application/octet-stream" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = VSIX_FILENAME;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setDownloadedVsixBanner(true);
+      setTimeout(() => setDownloadedVsixBanner(false), 4000);
+    } catch (err) {
+      console.error("VSIX download error", err);
+    }
+  };
+
   const [branding, setBranding] = useState<AgencyBranding>(DEFAULT_BRANDING);
   const [isLicenseOpen, setIsLicenseOpen] = useState(false);
   const [isBrandingOpen, setIsBrandingOpen] = useState(false);
@@ -145,6 +173,25 @@ export function App() {
     window.scrollTo({ top: 380, behavior: 'smooth' });
   };
 
+  const handleSelectInterceptorCase = (title: string, scopeText: string, hours: number) => {
+    recordTelemetryEvent('interceptor_select', `Selected apex dispute interceptor: "${title}" (${hours}h variance)`);
+    const rate = auditReport?.hourlyRate || 125;
+    const report = parseScopeComparison(
+      `1. Approved Statement of Work (SOW) Scope Freeze\n2. Primary Milestone Deliverables\n3. Standard QA and Staging Handover`,
+      scopeText,
+      rate,
+      auditReport?.contractBudget || 15000,
+      auditReport?.contractTimelineWeeks || 6,
+      title,
+      'Client Sponsor (Unbilled Revisions)',
+      'sponsor@clientcorp.com',
+      branding
+    );
+    setAuditReport(report);
+    setActiveTab('audit');
+    window.scrollTo({ top: 500, behavior: 'smooth' });
+  };
+
   const handleSendEmail = () => {
     recordTelemetryEvent('change_order_copy', `Initiated statutory client change order email notice for "${auditReport.projectName}" ($${auditReport.totalScopeCreepCost.toLocaleString()})`);
     const subject = encodeURIComponent(`Statutory Notice: Scope Variance & Change Order - ${auditReport.projectName}`);
@@ -154,6 +201,26 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
+      {/* Microsoft Marketplace Upload Banner */}
+      <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-700 text-white px-4 py-3 shadow-xl border-b border-emerald-400/40 sticky top-0 z-50 flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className="p-1.5 bg-black/20 rounded-lg text-lg">📦</span>
+          <div>
+            <div className="font-extrabold text-sm flex items-center gap-2">
+              Microsoft VS Code Extension (.vsix)
+              <span className="text-[10px] uppercase tracking-wider bg-black/30 px-2 py-0.5 rounded text-emerald-200">Ready to Upload</span>
+            </div>
+            <p className="text-xs text-emerald-100 hidden sm:block">Required file for Microsoft Marketplace Visual Studio Code publisher</p>
+          </div>
+        </div>
+        <button
+          onClick={handleDirectVsixDownload}
+          className="w-full sm:w-auto px-4 py-2 bg-white hover:bg-emerald-50 text-emerald-950 font-black text-xs uppercase tracking-wider rounded-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white"
+        >
+          <span>{downloadedVsixBanner ? "✅ FILE SAVED TO DOWNLOADS!" : "📥 CLICK HERE TO DOWNLOAD .VSIX (8 KB)"}</span>
+        </button>
+      </div>
+
       <Header
         branding={branding}
         onOpenBranding={() => setIsBrandingOpen(true)}
@@ -176,20 +243,33 @@ export function App() {
             Combines algorithmic contract forensics, automated margin recovery ($/hr), and UCC-enforceable legal change orders into an untouchable monopoly engine.
           </p>
 
-          {/* Quick Terminal Run Badge in Hero */}
-          <div className="pt-2 flex items-center justify-center gap-3">
+          {/* Quick Terminal Run Badge & GitHub in Hero */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5">
             <div className="inline-flex items-center gap-2 bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 rounded-lg px-3 py-1.5 font-mono text-xs text-slate-300 shadow-md">
               <span className="text-emerald-400 font-bold">$</span>
               <span className="text-slate-200">npx scopelock-audit</span>
               <span className="text-[10px] text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 px-1.5 py-0.5 rounded ml-1 font-sans font-medium">NPM Live</span>
             </div>
+            
             <a
-              href="https://www.npmjs.com/package/scopelock-audit"
+              href="https://github.com/ahirwardhanmanti83-bit/scopelock-ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-slate-400 hover:text-emerald-400 font-medium transition-colors hidden sm:inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md cursor-pointer"
             >
-              npm v1.0.0 ↗
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub Repo</span>
+              <span className="text-[10px] text-amber-300 font-mono">★</span>
+            </a>
+
+            <a
+              href="https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-indigo-500/40 text-indigo-300 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-md cursor-pointer"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>GitHub Action</span>
             </a>
           </div>
 
@@ -285,11 +365,17 @@ export function App() {
       </div>
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 space-y-6 sm:space-y-8">
+        <ApexAuthorityBanner
+          onSelectInterceptorCase={handleSelectInterceptorCase}
+          hourlyRate={auditReport?.hourlyRate || 125}
+        />
+
         {activeTab === 'audit' && (
           <>
             <ChatScopeScanner 
               onApplyToAudit={handleApplyChatScope} 
               onOpenLicense={() => setIsLicenseOpen(true)}
+              onTriggerUnlock={() => setIsUnlockModalOpen(true)}
               hourlyRate={auditReport?.hourlyRate || 125}
             />
             <ScopeInputForm
@@ -328,6 +414,7 @@ export function App() {
             <ChatScopeScanner 
               onApplyToAudit={handleApplyChatScope} 
               onOpenLicense={() => setIsLicenseOpen(true)}
+              onTriggerUnlock={() => setIsUnlockModalOpen(true)}
               hourlyRate={auditReport?.hourlyRate || 125}
             />
             {auditReport && (

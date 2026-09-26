@@ -1,27 +1,39 @@
 # ScopeLock AI 🛡️
 > **Automated B2B Scope-Creep Detection, Developer Cost-Variance Calculator & Statutory UCC § 2-209 Change-Order Generator for Digital Agencies, Dev Studios & Independent Engineers.**
+
 [![GitHub Marketplace](https://img.shields.io/badge/GitHub_Marketplace-ScopeLock_AI_v1.0.0-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor)
-[![GitHub Stars](https://img.shields.io/github/stars/ahirwardhanmanti83-bit/scopelock-ai?style=for-the-badge&logo=github&color=gold)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/stargazers)
-[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://patreon.com/c/AestheticFindsUSA)
 [![NPM Version](https://img.shields.io/npm/v/scopelock-audit?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/scopelock-audit)
+[![GitHub Stars](https://img.shields.io/github/stars/ahirwardhanmanti83-bit/scopelock-ai?style=for-the-badge&logo=github&color=gold)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/stargazers)
 [![Deploy Status](https://img.shields.io/badge/Production-Live-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Pricing](https://img.shields.io/badge/Single%20Unlock-$2-emerald?style=for-the-badge)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
+[![Pricing](https://img.shields.io/badge/Instant%20Unlock-$2-emerald?style=for-the-badge)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
+[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://patreon.com/c/AestheticFindsUSA)
 
 ---
 
-## ⚡ Instant Terminal CLI Audit (Zero Install via NPX)
+## ⚡ Instant Terminal CLI Audit & Git Hook (Zero Install via NPX)
 Run the autonomous git repository scope auditor directly in your project terminal:
 
 ```bash
-npx scopelock-audit
+# Run interactive forensic audit
+npx scopelock
+
+# Generate UCC § 2-209 Change Order Document (.md) right inside your repo
+npx scopelock --generate
+
+# Install automatic Git Pre-Commit Hook (Freezes uncontracted commits)
+npx scopelock --install-hook
+
+# Audit with custom contractor hourly rate
+npx scopelock --rate 150
 ```
-*(or simply `npx scopelock`)*
+*(or `npx scopelock-audit`)*
 
 **What it does in 3 seconds:**
 1. Scans your git commits and uncommitted diffs for out-of-scope feature creep.
-2. Calculates exact hours leaked and dollar variance owed by client.
-3. Generates the direct legal link to produce court-admissible UCC § 2-209 change orders.
+2. Calculates exact hours leaked and dollar variance owed by client ($125/hr standard).
+3. **Instantly generates `SCOPE_CHANGE_ORDER_UCC2209.md`** with dual signature blocks and statutory tolling clauses ready to email your client.
+4. **Installs a Git Pre-Commit Hook** (`.git/hooks/pre-commit`) to protect your team against unbilled work before code is committed.
 
 ---
 
@@ -44,6 +56,20 @@ jobs:
         with:
           hourly_rate: '125'
           fail_on_creep: 'false'
+```
+
+---
+
+## 📜 Free Bulletproof Developer Contract Template
+Protect your freelance and agency projects before starting work. Use our standardized contract template with automated scope-creep clauses and statutory UCC § 2-209 change-order ratification:
+
+👉 **[View & Copy Standard Developer Agreement (CONTRACT_TEMPLATE.md)](./CONTRACT_TEMPLATE.md)**
+
+### Protect Your Repository (Add Badge to Your README)
+Warn clients and stakeholders that out-of-scope requests require written change orders:
+
+```markdown
+[![ScopeLock Protected](https://img.shields.io/badge/ScopeLock-Protected_UCC_§_2--209-blue)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 ```
 
 ---

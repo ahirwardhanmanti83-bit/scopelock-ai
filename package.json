@@ -1,7 +1,35 @@
 {
   "name": "scopelock-ai",
-  "private": true,
-  "version": "1.0.0",
+  "version": "1.2.0",
+  "description": "Autonomous Git scope-creep auditor, developer unbilled variance calculator, git pre-commit freeze hook and UCC § 2-209 legal change-order generator.",
+  "keywords": [
+    "scope-creep",
+    "git-audit",
+    "git-hook",
+    "pre-commit",
+    "change-order",
+    "change-order-generator",
+    "freelance-contract",
+    "developer-tools",
+    "variance-calculator",
+    "diff-checker",
+    "cli",
+    "ucc-2-209",
+    "agile-scope",
+    "agency-tools",
+    "client-billing",
+    "unbilled-hours"
+  ],
+  "author": "Krishna Ahirwar",
+  "license": "MIT",
+  "homepage": "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai/issues"
+  },
   "type": "module",
   "bin": {
     "scopelock": "./cli/scopelock-audit.js",

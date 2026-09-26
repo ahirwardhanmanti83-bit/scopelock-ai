@@ -5,7 +5,6 @@ import { generateFormalChangeOrderText } from '../utils/changeOrderGenerator';
 import { UnlockPaymentModal } from './UnlockPaymentModal';
 import { ShareAuditModal } from './ShareAuditModal';
 import { VerificationRegistryModal } from './VerificationRegistryModal';
-import { StarUnlockModal } from './StarUnlockModal';
 import { recordTelemetryEvent } from '../utils/telemetry';
 import { copyToClipboard } from '../utils/clipboard';
 
@@ -18,7 +17,6 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
   const [copied, setCopied] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
-  const [isStarModalOpen, setIsStarModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
 
@@ -129,19 +127,11 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
             {!isUnlocked ? (
               <div className="flex flex-wrap items-center gap-2">
                 <button
-                  onClick={() => setIsStarModalOpen(true)}
-                  className="px-3.5 py-2 text-xs font-bold text-amber-300 bg-amber-950/70 hover:bg-amber-900/90 border border-amber-500/40 rounded-xl flex items-center gap-1.5 shadow-md shadow-amber-500/10 transition-all cursor-pointer"
-                >
-                  <Award className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Free Unlock via 1 Star ⭐</span>
-                </button>
-
-                <button
                   onClick={() => setIsUnlockModalOpen(true)}
-                  className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-emerald-600 via-indigo-600 to-purple-600 hover:opacity-95 rounded-xl flex items-center gap-2 shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+                  className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 hover:opacity-95 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer animate-pulse"
                 >
                   <Sparkles className="w-4 h-4 text-amber-300" />
-                  <span>Instant Unlock ($2 USD)</span>
+                  <span>Unlock Statutory Change Order ($2 USD)</span>
                 </button>
               </div>
             ) : (
@@ -195,21 +185,13 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
             <p className="text-xs text-slate-400 max-w-md mb-4">
               Bill your client for the extra <span className="text-emerald-400 font-bold">${report.totalScopeCreepCost.toLocaleString()}</span> with full legal protection and signature blocks.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <button
-                onClick={() => setIsStarModalOpen(true)}
-                className="px-4 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold rounded-xl shadow-md flex items-center gap-2 transition-all cursor-pointer"
-              >
-                <Award className="w-4 h-4 text-amber-400" />
-                <span>Free Unlock with 1 Star ⭐</span>
-              </button>
-
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={() => setIsUnlockModalOpen(true)}
-                className="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white text-xs font-black rounded-xl shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition-all cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white text-xs font-black rounded-xl shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer animate-pulse"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" />
-                <span>Instant Unlock ($2 USD)</span>
+                <span>Recover ${report.totalScopeCreepCost.toLocaleString()} • Unlock Statutory Change Order ($2 USD)</span>
               </button>
             </div>
           </div>
@@ -256,17 +238,6 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
         onClose={() => setIsRegistryModalOpen(false)}
         report={report}
       />
-
-      {isStarModalOpen && (
-        <StarUnlockModal
-          onUnlock={() => {
-            setIsUnlocked(true);
-            recordTelemetryEvent('github_star_unlock', `User unlocked Change Order via GitHub Star viral loop`);
-          }}
-          onClose={() => setIsStarModalOpen(false)}
-          targetActionName="Official UCC § 2-209 Contract"
-        />
-      )}
     </div>
   );
 };

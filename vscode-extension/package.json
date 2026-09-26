@@ -1,0 +1,87 @@
+{
+  "name": "scopelock-ai",
+  "displayName": "ScopeLock AI — Git Scope Creep & Legal Change Order Engine",
+  "description": "Real-time Git scope creep auditor and statutory UCC § 2-209 legal change order generator. Never write unbilled client code for free.",
+  "version": "1.0.0",
+  "publisher": "ScopeLockAI",
+  "author": {
+    "name": "Krishna Ahirwar",
+    "email": "ahirwardhanmanti83@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "SCM Providers",
+    "Other"
+  ],
+  "keywords": [
+    "scope creep",
+    "git audit",
+    "change order",
+    "unbilled hours",
+    "freelance billing",
+    "agency contracts",
+    "ucc 2-209"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "scopelock.auditRepo",
+        "title": "ScopeLock: Audit Unbilled Scope Creep",
+        "category": "ScopeLock AI",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "scopelock.generateChangeOrder",
+        "title": "ScopeLock: Generate UCC § 2-209 Change Order (.md)",
+        "category": "ScopeLock AI",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "scopelock.installHook",
+        "title": "ScopeLock: Install Git Pre-Commit Scope Freeze",
+        "category": "ScopeLock AI",
+        "icon": "$(lock)"
+      },
+      {
+        "command": "scopelock.openDashboard",
+        "title": "ScopeLock: Open Web Generator ($2 Unlock / Pro)",
+        "category": "ScopeLock AI",
+        "icon": "$(link-external)"
+      }
+    ],
+    "configuration": {
+      "title": "ScopeLock AI",
+      "properties": {
+        "scopelock.hourlyRate": {
+          "type": "number",
+          "default": 125,
+          "description": "Standard hourly rate in USD ($/hr) for calculating unbilled scope variance"
+        },
+        "scopelock.autoAuditIntervalMinutes": {
+          "type": "number",
+          "default": 10,
+          "description": "Background git log audit interval in minutes (set to 0 to disable)"
+        },
+        "scopelock.alertOnUnbilledHoursThreshold": {
+          "type": "number",
+          "default": 2,
+          "description": "Threshold of unbilled hours before triggering a status bar warning"
+        }
+      }
+    }
+  },
+  "homepage": "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai"
+  }
+}

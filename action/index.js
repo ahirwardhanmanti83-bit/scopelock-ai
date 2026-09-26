@@ -6,7 +6,7 @@ const hourlyRate = parseInt(process.env.INPUT_HOURLY_RATE || '125', 10);
 const baselineRef = process.env.INPUT_BASELINE_REF || 'HEAD~1';
 const failOnCreep = process.env.INPUT_FAIL_ON_CREEP === 'true';
 
-const LIVE_PORTAL_URL = 'https://ahirwardhanmanti83-bit.github.io/scopelock-ai/';
+const LIVE_PORTAL_URL = 'https://ahirwardhanmanti83-bit.github.io/scopelock-ai/?utm_source=github_action';
 
 console.log('::group::⚡ ScopeLock AI Scope Creep CI Auditor');
 console.log('══════════════════════════════════════════════════════════════════════════════');

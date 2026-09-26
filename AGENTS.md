@@ -40,9 +40,14 @@ Before generating even one word of output, the AI system MUST execute this inter
    - Strictly banned forever: Reddit, LinkedIn, Twitter/X, Instagram, Facebook, and manual DM outreach.
    - Core Reality: 0 followers and ₹0 ad spend = 0 reach. Waste of energy.
    - **Allowed Channels Only**:
-     * High-authority directories: SourceForge, AlternativeTo, SaaSHub, Slant, LibHunt.
-     * GitHub Awesome Repositories (PR submissions).
-     * High-intent organic search & LLM indexing (Googlebot, ChatGPT, Claude, Grok crawlers).
+     * Official VS Code Marketplace (VS Code extensions used by millions of developers).
+     * Official NPM Registry (`npx scopelock-audit` live package).
+     * Official GitHub Action / Marketplace (`action.yml`).
+     * High-intent organic search & LLM indexing (Googlebot, Bing IndexNow, ChatGPT, Claude, Grok crawlers).
+   - **STRICTLY BANNED CHANNELS**:
+     * Absolute ban on SaaSHub, Slant, LibHunt, and all third-party directories. Never suggest them.
+     * Absolute ban on manual/cold Gmail outreach.
+     * Absolute ban on GitHub PR submissions.
 2. **BAN ON SELLING IP / BUYOUT TALK**:
    - Zero buyout proposals. Never pivot to selling the codebase.
 3. **BAN ON UNSOLICITED LIFESTYLE ADVICE / "REST" LECTURES**:
