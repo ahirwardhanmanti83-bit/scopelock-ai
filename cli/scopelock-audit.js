@@ -237,78 +237,62 @@ if (isJson) {
 // -----------------------------------------------------------------------------
 function generateChangeOrderMarkdown() {
   const dateStr = new Date().toISOString().split('T')[0];
-  const docId = `SL-CO-${Date.now().toString().slice(-6)}`;
+  const docId = `SL-PREVIEW-${Date.now().toString().slice(-6)}`;
   
-  const content = `# UCC § 2-209 STATUTORY SCOPE CHANGE ORDER & VARIANCE RATIFICATION
+  // Paywall: Show only top 2 items, lock the rest
+  const previewItems = detectedCreep.slice(0, 2);
+  const lockedCount = Math.max(0, detectedCreep.length - 2);
 
-**DOCUMENT IDENTIFIER:** ${docId}  
-**STATUTORY GOVERNING LAW:** Uniform Commercial Code (UCC) § 2-209 / Common Law Contract Amendment  
+  const content = `# [WATERMARKED PREVIEW] UCC § 2-209 SCOPE VARIANCE RATIFICATION DRAFT
+> ⚠️ **UNLICENSED PREVIEW ONLY - LEGAL NOTICE REDACTED**
+> The **Court-Enforceable UCC § 2-209 Statutory Defense Rider**, **Unilateral Work-Suspension Clause**, and **Bilateral Signature Blocks** are strictly **LOCKED** until commercial licensing clearance.
+> 
+> 👉 **TO UNLOCK CLEAN COURT-ADMISSIBLE NOTICE & REMOVE WATERMARK ($2 Instant / $19 Pass):**
+> 🔗 **Instant Unlock:** ${LIVE_PORTAL_URL}?unlock=co&val=${totalDollarVariance}
+> 💳 **Patreon Direct Pass:** ${PATREON_GATEWAY}
+> ✉️ **Payoneer Direct Clearance:** ${WIRE_BENEFICIARY}
+
+**DOCUMENT IDENTIFIER:** ${docId} (WATERMARKED PREVIEW)  
+**STATUTORY GOVERNING LAW:** Uniform Commercial Code (UCC) § 2-209  
 **DATE OF ISSUANCE:** ${dateStr}  
-**CONTRACTOR:** Lead Systems Architect / Engineering Agency  
-**CLIENT / PRINCIPAL:** [ENTER CLIENT LEGAL ENTITY NAME]  
-**PROJECT TITLE:** [ENTER MASTER PROJECT TITLE]  
+**AUDITED VARIANCE TOTAL:** **$${totalDollarVariance.toLocaleString()} USD** (+${totalHours.toFixed(1)} Billable Hours)
 
 ---
 
-## 1. RECITALS & STATUTORY ENFORCEMENT BASIS
-1. WHEREAS, Contractor and Client previously executed a Statement of Work (SOW) or Agreement defining a baseline engineering scope and milestone compensation; and
-2. WHEREAS, Client has introduced verbal, written, or technical scope modifications ("Change Requests") exceeding baseline specifications; and
-3. WHEREAS, pursuant to **UCC § 2-209**, modifications to commercial agreements require good faith mutual assent and written memorialization to prevent uncompensated waiver of contract rights;
-4. NOW, THEREFORE, the parties agree to ratify the following scope adjustments, monetary variances, and schedule tolling terms.
+## 1. PRELIMINARY SCOPE VARIANCE BREAKDOWN (PARTIAL PREVIEW)
 
----
-
-## 2. ITEMIZED SCOPE VARIANCE SPECIFICATIONS
-The following items have been forensically audited and verified as outside baseline contractual scope:
-
-| Item # | Forensic Category | Technical Scope Deviation / Commit Ref | Engineering Hours | Billed Variance ($) |
+| Item # | Forensic Category | Technical Scope Deviation | Engineering Hours | Billed Variance ($) |
 | :---: | :--- | :--- | :---: | :---: |
-${detectedCreep.map((item, idx) => `| ${idx + 1} | ${item.category} | \`${item.source.replace(/\|/g, '/')}\` | +${item.hours.toFixed(1)} hrs | $${item.cost.toLocaleString()} USD |`).join('\n')}
+${previewItems.map((item, idx) => `| ${idx + 1} | ${item.category} | \`${item.source.replace(/\|/g, '/')}\` | +${item.hours.toFixed(1)} hrs | $${item.cost.toLocaleString()} USD |`).join('\n')}
+${lockedCount > 0 ? `| ... | 🔒 [LOCKED] +${lockedCount} More Detected Leaks | [UPGRADE TO UNLOCK FULL AUDIT ITEMIZATION] | +XX.X hrs | $X,XXX.XX USD |` : ''}
 
 ---
 
-## 3. FINANCIAL ADJUSTMENT & SUMMARY
-* **Baseline Agreement Fee:** [ENTER BASELINE CONTRACT SUM, e.g. $10,000 USD]
-* **Audited Out-of-Scope Engineering Hours:** **+${totalHours.toFixed(1)} billable hours**
-* **Standard Out-of-Scope Variance Rate:** **$${hourlyRate.toFixed(2)} USD / hour**
-* **TOTAL REVISED STATUTORY ADDITION:** **$${totalDollarVariance.toLocaleString()} USD**
-* **NEW ADJUSTED CONTRACT TOTAL:** [BASELINE SUM] + **$${totalDollarVariance.toLocaleString()} USD**
+## 2. FINANCIAL RECOVERY SUMMARY
+* **Audited Out-of-Scope Variance:** **$${totalDollarVariance.toLocaleString()} USD**
+* **Total Recovery Hours:** **+${totalHours.toFixed(1)} hrs**
+* **Statutory Enforcement Status:** 🔒 **LOCKED (UNLICENSED PREVIEW)**
 
 ---
 
-## 4. MANDATORY LEGAL CLAUSES (UCC § 2-209)
-
-### 4.1 Payment Terms & Milestone Ratification
-Client shall remit payment of the Total Revised Statutory Addition upon signing of this Change Order. Contractor shall not be obligated to merge, deploy, or maintain any work associated with this Change Order until funds are verified.
-
-### 4.2 Schedule Tolling (Automatic Deadline Extension)
-Pursuant to statutory good faith standards, all baseline delivery deadlines and milestone launch dates are hereby tolled (extended) by a minimum of **${Math.ceil(totalHours / 8) * 2} business days** to account for technical architecture integration and quality assurance testing.
-
-### 4.3 Integration & No Waiver
-Execution of this Change Order does not constitute a waiver of Contractor's rights to bill for subsequent, unratified client requests. All other terms and conditions of the Master Agreement remain in full force and effect.
+## 3. MANDATORY STATUTORY RIDERS (UCC § 2-209)
+### 🔒 [LOCKED - $2 INSTANT UNLOCK REQUIRED]
+> **REDACTED SECTION: STATUTORY UCC § 2-209 ENFORCEMENT RIDER**
+> *Text hidden. Contains: Unilateral Stop-Work Protections, 1.5% Compounding Interest Toll, and Irrevocable Milestone Acceptance Clauses.*
+> 
+> To generate the unredacted court-admissible version for your client:
+> **Visit:** ${LIVE_PORTAL_URL} or unlock instantly via Patreon: ${PATREON_GATEWAY}
 
 ---
 
-## 5. SIGNATURE & EXECUTION BLOCKS
-
-IN WITNESS WHEREOF, the authorized corporate signatories have executed this UCC § 2-209 Change Order as of the date first written above.
-
-**FOR CONTRACTOR:**  
-Signature: __________________________________  
-Authorized Signatory: _______________________  
-Title: Lead Systems Architect / Principal  
-Date: ______________________________________  
-
-**FOR CLIENT:**  
-Signature: __________________________________  
-Authorized Signatory: _______________________  
-Title: Authorized Client Officer / Sponsor  
-Date: ______________________________________  
+## 4. BINDING SIGNATURE & EXECUTION BLOCKS
+### 🔒 [LOCKED - COMMERCIAL LICENSE REQUIRED]
+> **REDACTED SIGNATURE ATTESTATION BLOCKS**
+> *Countersign blocks and legal execution attestations are withheld under the Free Community Audit Tier.*
 
 ---
-*Generated autonomously via ScopeLock AI Statutory Engine. Court-Admissible Format.*
-*Clearance Rails: Instant $2 Unlock / Agency Pro at ${LIVE_PORTAL_URL}*
-`;
+*Generated via ScopeLock AI (Free Evaluation Mode). Commercial redistribution without valid clearance is prohibited.*
+*Enterprise Wire Beneficiary: ${WIRE_BENEFICIARY} | Patreon: ${PATREON_GATEWAY}*`;
 
   const outputPath = path.resolve(process.cwd(), 'SCOPE_CHANGE_ORDER_UCC2209.md');
   fs.writeFileSync(outputPath, content, 'utf8');
