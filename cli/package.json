@@ -1,7 +1,7 @@
 {
   "name": "scopelock-audit",
-  "version": "1.0.3",
-  "description": "Autonomous Scope Creep Auditor & Statutory UCC § 2-209 Legal Change Order Engine CLI for software agencies and freelancers.",
+  "version": "1.0.5",
+  "description": "Autonomous Scope Creep Auditor & Statutory UCC \u00a7 2-209 Legal Change Order Engine CLI for software agencies and freelancers.",
   "main": "scopelock-audit.js",
   "bin": {
     "scopelock-audit": "./scopelock-audit.js",
