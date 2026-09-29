@@ -1,8 +1,8 @@
 {
   "name": "scopelock-ai",
-  "displayName": "ScopeLock AI — Git Scope Creep & Legal Change Order Engine",
-  "description": "Real-time Git scope creep auditor and statutory UCC § 2-209 legal change order generator. Never write unbilled client code for free.",
-  "version": "1.0.1",
+  "displayName": "ScopeLock AI \u2014 Git Scope Creep & Legal Change Order Engine",
+  "description": "Real-time Git scope creep auditor and statutory UCC \u00a7 2-209 legal change order generator. Never write unbilled client code for free.",
+  "version": "1.0.2",
   "publisher": "ScopeLockAI",
   "author": {
     "name": "Krishna Ahirwar",
@@ -49,7 +49,7 @@
       },
       {
         "command": "scopelock.generateChangeOrder",
-        "title": "ScopeLock: Generate UCC § 2-209 Change Order (.md)",
+        "title": "ScopeLock: Generate UCC \u00a7 2-209 Change Order (.md)",
         "category": "ScopeLock AI",
         "icon": "$(file-text)"
       },
