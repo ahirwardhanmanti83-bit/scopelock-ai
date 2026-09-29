@@ -250,7 +250,7 @@ function generateChangeOrderDocument() {
 > This preview document is watermarked. Under Uniform Commercial Code provisions, delivering an unratified, unexecuted draft waives statutory protections.  
 > **To remove redactions, unlock court-admissible PDF, and generate binding signature blocks ($2 Instant Clearance):**  
 > 🔗 **Direct Instant Unlock ($2):** ${unlockUrl}  
-> 💳 **Patreon Direct Clearance ($19 Pro Pass):** https://patreon.com/c/AestheticFindsUSA  
+> 💳 **Patreon Direct Clearance ($19 Pro Pass):** https://www.patreon.com/posts/single-ucc-ss-2-170903732  
 > ✉️ **Payoneer Direct Wire:** ahirwardhanmanti83@gmail.com (Beneficiary: Dhanmanti Ahirwar)
 
 ---
