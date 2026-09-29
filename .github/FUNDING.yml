@@ -1,0 +1,11 @@
+# GitHub Official Sponsors Configuration
+# Repository: ScopeLock AI / DevVault Ecosystem
+# Corporate Legal Entity: Dhanmanti Ahirwar (ahirwardhanmanti83@gmail.com)
+
+# Patreon Integration
+patreon: AestheticFindsUSA
+
+# Custom Direct Institutional & Payoneer Invoicing Link
+custom:
+  - 'https://patreon.com/c/AestheticFindsUSA'
+  - 'mailto:ahirwardhanmanti83@gmail.com?subject=Enterprise%20Sponsorship%20Inquiry%20-%20ScopeLock'
