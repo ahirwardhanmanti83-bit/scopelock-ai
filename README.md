@@ -1,107 +1,57 @@
-# ScopeLock AI 🛡️
-> **Autonomous Scope Creep Auditor, Billable Hours Variance Calculator & Statutory UCC § 2-209 Change-Order Generator.**  
-> Built for Digital Agencies, Freelance Engineers, and Software Studios to eliminate unpaid dev work.
+# ScopeLock AI — VS Code Extension
+### Real-Time Git Scope Creep Auditor & Statutory UCC § 2-209 Change Order Generator
 
-<div align="center">
-
-[![GitHub Stars](https://img.shields.io/github/stars/ahirwardhanmanti83-bit/scopelock-ai?style=for-the-badge&logo=github&color=gold)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/stargazers)
-[![NPM Version](https://img.shields.io/npm/v/scopelock-audit?style=for-the-badge&logo=npm&logoColor=white&color=CB3837)](https://www.npmjs.com/package/scopelock-audit)
-[![GitHub Action](https://img.shields.io/badge/GitHub_Marketplace-ScopeLock_AI_v1.0.0-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor)
-[![24/7 Live Web App](https://img.shields.io/badge/Production%20Web-Live%2024%2F7-emerald?style=for-the-badge&logo=githubpages&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![Instant Unlock](https://img.shields.io/badge/Instant%20Unlock-$2-amber?style=for-the-badge)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
-[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://patreon.com/c/AestheticFindsUSA)
-
-<br/>
-
-### ⭐ Support Open Source: Star this Repo to unlock all 12 Freelance Contract Clauses!
-**[👉 Click here to Star on GitHub](https://github.com/ahirwardhanmanti83-bit/scopelock-ai)**
-
-</div>
+**Stop building client features for free.**  
+ScopeLock AI sits inside your VS Code status bar, audits your git commits in real-time, calculates dollar leakage at your agency's hourly rate, and generates court-admissible legal change orders directly in your project.
 
 ---
 
-## ⚡ 10-Second Quickstart (Zero Install)
+## ⚡ Key Features
 
-Run the autonomous scope auditor directly in your project root using NPX:
+1. **Real-Time Status Bar Dollar Monitor**:
+   - Continuously analyzes recent git commits.
+   - Highlights unbilled scope creep in real-time: `$(shield) ScopeLock: $625 Unbilled (5.0h)`.
+   - Warns developers before they write uncontracted code for demanding clients.
 
-```bash
-npx scopelock-audit
-```
+2. **1-Click Statutory UCC § 2-209 Change Order (`.md`)**:
+   - Generates `SCOPE_CHANGE_ORDER_UCC2209.md` directly in your workspace.
+   - Includes itemized commit breakdown, calculated hourly dollar variance ($125/hr default), statutory UCC § 2-209 clauses, schedule tolling, and client signature lines.
 
-Or run directly in any Git repository to scan staged/uncommitted files:
+3. **Git Pre-Commit Scope Freeze Guard**:
+   - Installs `.git/hooks/pre-commit` into your local repository with a single command.
+   - Prevents your team from committing uncontracted features without notifying project managers.
 
-```bash
-npx scopelock-audit --scan
-```
-
-### 📥 What It Does:
-1. **Scans Git Diff & Source Code:** Automatically identifies unbilled feature requests, out-of-scope architectural refactors, and creep keywords (`"just quickly add"`, `"can you also support"`, `"should only take 5 mins"`).
-2. **Calculates Financial Bleed:** Converts extra developer hours into dollar variance at standard commercial rates ($125/hr default).
-3. **Generates Binding UCC § 2-209 Change Orders:** Produces court-admissible commercial change orders with unilateral stop-work protection clauses before unbilled code is delivered.
-
----
-
-## 🌐 24/7 Live Web Dashboard
-Visit the permanent production portal hosted on GitHub CDN:  
-👉 **[https://ahirwardhanmanti83-bit.github.io/scopelock-ai/](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)**
-
-* **Interactive Scope Scanner:** Paste Slack, WhatsApp, Upwork, or Email client messages to get an instant scope-creep verdict.
-* **Margin Bleed Calculator:** Visualize how a 10-hour feature creep reduces agency net margins from 40% to -15%.
-* **Client Change-Order Generator:** 1-Click export to clean legal notice or PDF.
+4. **Zero-Server Overhead**:
+   - Runs 100% locally on your machine using standard git plumbing. No remote server tracking your proprietary code.
 
 ---
 
-## 🛡️ Git Pre-Commit Hook (Automated Scope Freeze)
+## 🚀 Quick Start & Commands
 
-Freeze scope creeps before code can even be committed to GitHub:
+Open the VS Code Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`):
 
-```bash
-npx scopelock-audit --install-hook
-```
-
-This installs `.git/hooks/pre-commit` in your repository. When engineers try to commit files exceeding planned scope without an attached change order, the commit is safely paused.
-
----
-
-## 📦 GitHub Actions CI/CD Integration
-
-Enforce scope locks across pull requests automatically in your workflow `.github/workflows/scopelock.yml`:
-
-```yaml
-name: ScopeLock Creep Audit
-on: [pull_request]
-
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Audit Scope Creep
-        uses: ahirwardhanmanti83-bit/scopelock-ai@main
-```
+- `ScopeLock: Audit Unbilled Scope Creep`: Runs a deep scan on the last 50 commits and shows dollar loss.
+- `ScopeLock: Generate UCC § 2-209 Change Order (.md)`: Emits a signed legal change order into your workspace.
+- `ScopeLock: Install Git Pre-Commit Scope Freeze`: Secures your `.git/hooks/pre-commit`.
+- `ScopeLock: Open Web Generator ($2 Unlock / Pro)`: Opens the official cloud generator with PDF exports.
 
 ---
 
-## 💎 Pricing & Commercial Licenses
+## ⚙️ Configuration Settings
 
-| Tier | Price | What You Get | Clearance Rail |
-| :--- | :--- | :--- | :--- |
-| **Instant Client Change Order** | **$2 (₹99)** | Instant unredacted UCC § 2-209 legal change order & client email | [Web App Unlock](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/) |
-| **Agency Pro Tier** | **$199 / mo** | Unlimited change orders, White-label PDF branding, Team CI hooks | [Patreon Direct](https://patreon.com/c/AestheticFindsUSA) |
-| **Sovereign Clearance** | **$499 One-time** | Perpetual commercial license, full code integration rights | [Patreon Direct](https://patreon.com/c/AestheticFindsUSA) |
+Customize in VS Code Settings (`Ctrl+,` or `Cmd+,`) search for `scopelock`:
 
-*Direct Payoneer Wire / Beneficiary:* `ahirwardhanmanti83@gmail.com` (Dhanmanti Ahirwar)
-
----
-
-## 📜 Legal Safe Harbor & Governance
-- **Systems Architect:** Krishna Ahirwar
-- **Corporate Signatory & Entity:** Dhanmanti Ahirwar (`ahirwardhanmanti83@gmail.com`)
-- **Disclaimer:** ScopeLock AI provides automated software tooling, mathematical variance calculators, and standard commercial contract templates for informational and workflow purposes only. ScopeLock AI is not a law firm and does not provide legal representation.
+| Setting | Type | Default | Description |
+| :--- | :---: | :---: | :--- |
+| `scopelock.hourlyRate` | `number` | `125` | Your agency hourly billing rate in USD ($/hr) |
+| `scopelock.autoAuditIntervalMinutes` | `number` | `10` | Frequency of background git audits in minutes |
+| `scopelock.alertOnUnbilledHoursThreshold` | `number` | `2.0` | Hours of unbilled variance before highlighting status bar |
 
 ---
 
-<div align="center">
-<b>If ScopeLock AI saved your studio billable hours, drop a ⭐ Star on this repository!</b>
-</div>
+## ⚖️ Legal Framework
+
+Built strictly on **Uniform Commercial Code (UCC) § 2-209**, establishing that good faith modifications to commercial software agreements are legally enforceable and that verbal scope expansion without compensation is statutorily contestable.
+
+- Official Clearance Rails: [ScopeLock AI Live Platform](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
+- Inquiries & Support: `ahirwardhanmanti83@gmail.com`
