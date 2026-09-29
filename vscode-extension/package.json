@@ -19,20 +19,15 @@
   ],
   "keywords": [
     "scope creep",
-    "git audit",
     "change order",
-    "unbilled hours",
+    "contract generator",
     "freelance billing",
-    "agency contracts",
-    "invoice generator",
-    "client billing",
-    "time tracking",
-    "git diff",
-    "contract template",
-    "scope lock",
-    "freelance invoice",
+    "git audit",
+    "software contract",
+    "agency invoice",
+    "unbilled work",
     "ucc 2-209",
-    "productivity"
+    "billable hours"
   ],
   "main": "./extension.js",
   "activationEvents": [
