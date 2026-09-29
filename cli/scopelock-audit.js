@@ -14,7 +14,7 @@ import readline from 'node:readline';
 
 const VERSION = '1.2.0';
 const LIVE_PORTAL_URL = 'https://ahirwardhanmanti83-bit.github.io/scopelock-ai/?utm_source=npx_cli&utm_medium=terminal';
-const PATREON_GATEWAY = 'https://patreon.com/c/AestheticFindsUSA';
+const PATREON_GATEWAY = 'https://www.patreon.com/posts/single-ucc-ss-2-170903732';
 const WIRE_BENEFICIARY = 'ahirwardhanmanti83@gmail.com (Dhanmanti Ahirwar)';
 
 // Parse command line arguments
