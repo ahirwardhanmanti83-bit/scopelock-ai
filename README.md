@@ -1,4 +1,11 @@
 # ScopeLock AI 🛡️
+> **Stop Doing Free Work. The Unassailable Defense Against Client Scope Creep & Unpaid Invoices.**
+> Includes the **Emergency Unpaid Invoice Recovery Engine (UCC § 2-209 Fast-Track Protocol)**.
+
+[![GitHub Release](https://img.shields.io/github/v/release/ahirwardhanmanti83-bit/scopelock-ai?color=emerald&label=Release)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/releases)
+[![NPM CLI](https://img.shields.io/badge/NPM-npx%20scopelock--audit-crimson)](https://www.npmjs.com/package/scopelock-audit)
+[![Live Web Portal](https://img.shields.io/badge/Live%20Web%20App-Instant%20Unlock%20($2)-blue)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
+ 🛡️
 > **Autonomous Scope Creep Auditor, Billable Hours Variance Calculator & Statutory UCC § 2-209 Change-Order Generator.**  
 > Built for Digital Agencies, Freelance Engineers, and Software Studios to eliminate unpaid dev work.
 
@@ -10,7 +17,7 @@
 [![24/7 Live Web App](https://img.shields.io/badge/Production%20Web-Live%2024%2F7-emerald?style=for-the-badge&logo=githubpages&logoColor=white)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Instant Unlock](https://img.shields.io/badge/Instant%20Unlock-$2-amber?style=for-the-badge)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
-[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://www.patreon.com/posts/single-ucc-ss-2-170903732)
+[![Enterprise Tier](https://img.shields.io/badge/Enterprise%20Tier-$199/mo-purple?style=for-the-badge)](https://patreon.com/c/scopelock)
 
 <br/>
 
@@ -88,8 +95,8 @@ jobs:
 | Tier | Price | What You Get | Clearance Rail |
 | :--- | :--- | :--- | :--- |
 | **Instant Client Change Order** | **$2 (₹99)** | Instant unredacted UCC § 2-209 legal change order & client email | [Web App Unlock](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/) |
-| **Agency Pro Tier** | **$199 / mo** | Unlimited change orders, White-label PDF branding, Team CI hooks | [Patreon Direct](https://www.patreon.com/posts/single-ucc-ss-2-170903732) |
-| **Sovereign Clearance** | **$499 One-time** | Perpetual commercial license, full code integration rights | [Patreon Direct](https://www.patreon.com/posts/single-ucc-ss-2-170903732) |
+| **Agency Pro Tier** | **$199 / mo** | Unlimited change orders, White-label PDF branding, Team CI hooks | [Patreon Direct](https://patreon.com/c/scopelock) |
+| **Sovereign Clearance** | **$499 One-time** | Perpetual commercial license, full code integration rights | [Patreon Direct](https://patreon.com/c/scopelock) |
 
 *Direct Payoneer Wire / Beneficiary:* `ahirwardhanmanti83@gmail.com` (Dhanmanti Ahirwar)
 
