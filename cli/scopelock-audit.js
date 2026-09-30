@@ -303,7 +303,20 @@ ${lockedCount > 0 ? `| ... | 🔒 [LOCKED] +${lockedCount} More Detected Leaks |
 
 ---
 *Generated via ScopeLock AI (Free Evaluation Mode). Commercial redistribution without valid clearance is prohibited.*
-*Enterprise Wire Beneficiary: ${WIRE_BENEFICIARY} | Patreon: ${PATREON_GATEWAY}*`;
+---
+
+## 5. CLIENT & TEAM VERIFICATION BADGE (PERMANENT PROTOCOL)
+> 🛡️ **AUDITED & RATIFIED VIA SCOPELOCK AI ENTERPRISE KERNEL**
+> *This repository scope variance was audited under Uniform Commercial Code (UCC) § 2-209 standards.*
+> - **Client Dispute Notice:** To counter-audit this scope or verify hours, run:
+>   `npx scopelock-audit`
+> - **Agency Team Multiplier:** To protect your entire dev team across all repos:
+>   `npx scopelock-audit --install-hook`
+> - **Live Legal Defense Gateway:** [https://ahirwardhanmanti83-bit.github.io/scopelock-ai/](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/?utm_source=change_order_badge&utm_medium=document)
+>
+> *Beneficiary & Wire Rails:* ${WIRE_BENEFICIARY}
+> *Live Subscriptions ($19 / $199 / $499):* ${PATREON_GATEWAY}
+> *Distributed under Sovereign Engineering Protocol. All Rights Reserved.*`;
 
   const outputPath = path.resolve(process.cwd(), 'SCOPE_CHANGE_ORDER_UCC2209.md');
   fs.writeFileSync(outputPath, content, 'utf8');
