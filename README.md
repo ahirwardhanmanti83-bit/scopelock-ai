@@ -4,7 +4,7 @@
 
 [![GitHub Release](https://img.shields.io/github/v/release/ahirwardhanmanti83-bit/scopelock-ai?color=emerald&label=Release)](https://github.com/ahirwardhanmanti83-bit/scopelock-ai/releases)
 [![NPM CLI](https://img.shields.io/badge/NPM-npx%20scopelock--audit-crimson)](https://www.npmjs.com/package/scopelock-audit)
-[![Live Web Portal](https://img.shields.io/badge/Live%20Web%20App-Instant%20Unlock%20($2)-blue)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
+[![Live Web Portal](https://img.shields.io/badge/Live%20Web%20App-Instant%20Unlock%20($3)-blue)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)
  🛡️
 > **Autonomous Scope Creep Auditor, Billable Hours Variance Calculator & Statutory UCC § 2-209 Change-Order Generator.**  
 > Built for Digital Agencies, Freelance Engineers, and Software Studios to eliminate unpaid dev work.
