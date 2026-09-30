@@ -27,15 +27,9 @@ import { SeoTemplate } from './data/seoTemplates';
 import { initSessionTelemetry, recordTelemetryEvent } from './utils/telemetry';
 import { OpenVaultDirectory } from './components/OpenVaultDirectory';
 import { PublicVaultCase } from './data/publicVaultData';
-import { ShieldCheck, 
-  Shield, 
-  FileText, 
-  MessageSquareQuote, 
-  Calculator, 
-  Terminal, 
-  BarChart3,
-  BookOpen,
-  Github, Star, CheckCircle2 } from 'lucide-react';
+import {
+  ShieldCheck, Shield, FileText, MessageSquareQuote, Calculator, Terminal, BarChart3, BookOpen, Github, Star, CheckCircle2, MessageSquare
+} from 'lucide-react';;
 
 const DEFAULT_BRANDING: AgencyBranding = {
   agencyName: 'Apex Engineering Labs',
