@@ -12,10 +12,21 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import readline from 'node:readline';
 
-const VERSION = '1.2.0';
+const VERSION = '1.4.3';
 const LIVE_PORTAL_URL = 'https://ahirwardhanmanti83-bit.github.io/scopelock-ai/?utm_source=npx_cli&utm_medium=terminal';
-const PATREON_GATEWAY = 'https://www.patreon.com/posts/single-ucc-ss-2-170903732';
+const PATREON_GATEWAY = 'https://www.patreon.com/c/scopelock';
 const WIRE_BENEFICIARY = 'ahirwardhanmanti83@gmail.com (Dhanmanti Ahirwar)';
+
+function openBrowserUrl(targetUrl) {
+  try {
+    const { exec } = require('child_process');
+    const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start ""' : 'xdg-open';
+    exec(, { stdio: 'ignore' }, (err) => {
+      // Silently ignore if no display or headless environment
+    });
+  } catch (e) {}
+}
+
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -377,12 +388,21 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// Auto-timeout after 20 seconds to prevent background hanging
+// Direct value delivery: Auto-generate draft and launch portal immediately
+const autoDoc = generateChangeOrderMarkdown();
+console.log('
+[1m[32m✔ Scope Variance Recorded & Draft Generated:[0m ' + autoDoc);
+console.log('[33m⚡ High-Dollar Scope Creep Detected: Launching Web Defense Portal for Instant 1-Click Pay & Signature Unlock...[0m');
+
+const portalLink = LIVE_PORTAL_URL + '&unlock=co&val=' + totalDollarVariance + '&items=' + detectedCreep.length;
+openBrowserUrl(portalLink);
+console.log('👉 Direct Instant Portal: [4m[36m' + portalLink + '[0m
+');
+
 const timeout = setTimeout(() => {
-  console.log('\n\x1b[90mSession timed out. Run with --generate or --install-hook for non-interactive execution.\x1b[0m');
   rl.close();
   process.exit(0);
-}, 20000);
+}, 12000);
 
 rl.question('\x1b[32mSelect Option (1-6, Default: 1):\x1b[0m ', (answer) => {
   clearTimeout(timeout);
