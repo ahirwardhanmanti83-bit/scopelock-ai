@@ -1,0 +1,6 @@
+{
+  "name": "ScopeLock AI",
+  "description": "Intelligent Scope-Creep Detection, Cost-Impact Calculator, and Professional Change-Order Generator for digital agencies, developers, and freelancers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

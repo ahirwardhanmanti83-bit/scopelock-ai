@@ -1,0 +1,22 @@
+name: ScopeLock AI Autonomous Scope Audit
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  audit-scope:
+    name: ScopeLock Creep & Legal Variance Auditor
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository with Commit History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run ScopeLock AI Action
+        uses: ./
+        with:
+          hourly_rate: '125'
+          fail_on_creep: 'false'

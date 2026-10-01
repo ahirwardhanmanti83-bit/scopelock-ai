@@ -1,0 +1,101 @@
+agency_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Agency Shield ($199/mo) | ScopeLock AI</title>
+  <meta name="description" content="Automated Scope Creep CI/CD Auditor & Statutory UCC § 2-209 Legal Change Order Engine for Dev Agencies billing $20k-$250k/mo.">
+  <link rel="canonical" href="https://ahirwardhanmanti83-bit.github.io/scopelock-ai/agency-enterprise.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ScopeLock AI Agency Shield",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "199.00",
+      "priceCurrency": "USD",
+      "url": "https://patreon.com/c/scopelock"
+    }
+  }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased">
+  <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur py-4 px-6 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">🛡️</span>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">ScopeLock AI Enterprise</span>
+      </div>
+      <a href="https://patreon.com/c/scopelock" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">Upgrade Agency Tier ($199)</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-12">
+    <div class="inline-block bg-purple-900/40 border border-purple-500/30 text-purple-300 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold mb-4">
+      B2B Dev Agency Protection
+    </div>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+      Stop Junior Devs Leaking Billable Hours. Lock Agency Scope in CI/CD.
+    </h1>
+    <p class="text-xl text-slate-400 mb-8 leading-relaxed">
+      For digital boutiques and software studios billing $20k–$250k/month. If just <strong class="text-white">one client feature creep (10 hours)</strong> is caught before delivery, you recover <strong class="text-emerald-400">$1,500+ in unpaid margin</strong>—a 7.5x instant ROI on your $199 subscription.
+    </p>
+
+    <!-- Value Calculator Grid -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+        <div class="text-purple-400 text-2xl mb-2">🛑</div>
+        <h3 class="font-bold text-lg mb-2">Automated PR Lock</h3>
+        <p class="text-sm text-slate-400">Blocks pull requests adding out-of-scope database columns or API endpoints without an approved change-order ID.</p>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+        <div class="text-indigo-400 text-2xl mb-2">⚖️</div>
+        <h3 class="font-bold text-lg mb-2">Statutory UCC § 2-209</h3>
+        <p class="text-sm text-slate-400">Generates court-admissible commercial change notices with unilateral stop-work protection so clients cannot freeze escrow.</p>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+        <div class="text-emerald-400 text-2xl mb-2">📄</div>
+        <h3 class="font-bold text-lg mb-2">White-Label Client PDF</h3>
+        <p class="text-sm text-slate-400">Export branded audit reports with exact commit diffs, timestamps, and billable variance ready to invoice clients directly.</p>
+      </div>
+    </div>
+
+    <!-- Agency Checkout Box -->
+    <div class="bg-gradient-to-b from-slate-900 to-purple-950/40 border border-purple-500/40 rounded-2xl p-8 mb-12 shadow-2xl">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+        <div>
+          <span class="text-xs uppercase font-bold tracking-widest text-purple-400">Agency Pro Subscription</span>
+          <h2 class="text-3xl font-extrabold text-white">Full Agency Shield & CI/CD Seats</h2>
+          <p class="text-slate-400 text-sm mt-1">Unlimited repositories • 15 Team seats • Automatic Git hook enforcement</p>
+        </div>
+        <div class="text-right">
+          <div class="text-4xl font-extrabold text-emerald-400">$199<span class="text-lg text-slate-400 font-normal">/mo</span></div>
+          <div class="text-xs text-slate-400">Cancel anytime • 100% Tax Deductible B2B Expense</div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <a href="https://patreon.com/c/scopelock" class="block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 rounded-xl text-lg transition shadow-lg shadow-purple-600/30">
+          Subscribe via Patreon ($199/mo Direct Gateway) →
+        </a>
+        <div class="text-center text-xs text-slate-400">
+          Direct Corporate Wire / Payoneer Clearing: <span class="text-purple-300 font-mono">ahirwardhanmanti83@gmail.com</span> (Beneficiary: Dhanmanti Ahirwar)
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center text-slate-500 text-sm">
+      Systems Architect: Krishna Ahirwar • Legal Signatory: Dhanmanti Ahirwar • UCC § 2-209 Fast-Track Protocol
+    </div>
+  </main>
+</body>
+</html>
+"""
+
+with open("public/agency-enterprise.html", "w") as f:
+    f.write(agency_html)
+print("agency-enterprise.html created successfully")
