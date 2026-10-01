@@ -46,13 +46,14 @@ export const EmergencyRecoveryGate: React.FC<EmergencyRecoveryGateProps> = ({
   };
 
   const handleCopyChat = () => {
+    const isUnlocked = localStorage.getItem("scopelock_unlocked") === "true";
+    if (!isUnlocked) {
+      onTriggerUnlock();
+      return;
+    }
     navigator.clipboard.writeText(getChatTemplate());
     setCopiedResponse(true);
-    setTimeout(() => {
-      setCopiedResponse(false);
-      // Aggressive immediate conversion: Pop $3 unlock modal directly!
-      onTriggerUnlock();
-    }, 800);
+    setTimeout(() => setCopiedResponse(false), 2000);
   };
 
   return (
