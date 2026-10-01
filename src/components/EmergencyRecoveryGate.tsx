@@ -132,7 +132,7 @@ export const EmergencyRecoveryGate: React.FC<EmergencyRecoveryGateProps> = ({
         </div>
 
         <div className="relative rounded-lg bg-slate-950/90 border border-slate-800 p-3">
-          <p className="text-xs text-slate-200 font-mono leading-relaxed pr-24 select-all">
+          <p className="text-xs text-slate-200 font-mono leading-relaxed pr-24 select-none blur-[2px] opacity-70">
             {getChatTemplate()}
           </p>
           <button
