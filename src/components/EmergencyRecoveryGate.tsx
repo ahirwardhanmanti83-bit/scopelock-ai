@@ -131,18 +131,44 @@ export const EmergencyRecoveryGate: React.FC<EmergencyRecoveryGateProps> = ({
           </button>
         </div>
 
-        <div className="relative rounded-lg bg-slate-950/90 border border-slate-800 p-3">
-          <p className="text-xs text-slate-200 font-mono leading-relaxed pr-24 select-none blur-[2px] opacity-70">
-            {getChatTemplate()}
-          </p>
-          <button
-            type="button"
-            onClick={handleCopyChat}
-            className="absolute top-2.5 right-2.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer active:scale-95"
-          >
-            {copiedResponse ? <Check className="w-3.5 h-3.5 text-slate-950" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copiedResponse ? 'Copied!' : 'Copy Text'}</span>
-          </button>
+        <div className="relative rounded-lg bg-slate-950/95 border border-amber-500/40 p-4 overflow-hidden">
+          {localStorage.getItem('scopelock_unlocked') === 'true' ? (
+            <>
+              <p className="text-xs text-slate-200 font-mono leading-relaxed pr-24 select-all">
+                {getChatTemplate()}
+              </p>
+              <button
+                type="button"
+                onClick={handleCopyChat}
+                className="absolute top-2.5 right-2.5 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer active:scale-95"
+              >
+                {copiedResponse ? <Check className="w-3.5 h-3.5 text-slate-950" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copiedResponse ? 'Copied!' : 'Copy Text'}</span>
+              </button>
+            </>
+          ) : (
+            <div className="space-y-3">
+              <div className="filter blur-[5px] select-none pointer-events-none opacity-40 text-xs font-mono text-slate-400 leading-relaxed">
+                Hi Client, per Uniform Commercial Code (UCC § 2-209) and our delivery logs, the outstanding balance of ,700 USD (principal + statutory late damages) is now overdue. Continued withholding constitutes unlawful conversion of intellectual property... [PROTECTED LEGAL NOTICE REDACTED]
+              </div>
+              <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-[2px] flex flex-col sm:flex-row items-center justify-between p-4 gap-3">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span className="text-xs font-bold text-amber-200">
+                    Counter-Response Notice Locked ( Instant Payoneer/Patreon Rail)
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={onTriggerUnlock}
+                  className="w-full sm:w-auto px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20 cursor-pointer active:scale-95 shrink-0"
+                >
+                  <Lock className="w-3.5 h-3.5 text-slate-950" />
+                  <span>Unlock Legal Text ()</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
