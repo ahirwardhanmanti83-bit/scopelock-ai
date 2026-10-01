@@ -93,6 +93,17 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Action Controls */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
           <a
+            href="https://plugins.jetbrains.com/plugin/34575"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 border border-orange-400/40 rounded-lg whitespace-nowrap transition-all shadow-md shadow-orange-500/20 cursor-pointer"
+            title="Get ScopeLock AI from JetBrains Marketplace"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-ping shrink-0" />
+            <span>JetBrains Marketplace</span>
+          </a>
+
+          <a
             href="https://github.com/ahirwardhanmanti83-bit/scopelock-ai"
             target="_blank"
             rel="noopener noreferrer"
