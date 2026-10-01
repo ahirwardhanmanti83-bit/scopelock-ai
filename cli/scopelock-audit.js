@@ -445,11 +445,17 @@ const rl = readline.createInterface({
 const autoDoc = generateChangeOrderMarkdown();
 console.log('
 [1m[32m✔ Scope Variance Recorded & Draft Generated:[0m ' + autoDoc);
-console.log('[33m⚡ High-Dollar Scope Creep Detected: Launching Web Defense Portal for Instant 1-Click Pay & Signature Unlock...[0m');
-
-const portalLink = LIVE_PORTAL_URL + '&unlock=co&val=' + totalDollarVariance + '&items=' + detectedCreep.length;
+console.log('
+\x1b[41m\x1b[1m\x1b[37m ⚠️ [STATUTORY NOTICE: UCC § 2-209 LEAKAGE SHIELD] ⚠️ \x1b[0m');
+console.log('\x1b[31m✖ Unbilled feature work detected! Performing this work without an executed amendment grants client full legal grounds for non-payment.\x1b[0m');
+console.log('\x1b[33m⚡ At-Risk Scope Value: $' + totalDollarVariance + ' USD across ' + detectedCreep.length + ' changed item(s).\x1b[0m');
+console.log('\x1b[32m✔ Instant Resolution ( USD): Download legally binding, court-ready UCC § 2-209 Amendment PDF:\x1b[0m');
+const portalLink = LIVE_PORTAL_URL + '&unlock=urgent&val=' + totalDollarVariance + '&items=' + detectedCreep.length;
 openBrowserUrl(portalLink);
-console.log('👉 Direct Instant Portal: [4m[36m' + portalLink + '[0m
+console.log('👉 Instant Defense Portal: \x1b[1m\x1b[4m\x1b[36m' + portalLink + '\x1b[0m');
+console.log('\x1b[90m• Instant Patreon Direct Checkout: ' + PATREON_GATEWAY + '\x1b[0m');
+console.log('\x1b[90m• Payoneer Direct Settlement: ' + WIRE_BENEFICIARY + '\x1b[0m
+');
 ');
 
 const timeout = setTimeout(() => {
