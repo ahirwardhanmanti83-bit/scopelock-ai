@@ -167,46 +167,45 @@ export const OpenVaultDirectory: React.FC<OpenVaultDirectoryProps> = ({
             </div>
           </div>
 
-          {/* FREE Public Diplomatic Reply (The Organic Hook for Developers & AI Crawlers) */}
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+          {/* 100% LOCKED Legal Negotiation Notice - Micro-Rail Enforced */}
+          <div className="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-3 relative overflow-hidden">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Free Open Diplomatic Reply (Copy & Paste)</span>
+                <Lock className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Executive Scope Defense Notice (Teaser Preview)</span>
               </span>
-              <span className="text-[10px] font-mono text-slate-500">Zero-Friction Hook</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+                LOCKED ( RAIL)
+              </span>
             </div>
-
-            <p className="text-xs sm:text-sm text-slate-200 bg-slate-900 p-3.5 rounded-lg border border-slate-800 leading-relaxed font-sans">
-              {selectedCase.freeDiplomaticReply}
-            </p>
+            
+            <div className="relative p-3.5 rounded-lg bg-slate-900/90 border border-slate-800 overflow-hidden">
+              <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed select-none">
+                {selectedCase.freeDiplomaticReply.slice(0, 110)}...
+              </p>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/80 to-slate-950 backdrop-blur-[3px] flex flex-col items-center justify-end p-3">
+                <p className="text-[11px] font-mono text-emerald-300 font-bold mb-1.5 text-center">
+                  🔒 Remainder of Legal Settlement & Hourly Surcharge Terms Locked
+                </p>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-2 pt-1">
               <button
                 type="button"
-                onClick={() => handleCopyReply(selectedCase.freeDiplomaticReply, selectedCase.id)}
-                className="w-full sm:w-auto px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-md shadow-emerald-600/20"
+                onClick={() => onUnlockClick(`Diplomatic Reply: ${selectedCase.title}`)}
+                className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-emerald-500/25"
               >
-                {copiedId === selectedCase.id ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-white" />
-                    <span>Copied to Clipboard!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Free Reply</span>
-                  </>
-                )}
+                <Lock className="w-3.5 h-3.5" />
+                <span>Unlock Complete Reply Notice ( Instant Rail)</span>
               </button>
-
               <button
                 type="button"
                 onClick={() => onLoadCaseToAudit(selectedCase)}
-                className="w-full sm:w-auto px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-md shadow-indigo-600/20"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-slate-700"
               >
                 <ArrowUpRight className="w-3.5 h-3.5" />
-                <span>Generate Official UCC Change Order</span>
+                <span>Load Into UCC Change Order Generator</span>
               </button>
             </div>
           </div>
