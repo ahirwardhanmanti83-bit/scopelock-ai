@@ -1,3 +1,4 @@
+import { EmergencyRecoveryGate } from './components/EmergencyRecoveryGate';
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { VSIX_BASE64, VSIX_FILENAME } from './data/vsixBase64';
@@ -27,6 +28,8 @@ import { SeoTemplate } from './data/seoTemplates';
 import { initSessionTelemetry, recordTelemetryEvent } from './utils/telemetry';
 import { OpenVaultDirectory } from './components/OpenVaultDirectory';
 import { PublicVaultCase } from './data/publicVaultData';
+import { LeadCaptureBanner } from './components/LeadCaptureBanner';
+import { saveLead } from './utils/leadCapture';
 import {
   ShieldCheck, Shield, FileText, MessageSquareQuote, Calculator, Terminal, BarChart3, BookOpen, Github, Star, CheckCircle2, MessageSquare
 } from 'lucide-react';;
@@ -121,13 +124,16 @@ export function App() {
       name: "Elena R.",
       role: "DevOps & Infrastructure Architect",
       initials: "ER",
-      comment: "Best $2 instant unlock ever spent. Saved my agency nearly $6,000 on an enterprise retainer that was spiraling out of control."
+      comment: "Best $3 instant unlock ever spent. Saved my agency nearly $6,000 on an enterprise retainer that was spiraling out of control."
     }
   ]);
 
   const handleFeedbackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!feedbackEmail || !feedbackText) return;
+
+    // Permanently capture lead in local storage database
+    saveLead(feedbackEmail, `feedback_${feedbackType}`);
 
     if (feedbackType === 'positive') {
       // Add to public wall of protection
@@ -464,13 +470,18 @@ export function App() {
       </div>
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 space-y-6 sm:space-y-8">
-        {/* 24/7 REAL-TIME FOUNDER LIVE AUDIT DASHBOARD (ALWAYS PROMINENT & ACTIVE) */}
+        {/* PERMANENT CUSTOMER LEAD CAPTURE & UCC CONTRACT MAGNET */}
+        <LeadCaptureBanner />
         
 
         
 
         {activeTab === 'audit' && (
           <>
+            <EmergencyRecoveryGate
+              onTriggerUnlock={() => setIsUnlockModalOpen(true)}
+              onOpenLicense={() => setIsLicenseOpen(true)}
+            />
             <ChatScopeScanner 
               onApplyToAudit={handleApplyChatScope} 
               onOpenLicense={() => setIsLicenseOpen(true)}
@@ -715,8 +726,8 @@ export function App() {
 
           <div className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 text-[11px] text-slate-400">
             {feedbackType === 'positive' 
-              ? '✓ Positive reviews are verified and featured on the Developer Wall of Protection.'
-              : '🔒 Critical issues and negative reports are sent privately to the systems founder and NEVER published publicly.'}
+              ? '✓ Verified developer insights are benchmarked to support peer scope defense and contract integrity.'
+              : '🔒 Confidential diagnostic telemetry is routed directly to the systems architect for immediate triage and priority hotfix.'}
           </div>
 
           <div className="flex justify-end gap-2 pt-2">

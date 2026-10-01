@@ -49,7 +49,7 @@ export const CostImpactDashboard: React.FC<CostImpactDashboardProps> = ({ report
                 onClick={onTriggerUnlock}
                 className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
               >
-                <span>⚡ Bill Client: $2 Instant Pass</span>
+                <span>⚡ Bill Client:  $3 Instant Pass</span>
               </button>
               <button
                 type="button"

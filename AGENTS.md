@@ -20,7 +20,7 @@ Before generating even one word of output, the AI system MUST execute this inter
 
 ## 2. LIVE PAYMENT RAILS (PERMANENTLY SEALED - NEVER ASK AGAIN)
 - **Payoneer Direct Wire / ID**: `ahirwardhanmanti83@gmail.com` (Beneficiary: Dhanmanti Ahirwar).
-- **Patreon Direct Gateway**: `https://patreon.com/c/AestheticFindsUSA` (Live tiers: $19, $199, $499).
+- **Patreon Direct Gateway**: `https://patreon.com/c/scopelock` (Live tiers: $19, $199, $499).
 - **BANNED**: Never suggest Stripe, Razorpay, or asking the founder for alternative links.
 
 ---

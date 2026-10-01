@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Shield, Sparkles, Building2, SlidersHorizontal, Laptop, ExternalLink, Share2, Check, Github } from 'lucide-react';
+import { Shield, Sparkles, Building2, SlidersHorizontal, Laptop, ExternalLink, Share2, Check, Github, Users, Download } from 'lucide-react';
 import { AgencyBranding } from '../types';
 
 import { copyToClipboard } from '../utils/clipboard';
 import { VSIX_BASE64, VSIX_FILENAME } from '../data/vsixBase64';
+import { getAllLeads, exportLeadsCsv } from '../utils/leadCapture';
 
 interface HeaderProps {
   branding: AgencyBranding;
@@ -134,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg whitespace-nowrap transition-colors shadow-sm shadow-emerald-500/10"
           >
             <Sparkles className="w-3.5 h-3.5 shrink-0 text-emerald-400" />
-            <span>Pricing & Plans ($2 • $19 • $199 • $499)</span>
+            <span>Pricing & Plans ($3 • $19 • $199 • $499)</span>
           </button>
 
                     <button
@@ -162,6 +163,24 @@ export const Header: React.FC<HeaderProps> = ({
             <ExternalLink className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
             <span>Download ZIP</span>
           </a>
+
+          <button
+            onClick={() => {
+              const csv = exportLeadsCsv();
+              const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `scopelock-permanent-customers-${new Date().toISOString().slice(0, 10)}.csv`;
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-emerald-300 hover:text-white bg-slate-900 border border-emerald-500/30 hover:border-emerald-400 rounded-lg whitespace-nowrap transition-colors"
+            title="Export captured permanent customer emails (CSV)"
+          >
+            <Users className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <span>Customer Leads ({getAllLeads().length})</span>
+          </button>
 
           <button
             onClick={onOpenAgencyPortal || onOpenLicense}

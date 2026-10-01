@@ -1,7 +1,7 @@
 {
-  "name": "scopelock-ai",
-  "version": "1.2.0",
-  "description": "Autonomous Git scope-creep auditor, developer unbilled variance calculator, git pre-commit freeze hook and UCC § 2-209 legal change-order generator.",
+  "name": "scopelock-audit",
+  "version": "1.4.2",
+  "description": "Autonomous CI/CD & CLI Scope Creep Auditor & Statutory UCC \u00a7 2-209 Legal Change Order Engine",
   "keywords": [
     "scope-creep",
     "git-audit",

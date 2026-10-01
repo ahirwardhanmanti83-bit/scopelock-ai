@@ -35,7 +35,7 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
 
   const handleCopy = async () => {
     if (!isUnlocked) {
-      recordTelemetryEvent('checkout_click', `User encountered Change Order paywall ($2 unlock modal opened)`);
+      recordTelemetryEvent('checkout_click', `User encountered Change Order paywall ( unlock modal opened)`);
       setIsUnlockModalOpen(true);
       return;
     }
@@ -47,7 +47,7 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
 
   const handleDownload = () => {
     if (!isUnlocked) {
-      recordTelemetryEvent('checkout_click', `User encountered Change Order download paywall ($2 unlock modal opened)`);
+      recordTelemetryEvent('checkout_click', `User encountered Change Order download paywall ( unlock modal opened)`);
       setIsUnlockModalOpen(true);
       return;
     }
@@ -63,7 +63,7 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
 
   const handlePrint = () => {
     if (!isUnlocked) {
-      recordTelemetryEvent('checkout_click', `User encountered Change Order print paywall ($2 unlock modal opened)`);
+      recordTelemetryEvent('checkout_click', `User encountered Change Order print paywall ( unlock modal opened)`);
       setIsUnlockModalOpen(true);
       return;
     }
@@ -131,7 +131,7 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
                   className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 hover:opacity-95 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer animate-pulse"
                 >
                   <Sparkles className="w-4 h-4 text-amber-300" />
-                  <span>Unlock Statutory Change Order ($2 USD)</span>
+                  <span>Unlock Statutory Change Order ($3 USD)</span>
                 </button>
               </div>
             ) : (
@@ -191,7 +191,7 @@ export const ChangeOrderPreview: React.FC<ChangeOrderPreviewProps> = ({ report, 
                 className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 hover:from-emerald-400 hover:to-indigo-500 text-white text-xs font-black rounded-xl shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer animate-pulse"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" />
-                <span>Recover ${report.totalScopeCreepCost.toLocaleString()} • Unlock Statutory Change Order ($2 USD)</span>
+                <span>Recover ${report.totalScopeCreepCost.toLocaleString()} • Unlock Statutory Change Order ($3 USD)</span>
               </button>
             </div>
           </div>

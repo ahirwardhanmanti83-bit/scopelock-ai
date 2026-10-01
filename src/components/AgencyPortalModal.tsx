@@ -18,7 +18,7 @@ export const AgencyPortalModal: React.FC<AgencyPortalModalProps> = ({ onClose })
   const annualLeakedLoss = monthlyLeakedLoss * 12;
 
   const handleOpenPatreonAgency = () => {
-    window.open('https://patreon.com/c/AestheticFindsUSA', '_blank', 'noopener,noreferrer');
+    window.open('https://patreon.com/c/scopelock', '_blank', 'noopener,noreferrer');
   };
 
   const handlePayoneerWire = async () => {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ShieldCheck, CheckCircle2, ArrowRight, Copy, Check, Globe, CreditCard } from 'lucide-react';
 import { recordTelemetryEvent } from '../utils/telemetry';
 import { copyToClipboard } from '../utils/clipboard';
+import { saveLead } from '../utils/leadCapture';
 
 interface UnlockPaymentModalProps {
   isOpen: boolean;
@@ -43,7 +44,15 @@ export const UnlockPaymentModal: React.FC<UnlockPaymentModalProps> = ({
     setTimeout(() => {
       setIsVerifying(false);
       localStorage.setItem('scopelock_unlocked', 'true');
-      recordTelemetryEvent('payment_completed', `Instant Change Order Unlocked ($2 USD) - Ref: ${transactionRef}`, {
+      
+      // Save user reference/email in permanent lead vault
+      if (transactionRef.includes('@')) {
+        saveLead(transactionRef, 'payment_unlock_email');
+      } else {
+        saveLead(`customer_${transactionRef}@verified-pay.local`, 'payment_unlock_ref');
+      }
+
+      recordTelemetryEvent('payment_completed', `Instant Change Order Unlocked ( USD) - Ref: ${transactionRef}`, {
         revenueAmount: 2,
         currency: 'USD',
         tier: 'micro_unlock'
@@ -80,7 +89,7 @@ export const UnlockPaymentModal: React.FC<UnlockPaymentModalProps> = ({
 
         {/* Modal Body */}
         <div className="p-6 space-y-4">
-          {/* Dual Price Selection: Micro-transaction $2 USD vs $19 Pro */}
+          {/* Dual Price Selection: Micro-transaction  USD vs $19 Pro */}
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gradient-to-b from-indigo-950/80 to-slate-950 border-2 border-emerald-500 rounded-xl p-3.5 relative shadow-lg shadow-emerald-500/10">
               <div className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[9px] font-black uppercase tracking-wider shadow">
@@ -88,7 +97,7 @@ export const UnlockPaymentModal: React.FC<UnlockPaymentModalProps> = ({
               </div>
               <div className="text-[10px] uppercase tracking-wider text-emerald-400 font-extrabold">Instant Micro-Unlock</div>
               <div className="text-xl font-black text-white mt-1 flex items-baseline gap-1">
-                <span className="text-emerald-400">$2</span>
+                <span className="text-emerald-400">$3</span>
                 <span className="text-xs font-semibold text-slate-300">USD</span>
               </div>
               <p className="text-[10px] text-slate-400 mt-1 leading-tight">Instant PDF, Copy & Formal Change Order download</p>
@@ -118,7 +127,7 @@ export const UnlockPaymentModal: React.FC<UnlockPaymentModalProps> = ({
 
             {/* Direct Card / Patreon Option */}
             <a
-              href="https://patreon.com/c/AestheticFindsUSA"
+              href="https://www.patreon.com/posts/single-ucc-ss-2-170903732"
               target="_blank"
               rel="noreferrer"
               className="w-full py-2.5 px-3 rounded-lg border border-amber-500/50 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent hover:bg-amber-500/30 text-amber-200 text-xs font-bold flex items-center justify-between transition-all group cursor-pointer"
@@ -126,7 +135,7 @@ export const UnlockPaymentModal: React.FC<UnlockPaymentModalProps> = ({
               <div className="flex items-center gap-2">
                 <span className="text-base">💳</span>
                 <div>
-                  <div className="text-white font-extrabold text-xs">Unlock via Patreon / Card ($2 USD)</div>
+                  <div className="text-white font-extrabold text-xs">Unlock via Patreon / Card ($3 USD)</div>
                   <div className="text-[10px] text-amber-400/90 font-normal">Credit Card, Debit Card, PayPal, Apple Pay, Google Pay</div>
                 </div>
               </div>

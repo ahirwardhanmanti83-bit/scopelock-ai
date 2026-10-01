@@ -11,7 +11,7 @@
 ## CORE PARAMS
 - Founder: Krishna Ahirwar (Age 16, High-leverage systems architect).
 - Legal Signatory: Dhanmanti Ahirwar (`ahirwardhanmanti83@gmail.com`).
-- Live Rails: Payoneer (`ahirwardhanmanti83@gmail.com`) & Patreon (`https://patreon.com/c/AestheticFindsUSA`).
+- Live Rails: Payoneer (`ahirwardhanmanti83@gmail.com`) & Patreon (`https://patreon.com/c/scopelock`).
 - Doctrine: Mass ₹100 ($2) unlocks + $19, $199, $499 subscriptions = $1B Enterprise.
 - Approved Distribution: Official VS Code Marketplace, Official NPM Registry (scopelock-audit), Official GitHub Action (.github/workflows), Direct Search & AI LLM Indexing (Googlebot, Bing IndexNow, ChatGPT, Claude, Grok).
 - PERMANENT ABSOLUTE BANS: NO SaaSHub, NO Slant, NO directories, NO cold emails/Gmail outreach, NO social media (Reddit, LinkedIn, Twitter/X), NO GitHub PRs, NO asking user to re-do work, NO buyouts/selling software ($50K / $499 buyout banned forever).

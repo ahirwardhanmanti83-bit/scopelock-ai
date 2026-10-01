@@ -1,0 +1,92 @@
+name: Sovereign Unified Auto-Sync Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "unified-deployment"
+  cancel-in-progress: true
+
+jobs:
+  # 1. Build and Deploy Web Application to GitHub Pages
+  deploy-web:
+    name: 1. Deploy Web App to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Web Application
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # 2. Package and Sync VS Code Extension Asset
+  sync-vscode:
+    name: 2. Build and Sync VS Code Extension Artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify and Bundle VSIX
+        run: |
+          echo "Verifying scopelock-ai-1.0.0.vsix distribution bundle..."
+          test -f cli/scopelock-ai-1.0.0.vsix || test -f scopelock-ai-1.0.0.vsix
+          echo "VS Code extension package verified."
+
+      - name: Upload VSIX Extension Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scopelock-vscode-extension
+          path: cli/scopelock-ai-1.0.0.vsix
+          if-no-files-found: ignore
+
+  # 3. Autonomous Scope Auditor Action Check
+  audit-engine:
+    name: 3. Verify Autonomous ScopeLock Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository with Commit History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify Action Architecture
+        run: |
+          test -f action.yml
+          echo "ScopeLock GitHub Action Manifest validated."

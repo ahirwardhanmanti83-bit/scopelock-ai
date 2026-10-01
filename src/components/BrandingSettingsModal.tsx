@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, SlidersHorizontal, Check } from 'lucide-react';
 import { AgencyBranding } from '../types';
+import { saveLead } from '../utils/leadCapture';
 
 interface BrandingSettingsModalProps {
   isOpen: boolean;
@@ -22,6 +23,9 @@ export const BrandingSettingsModal: React.FC<BrandingSettingsModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (supportEmail && supportEmail.includes('@')) {
+      saveLead(supportEmail, `agency_branding_${agencyName}`);
+    }
     onSave({
       ...branding,
       agencyName,

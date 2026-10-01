@@ -126,7 +126,7 @@ export const ClientPayGate: React.FC<ClientPayGateProps> = ({ report }) => {
 
                 <div className="pt-1 flex flex-col gap-2">
                   <a
-                    href="https://patreon.com/c/AestheticFindsUSA"
+                    href="https://www.patreon.com/posts/single-ucc-ss-2-170903732"
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => recordTelemetryEvent('checkout_click', `Client initiated Patreon deposit authorization: $${depositAmount.toLocaleString()}`)}

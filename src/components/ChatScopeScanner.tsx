@@ -290,7 +290,7 @@ export const ChatScopeScanner: React.FC<ChatScopeScannerProps> = ({
             className="w-full py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-md shadow-indigo-600/20"
           >
             <Lock className="w-3.5 h-3.5" />
-            <span>Unlock Executive Reply ($2 / Subscription)</span>
+            <span>Unlock Executive Reply ($3 / Subscription)</span>
           </button>
         </div>
 
@@ -329,7 +329,7 @@ export const ChatScopeScanner: React.FC<ChatScopeScannerProps> = ({
             className="w-full py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-md shadow-indigo-600/20"
           >
             <Lock className="w-3.5 h-3.5" />
-            <span>Unlock Statutory UCC Reply ($2 / Subscription)</span>
+            <span>Unlock Statutory UCC Reply ($3 / Subscription)</span>
           </button>
         </div>
       </div>

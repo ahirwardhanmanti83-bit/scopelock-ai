@@ -234,7 +234,7 @@ export const OpenVaultDirectory: React.FC<OpenVaultDirectoryProps> = ({
                   className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-xl shadow-indigo-500/40 flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
                 >
                   <Lock className="w-3.5 h-3.5" />
-                  <span>Unlock Enforceable Legal Addendum ($2 / Subscription)</span>
+                  <span>Unlock Enforceable Legal Addendum ( / Subscription)</span>
                 </button>
               </div>
             </div>

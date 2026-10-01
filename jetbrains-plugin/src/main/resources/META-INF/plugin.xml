@@ -2,28 +2,25 @@
 <idea-plugin>
     <id>com.scopelock.ai</id>
     <name>ScopeLock AI - Git Scope Creep &amp; Change Orders</name>
-    <version>1.0.1</version>
-    <idea-version since-build="222.0"/>
-    <vendor email="ahirwardhanmanti83@gmail.com" url="https://patreon.com/c/AestheticFindsUSA">ScopeLock AI</vendor>
+    <version>1.0.2</version>
+    <idea-version since-build="231" until-build="261.*"/>
+    <vendor email="ahirwardhanmanti83@gmail.com" url="https://patreon.com/c/scopelock">ScopeLock AI</vendor>
 
     <description><![CDATA[
     <h3>Enterprise Scope-Creep Interceptor &amp; Legal Change Order Generator</h3>
-    <p>Stop writing unbilled code for demanding clients. ScopeLock AI sits directly inside your JetBrains IDE status bar, intercepts unbilled scope creep across recent Git commits, calculates dollar losses at your agency's hourly rate, and generates court-admissible <b>UCC Section  2-209 statutory change orders</b> directly in your repository root.</p>
-
+    <p>Stop writing unbilled code for demanding clients. ScopeLock AI sits directly inside your JetBrains IDE status bar, intercepts unbilled scope creep across recent Git commits, calculates dollar losses at your agency's hourly rate, and generates court-admissible <b>UCC Section 2-209 statutory change orders</b> directly in your repository root.</p>
     <h4>Key Institutional Features:</h4>
     <ul>
         <li><b>Real-Time Status Bar Widget:</b> Live tracking of unbilled scope creep ($/hr variance).</li>
-        <li><b>1-Click UCC Section  2-209 Amendment Generator:</b> Emits formal signed change orders (.md) before client merges uncontracted scope.</li>
+        <li><b>1-Click UCC Section 2-209 Amendment Generator:</b> Emits formal signed change orders (.md) before client merges uncontracted scope.</li>
         <li><b>Pre-Commit Scope Guard:</b> Intercepts commits that violate initial statements of work.</li>
         <li><b>100% Client-Side Privacy:</b> Zero server overhead. Your proprietary IP never leaves your local workstation.</li>
     </ul>
-
-    <p>Powered by the sovereign enterprise legal tech engine. For commercial team licensing ($199/mo Agency Tier), visit <a href="https://patreon.com/c/AestheticFindsUSA">Patreon Gateway</a> or contact <a href="mailto:ahirwardhanmanti83@gmail.com">Corporate Legal Signatory</a>.</p>
+    <p>Powered by the sovereign enterprise legal tech engine. For commercial team licensing ($199/mo Agency Tier), visit <a href="https://patreon.com/c/scopelock">Patreon Gateway</a> or contact <a href="mailto:ahirwardhanmanti83@gmail.com">Corporate Legal Signatory</a>.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     
-
     <extensions defaultExtensionNs="com.intellij">
         <statusBarWidgetFactory id="ScopeLockStatusBarWidget"
                                 implementation="com.scopelock.ScopeLockStatusBarWidgetFactory"/>
@@ -33,7 +30,7 @@
         <group id="ScopeLockActions" text="ScopeLock AI" description="ScopeLock scope creep protection" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <action id="ScopeLock.Audit" class="com.scopelock.actions.AuditScopeAction" text="Run Scope Creep Audit" description="Audits git diff for unbilled client scope"/>
-            <action id="ScopeLock.GenerateOrder" class="com.scopelock.actions.GenerateChangeOrderAction" text="Generate UCC Section  2-209 Change Order" description="Generates enforceable statutory change order"/>
+            <action id="ScopeLock.GenerateOrder" class="com.scopelock.actions.GenerateChangeOrderAction" text="Generate UCC Section 2-209 Change Order" description="Generates enforceable statutory change order"/>
         </group>
     </actions>
 </idea-plugin>

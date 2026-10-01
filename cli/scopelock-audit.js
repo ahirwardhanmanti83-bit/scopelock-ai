@@ -431,7 +431,7 @@ console.log('\x1b[36m%s\x1b[0m', '═══════════════�
 console.log('\x1b[1mSelect Action:\x1b[0m');
 console.log('  \x1b[1m[1]\x1b[0m Generate UCC § 2-209 Change Order Document locally (\x1b[36mSCOPE_CHANGE_ORDER_UCC2209.md\x1b[0m)');
 console.log('  \x1b[1m[2]\x1b[0m Install Git Pre-Commit Scope Freeze Hook (\x1b[32m.git/hooks/pre-commit\x1b[0m)');
-console.log('  \x1b[1m[3]\x1b[0m Launch Live Web Application (Instant $2 Unlock & PDF Generator)');
+console.log('  \x1b[1m[3]\x1b[0m Launch Live Web Application (Instant $3 Unlock & PDF Generator)');
 console.log('  \x1b[1m[4]\x1b[0m View Direct Agency Pro Tier ($199/mo) & Sovereign Clearance ($499)');
 console.log('  \x1b[1m[5]\x1b[0m \x1b[33m★ Star on GitHub (Help Reach 1,000+ Stars & Unlock Free Contract Pack)\x1b[0m');
 console.log('  \x1b[1m[6]\x1b[0m Exit Audit\n');

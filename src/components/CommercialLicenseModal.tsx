@@ -24,7 +24,7 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
   };
 
   const getPlanPrice = () => {
-    if (selectedPlan === 'micro') return '$2 USD';
+    if (selectedPlan === 'micro') return ' USD';
     if (selectedPlan === 'solo') return '$19';
     if (selectedPlan === 'agency') return '$199';
     return '$499';
@@ -67,7 +67,7 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
             </span>
             <span className="text-xs font-bold block text-white mt-1">1-AUDIT PASS</span>
             <span className="text-lg font-black text-white mt-0.5 block">
-              $2 <span className="text-[10px] text-slate-400 font-normal">USD</span>
+               <span className="text-[10px] text-slate-400 font-normal">USD</span>
             </span>
             <span className="text-[10px] text-slate-400 mt-1 block leading-tight">
               Instant single client Change Order unlock
@@ -143,7 +143,7 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
           <div className="flex items-center justify-between text-slate-300 font-semibold border-b border-slate-800 pb-2">
             <span>Selected Tier Features:</span>
             <span className="text-emerald-400 font-mono font-bold">
-              {selectedPlan === 'micro' ? '$2 USD One-Time' : `${getPlanPrice()}/month Recurring Access`}
+              {selectedPlan === 'micro' ? ' USD One-Time' : `${getPlanPrice()}/month Recurring Access`}
             </span>
           </div>
 
@@ -207,11 +207,11 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
             {/* Instant Patreon Gateway Alternative */}
             <div className="pt-2 border-t border-slate-800/80">
               <a
-                href="https://patreon.com/c/AestheticFindsUSA"
+                href="https://www.patreon.com/posts/single-ucc-ss-2-170903732"
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => {
-                  const amount = selectedPlan === 'micro' ? 2 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
+                  const amount = selectedPlan === 'micro' ? 3 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
                   recordTelemetryEvent('checkout_click', `High-intent Patreon checkout initiated for ${selectedPlan.toUpperCase()} tier ($${amount})`, {
                     revenueAmount: amount,
                     currency: 'USD',
@@ -240,7 +240,7 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
             <button
               onClick={() => {
                 setShowPayoneerDetails(true);
-                const amount = selectedPlan === 'micro' ? 2 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
+                const amount = selectedPlan === 'micro' ? 3 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
                 recordTelemetryEvent('checkout_click', `User viewed B2B payment details for ${selectedPlan.toUpperCase()} tier ($${amount})`, {
                   revenueAmount: amount,
                   currency: 'USD',
@@ -251,15 +251,15 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
             >
               <CreditCard className="w-4 h-4" />
               <span>
-                {selectedPlan === 'micro' ? 'Pay $2 USD via Card / Payoneer' : `Subscribe via Payoneer / Card (${getPlanPrice()}/mo)`}
+                {selectedPlan === 'micro' ? 'Pay  USD via Card / Payoneer' : `Subscribe via Payoneer / Card (${getPlanPrice()}/mo)`}
               </span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           ) : (
             <a
-              href={`mailto:${payoneerEmail}?subject=B2B%20License%20Invoice%20Request%20(${getPlanPrice()})&body=Hello,%0D%0A%0D%0AWe%20would%20like%20to%20activate%20our%20${selectedPlan === 'micro' ? '1-Audit%20Pass%20($2%20USD)' : selectedPlan === 'solo' ? 'Starter%20($19/mo)' : selectedPlan === 'agency' ? 'Agency%20Pro%20($199/mo)' : 'Sovereign%20Enterprise%20($499/mo)'}%20access%20for%20ScopeLock%20AI.%0D%0A%0D%0AAgency/User%20Name:%20%0D%0APayoneer/Wire%20Reference:%20%0D%0A%0D%0AThank%20you.`}
+              href={`mailto:${payoneerEmail}?subject=B2B%20License%20Invoice%20Request%20(${getPlanPrice()})&body=Hello,%0D%0A%0D%0AWe%20would%20like%20to%20activate%20our%20${selectedPlan === 'micro' ? '1-Audit%20Pass%20(%20USD)' : selectedPlan === 'solo' ? 'Starter%20($19/mo)' : selectedPlan === 'agency' ? 'Agency%20Pro%20($199/mo)' : 'Sovereign%20Enterprise%20($499/mo)'}%20access%20for%20ScopeLock%20AI.%0D%0A%0D%0AAgency/User%20Name:%20%0D%0APayoneer/Wire%20Reference:%20%0D%0A%0D%0AThank%20you.`}
               onClick={() => {
-                const amount = selectedPlan === 'micro' ? 2 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
+                const amount = selectedPlan === 'micro' ? 3 : selectedPlan === 'solo' ? 19 : selectedPlan === 'agency' ? 199 : 499;
                 recordTelemetryEvent('checkout_click', `Payoneer direct wire email receipt requested for ${selectedPlan.toUpperCase()} ($${amount})`, {
                   revenueAmount: amount,
                   currency: 'USD',
@@ -270,7 +270,7 @@ export const CommercialLicenseModal: React.FC<CommercialLicenseModalProps> = ({ 
             >
               <Send className="w-4 h-4" />
               <span>
-                {selectedPlan === 'micro' ? 'Request $2 USD Payoneer Receipt' : `Request Direct Payoneer Invoice (${getPlanPrice()}/mo)`}
+                {selectedPlan === 'micro' ? 'Request  USD Payoneer Receipt' : `Request Direct Payoneer Invoice (${getPlanPrice()}/mo)`}
               </span>
             </a>
           )}

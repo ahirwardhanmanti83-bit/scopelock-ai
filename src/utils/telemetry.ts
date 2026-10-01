@@ -62,7 +62,7 @@ export interface TelemetryEvent {
 
 export interface RevenueLedger {
   realizedRevenueUSD: number;
-  totalMicroUnlocksCount: number; // $2 instant unlocks
+  totalMicroUnlocksCount: number; //   instant unlocks
   totalTierSoloCount: number;     // $19/mo
   totalTierAgencyCount: number;   // $199/mo
   totalTierEnterpriseCount: number; // $499/mo

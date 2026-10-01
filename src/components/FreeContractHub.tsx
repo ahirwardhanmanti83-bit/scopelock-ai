@@ -14,6 +14,35 @@ interface FreeContractTemplate {
 
 const FREE_TEMPLATES: FreeContractTemplate[] = [
   {
+    id: 'upwork-fiverr-milestone-shield',
+    title: 'Upwork / Fiverr Client Milestone & Anti-Revision Shield',
+    category: 'Freelance Marketplace Defense',
+    targetAudience: 'Upwork, Fiverr & Toptal Freelance Developers',
+    statute: 'Uniform Commercial Code § 2-209 & Digital Contract Law',
+    sampleClause: '"All deliverables submitted through Upwork Milestone / Fiverr Order are governed by ScopeLock AI audit rules. Unagreed revision cycles are billed at statutory rate of $75/hr."',
+    fullMarkdown: `================================================================================
+UPWORK / FIVERR MILESTONE ACCEPTANCE & ANTI-SCOPE CREEP ADDENDUM
+AUDITED BY SCOPELOCK AI (UCC § 2-209 STATUTORY COMPLIANCE)
+================================================================================
+
+1. ORDER & MILESTONE DEFINITION
+This binding addendum attaches to Upwork Contract / Fiverr Order ID referenced herein.
+Contractor ("Developer") and Client ("Buyer") mutually agree that the agreed Fixed-Price Milestone encompasses EXCLUSIVELY the specific technical bullet points confirmed prior to fund escrow.
+
+2. UNPAID REVISION SPRINT DISAVOWAL
+Client explicitly waives the right to withhold milestone payment release or demand unbilled code revisions for:
+a) Features, UI redesigns, or third-party API adjustments not in the original sprint spec.
+b) Subjective aesthetic adjustments exceeding two (2) consolidated punch-list iterations.
+c) Third-party platform breaking updates or external backend dependencies.
+
+3. STATUTORY NOTICE & DISPUTE EVIDENCE
+Any request for out-of-scope tasks triggers an immediate formal Change Order pursuant to UCC § 2-209.
+In the event of an escrow dispute, this document together with the ScopeLock AI Git variance report shall be submitted to Upwork / Fiverr Trust & Safety as prima facie evidence of deliverable completion.
+
+Official Legal Enforcement Engine: https://ahirwardhanmanti83-bit.github.io/scopelock-ai/
+CLI Terminal Audit: npx scopelock-audit`
+  },
+  {
     id: 'ucc-2209-change-order',
     title: 'Statutory UCC § 2-209 Change Order Agreement',
     category: 'Master Service Agreement',
@@ -230,6 +259,39 @@ export const FreeContractHub: React.FC<FreeContractHubProps> = ({ onUnlockTool, 
         {/* Code/Text Viewer */}
         <div className="bg-slate-900/90 border border-slate-800/80 rounded-lg p-3.5 font-mono text-[11px] text-slate-300 leading-relaxed max-h-[220px] overflow-y-auto whitespace-pre">
           {selectedTemplate.fullMarkdown}
+        </div>
+
+        
+        {/* Viral GitHub & Client README Shield Generator */}
+        <div className="bg-slate-900/90 border border-emerald-500/30 rounded-xl p-4 mt-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-2">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
+                  Viral Client Deterrent
+                </span>
+                <h4 className="text-xs font-black text-white">Upwork & GitHub Client README Protection Shield</h4>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-1">
+                Paste this badge at the top of your client repository README. Clients see the legal audit badge and stop demanding free unbilled sprints.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const badgeMd = '[![ScopeLock UCC § 2-209 Protected](https://img.shields.io/badge/ScopeLock_AI-UCC_§_2--209_Protected-10b981?style=for-the-badge&logo=shield)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)';
+                copyToClipboard(badgeMd);
+                alert('Copied ScopeLock Shield Badge Markdown to clipboard!');
+              }}
+              className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg flex items-center gap-1.5 shadow-md transition-all cursor-pointer whitespace-nowrap active:scale-95"
+            >
+              <Copy className="w-3.5 h-3.5" />
+              <span>Copy Shield Badge (Markdown)</span>
+            </button>
+          </div>
+          <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] font-mono text-emerald-400/90 select-all overflow-x-auto">
+            {`[![ScopeLock UCC § 2-209 Protected](https://img.shields.io/badge/ScopeLock_AI-UCC_§_2--209_Protected-10b981?style=for-the-badge&logo=shield)](https://ahirwardhanmanti83-bit.github.io/scopelock-ai/)`}
+          </div>
         </div>
 
         {/* High Conversion Upsell Box */}

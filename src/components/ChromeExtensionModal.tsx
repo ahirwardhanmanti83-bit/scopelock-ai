@@ -195,17 +195,17 @@ Per standard commercial engineering governance, all milestone deadlines are auto
                 {/* Live Monetization Rails */}
                 <div className="space-y-2">
                   <a
-                    href="https://patreon.com/c/AestheticFindsUSA"
+                    href="https://patreon.com/c/scopelock"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all"
                   >
                     <Coins className="w-3.5 h-3.5" />
-                    <span>Unlock Watermark-Free Notice ($2)</span>
+                    <span>Unlock Watermark-Free Notice ()</span>
                   </a>
 
                   <a
-                    href="https://patreon.com/c/AestheticFindsUSA"
+                    href="https://patreon.com/c/scopelock"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/40 border border-indigo-500/40 text-indigo-300 font-semibold text-xs transition-all"
