@@ -139,9 +139,8 @@ function runAudit() {
   console.log('\x1b[1m\x1b[37m🎯 INSTANT LEGAL DEFENSE & RECOVERY ACTIONS:\x1b[0m');
   console.log('┌────────────────────────────────────────────────────────────────────────┐');
   console.log('│ \x1b[1m\x1b[32m⚡ 1. INSTANT UCC § 2-209 CHANGE ORDER UNLOCK ($3 / ₹99):\x1b[0m              │');
-  console.log('│    👉 \x1b[4mhttps://www.patreon.com/c/scopelock\x1b[0m                              │');
-  console.log('│    Get watermarked-removed, court-admissible PDF & legal notice to     │');
-  console.log('│    demand instant payment from client without legal pushback.          │');
+  console.log('│    👉 \x1b[4mhttps://www.patreon.com/posts/single-ucc-ss-2-170903732\x1b[0m                  │');
+  console.log('│    Instant Card / PayPal / Direct Unlock without registration.         │');
   console.log('├────────────────────────────────────────────────────────────────────────┤');
   console.log('│ \x1b[1m\x1b[36m🏢 2. AGENCY UNLIMITED LICENSE ($199/mo):\x1b[0m                               │');
   console.log('│    👉 \x1b[4mhttps://ahirwardhanmanti83-bit.github.io/scopelock-ai/agency-enterprise.html\x1b[0m │');
@@ -150,6 +149,15 @@ function runAudit() {
   console.log('│ \x1b[1m\x1b[35m💼 3. PAYONEER DIRECT WIRE CLEARING:\x1b[0m                                   │');
   console.log('│    Beneficiary: Dhanmanti Ahirwar (ahirwardhanmanti83@gmail.com)       │');
   console.log('└────────────────────────────────────────────────────────────────────────┘\n');
+
+  // Try auto-opening the $3 unlock page in developer's default browser
+  try {
+    const openUrl = 'https://www.patreon.com/posts/single-ucc-ss-2-170903732';
+    const startCmd = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
+    execSync(`${startCmd} "${openUrl}"`, { stdio: 'ignore' });
+  } catch (e) {
+    // Ignore if running in headless CI/CD
+  }
 }
 
 runAudit();
