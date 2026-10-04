@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder Operations Portal • Private</title>
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 sm:p-8 font-sans antialiased">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <h1 class="text-xl font-bold tracking-tight text-white">Founder Operations & Channels Portal</h1>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">Private Live Metrics Engine • 100% Isolated from Public Customers</p>
+      </div>
+      <button onclick="fetchLiveMetrics()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold rounded-lg text-white shadow-sm transition-all">
+        ↻ Refresh Live Data
+      </button>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- NPM Registry Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-indigo-400 font-semibold text-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.007-10.373h-3.456l-.007 10.373H5.13z"/></svg>
+            <span>NPM CLI ()</span>
+          </div>
+          <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/60 px-2 py-0.5 rounded-full font-mono">LIVE API</span>
+        </div>
+        <div>
+          <div class="text-3xl font-extrabold text-white tracking-tight font-mono" id="npmDownloads">Loading...</div>
+          <div class="text-xs text-slate-400 mt-0.5">Verified developer downloads (Last 7 Days)</div>
+        </div>
+        <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+          <span>Registry: registry.npmjs.org</span>
+          <a href="https://www.npmjs.com/package/scopelock-audit" target="_blank" class="text-indigo-400 hover:underline">View Package ↗</a>
+        </div>
+      </div>
+
+      <!-- GitHub Repository Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-purple-400 font-semibold text-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub Repository</span>
+          </div>
+          <span class="text-[10px] bg-indigo-950 text-indigo-400 border border-indigo-800/60 px-2 py-0.5 rounded-full font-mono">OFFICIAL</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <div>
+            <div class="text-3xl font-extrabold text-white font-mono" id="ghStars">Loading...</div>
+            <div class="text-xs text-slate-400">Stars</div>
+          </div>
+          <div class="border-l border-slate-800 pl-6">
+            <div class="text-3xl font-extrabold text-white font-mono" id="ghForks">Loading...</div>
+            <div class="text-xs text-slate-400">Forks</div>
+          </div>
+        </div>
+        <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+          <span>ahirwardhanmanti83-bit/scopelock-ai</span>
+          <a href="https://github.com/ahirwardhanmanti83-bit/scopelock-ai" target="_blank" class="text-purple-400 hover:underline">View Repo ↗</a>
+        </div>
+      </div>
+
+      <!-- SourceForge Mirror Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-amber-400 font-semibold text-sm">
+            <span>SourceForge Mirror</span>
+          </div>
+          <span class="text-[10px] bg-amber-950 text-amber-400 border border-amber-800/60 px-2 py-0.5 rounded-full font-mono">INDEXED</span>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-emerald-400 font-mono">LIVE & ACTIVE</div>
+          <div class="text-xs text-slate-400 mt-1">Public mirror available for enterprise downloads</div>
+        </div>
+        <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+          <span>scopelock-ai.sourceforge.io</span>
+          <a href="https://sourceforge.net/projects/scopelock-ai/" target="_blank" class="text-amber-400 hover:underline">View Project ↗</a>
+        </div>
+      </div>
+
+      <!-- Live Payment Rails Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2 text-emerald-400 font-semibold text-sm">
+            <span>Live Payment Rails</span>
+          </div>
+          <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800/60 px-2 py-0.5 rounded-full font-mono">OPERATIONAL</span>
+        </div>
+        <div class="space-y-1">
+          <div class="text-sm font-semibold text-white">Patreon & Payoneer Wire</div>
+          <div class="text-xs text-slate-400">Tiers:  (Instant Unlock), 9 (Commercial), 99 (Agency/yr)</div>
+          <div class="text-xs text-emerald-400 font-mono">Beneficiary: Dhanmanti Ahirwar</div>
+        </div>
+        <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+          <span>Live Gateway</span>
+          <a href="https://patreon.com/c/scopelock" target="_blank" class="text-emerald-400 hover:underline">View Patreon ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Direct Quick Links -->
+    <div class="bg-slate-900/40 border border-slate-800/60 rounded-xl p-4">
+      <h3 class="text-xs font-semibold text-slate-300 mb-2 uppercase tracking-wider">Direct Search & Console Links</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+        <a href="https://search.google.com/search-console" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-700 flex items-center justify-between text-slate-300">
+          <span>Google Search Console</span>
+          <span class="text-slate-500">↗</span>
+        </a>
+        <a href="https://www.bing.com/webmasters" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-700 flex items-center justify-between text-slate-300">
+          <span>Bing Webmaster Tools</span>
+          <span class="text-slate-500">↗</span>
+        </a>
+        <a href="https://marketplace.visualstudio.com/manage" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-700 flex items-center justify-between text-slate-300">
+          <span>VS Code Marketplace</span>
+          <span class="text-slate-500">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function fetchLiveMetrics() {
+      // 1. Fetch NPM
+      try {
+        const npmRes = await fetch('https://api.npmjs.org/downloads/point/last-week/scopelock-audit');
+        if (npmRes.ok) {
+          const data = await npmRes.json();
+          document.getElementById('npmDownloads').innerText = data.downloads || 0;
+        } else {
+          document.getElementById('npmDownloads').innerText = '0 (Pending Sync)';
+        }
+      } catch (e) {
+        document.getElementById('npmDownloads').innerText = 'Network Error';
+      }
+
+      // 2. Fetch GitHub
+      try {
+        const ghRes = await fetch('https://api.github.com/repos/ahirwardhanmanti83-bit/scopelock-ai');
+        if (ghRes.ok) {
+          const data = await ghRes.json();
+          document.getElementById('ghStars').innerText = data.stargazers_count || 0;
+          document.getElementById('ghForks').innerText = data.forks_count || 0;
+        } else {
+          document.getElementById('ghStars').innerText = '0';
+          document.getElementById('ghForks').innerText = '0';
+        }
+      } catch (e) {
+        document.getElementById('ghStars').innerText = 'Error';
+        document.getElementById('ghForks').innerText = 'Error';
+      }
+    }
+
+    // Auto-fetch on page load
+    fetchLiveMetrics();
+  </script>
+</body>
+</html>

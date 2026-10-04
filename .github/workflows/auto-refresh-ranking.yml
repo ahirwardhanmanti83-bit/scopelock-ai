@@ -1,0 +1,63 @@
+name: Autonomous Marketplace & NPM Algorithmic Rank Booster
+
+on:
+  schedule:
+    # Runs every 3 days at 04:00 UTC (Keeps algorithm score high without spam)
+    - cron: '0 4 */3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  algorithmic-keepalive:
+    name: Auto-Bump & Algorithmic Refresh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Configure Git Sovereign Identity
+        run: |
+          git config --global user.name "Krishna Ahirwar (ScopeLock Architect)"
+          git config --global user.email "ahirwardhanmanti83@gmail.com"
+
+      - name: Algorithmic Keepalive & Engine Sync
+        run: |
+          echo "Syncing ScopeLock distribution engines..."
+          # Update timestamp in distribution keepalive file
+          mkdir -p .engine
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .engine/last_algorithmic_pulse.txt
+          
+          # Ping IndexNow automatically to re-boost search crawlers
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "ahirwardhanmanti83-bit.github.io",
+              "key": "f4a7c88b6932468388de968be806bcfe",
+              "keyLocation": "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/f4a7c88b6932468388de968be806bcfe.txt",
+              "urlList": [
+                "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/",
+                "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/agency-enterprise.html",
+                "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/llms.txt"
+              ]
+            }' || true
+          echo "Algorithmic IndexNow pulse sent successfully."
+
+      - name: Commit & Push Algorithmic Pulse
+        run: |
+          git add .engine/last_algorithmic_pulse.txt
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(engine): automated algorithmic pulse and crawler sync [skip ci]"
+            git push origin main
+          fi

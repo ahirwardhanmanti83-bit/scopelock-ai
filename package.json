@@ -1,0 +1,61 @@
+{
+  "name": "scopelock-audit",
+  "version": "1.4.2",
+  "description": "Autonomous CI/CD & CLI Scope Creep Auditor & Statutory UCC \u00a7 2-209 Legal Change Order Engine",
+  "keywords": [
+    "scope-creep",
+    "git-audit",
+    "git-hook",
+    "pre-commit",
+    "change-order",
+    "change-order-generator",
+    "freelance-contract",
+    "developer-tools",
+    "variance-calculator",
+    "diff-checker",
+    "cli",
+    "ucc-2-209",
+    "agile-scope",
+    "agency-tools",
+    "client-billing",
+    "unbilled-hours"
+  ],
+  "author": "Krishna Ahirwar",
+  "license": "MIT",
+  "homepage": "https://ahirwardhanmanti83-bit.github.io/scopelock-ai/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ahirwardhanmanti83-bit/scopelock-ai/issues"
+  },
+  "type": "module",
+  "bin": {
+    "scopelock": "./cli/scopelock-audit.js",
+    "scopelock-audit": "./cli/scopelock-audit.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.344.0",
+    "motion": "^12.4.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
+  }
+}
