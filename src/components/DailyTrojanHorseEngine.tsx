@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
-  Calendar, Clock, DollarSign, Copy, Check, ShieldCheck,
+  Calendar, DollarSign, Copy, Check, ShieldCheck,
   Send, AlertTriangle, FileText, Sparkles, Building2,
-  ExternalLink, ArrowRight, Share2, Code2, Lock
+  Lock
 } from 'lucide-react';
 
 interface DailyTrojanHorseEngineProps {
@@ -17,6 +17,9 @@ export const DailyTrojanHorseEngine: React.FC<DailyTrojanHorseEngineProps> = ({
   onLoadChangeOrder,
 }) => {
   const [activeSubTab, setActiveSubTab] = useState<'standup' | 'quoter' | 'badge'>('standup');
+
+  // Hardened paid check
+  const isPaid = typeof window !== 'undefined' && localStorage.getItem('scopelock_paid_verified_v2') === 'true';
 
   // --- SubTab 1: Daily Standup & Work Receipt State ---
   const [projectName, setProjectName] = useState('Fintech MVP Portal');
@@ -78,6 +81,10 @@ export const DailyTrojanHorseEngine: React.FC<DailyTrojanHorseEngineProps> = ({
   };
 
   const handleCopyStandup = () => {
+    if (!isPaid) {
+      onOpenUnlockModal();
+      return;
+    }
     navigator.clipboard.writeText(generateStandupText());
     setCopiedStandup(true);
     setTimeout(() => setCopiedStandup(false), 2500);
@@ -101,6 +108,10 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
   };
 
   const handleCopyQuote = () => {
+    if (!isPaid) {
+      onOpenUnlockModal();
+      return;
+    }
     navigator.clipboard.writeText(generateDiplomaticQuote());
     setCopiedQuote(true);
     setTimeout(() => setCopiedQuote(false), 2500);
@@ -142,7 +153,7 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
               className="w-full md:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"
             >
               <Lock className="w-3.5 h-3.5" />
-              <span>Unlock Formal Change Order ($3)</span>
+              <span>{isPaid ? 'Active Paid License' : 'Unlock Paid Pass ($3 Instant Rail)'}</span>
             </button>
           </div>
         </div>
@@ -296,17 +307,45 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
                   <Send className="w-4 h-4 text-emerald-400" />
                   <span>Client-Ready Standup Output (WhatsApp / Slack)</span>
                 </h3>
-                <span className="text-[10px] text-indigo-400 font-mono font-bold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
-                  Trojan Horse Link Active
+                <span className="text-[10px] text-amber-400 font-mono font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
+                  {isPaid ? '✓ Verified License Active' : '🔒 Paid Export Gate ($3)'}
                 </span>
               </div>
               <p className="text-xs text-slate-400 mt-1">
-                Copy and paste this directly to your client. The footer establishes legal UCC § 2-209 compliance and introduces ScopeLock to the client company.
+                Formal work verification. Every individual export carries statutory UCC § 2-209 verification.
               </p>
 
-              {/* Terminal-style Output Box */}
-              <div className="mt-3 bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed max-h-[360px] overflow-y-auto selection:bg-indigo-500 selection:text-white">
-                {generateStandupText()}
+              {/* Terminal-style Output Box with Strict Paywall Overlay */}
+              <div className="mt-3 relative rounded-xl bg-slate-950 border border-slate-800 p-4 overflow-hidden min-h-[280px]">
+                {isPaid ? (
+                  <div className="font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed max-h-[340px] overflow-y-auto selection:bg-indigo-500 selection:text-white">
+                    {generateStandupText()}
+                  </div>
+                ) : (
+                  <>
+                    <div className="font-mono text-[11px] text-slate-400 whitespace-pre-wrap leading-relaxed blur-[3px] select-none max-h-[340px] overflow-hidden">
+                      {generateStandupText()}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-slate-950/85 to-slate-950 flex flex-col items-center justify-center p-4 text-center">
+                      <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-2">
+                        <Lock className="w-5 h-5" />
+                      </div>
+                      <h4 className="text-sm font-extrabold text-white">
+                        Official Client Standup Export Locked
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-1 max-w-xs">
+                        Strict paywall enforced. Unlock clean unblurred copy, WhatsApp dispatch, and statutory verification for <strong className="text-emerald-400">$3 USD Instant Rail</strong>.
+                      </p>
+                      <button
+                        onClick={onOpenUnlockModal}
+                        className="mt-3 px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-md shadow-emerald-500/30 cursor-pointer"
+                      >
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>Unlock Instant Pass ($3 USD)</span>
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -316,12 +355,19 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
                 <button
                   onClick={handleCopyStandup}
                   className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                    copiedStandup
+                    !isPaid
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black shadow-lg shadow-emerald-500/20'
+                      : copiedStandup
                       ? 'bg-emerald-600 text-white'
                       : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20'
                   }`}
                 >
-                  {copiedStandup ? (
+                  {!isPaid ? (
+                    <>
+                      <Lock className="w-4 h-4" />
+                      <span>Unlock to Copy ($3)</span>
+                    </>
+                  ) : copiedStandup ? (
                     <>
                       <Check className="w-4 h-4" />
                       <span>Copied to Clipboard!</span>
@@ -336,6 +382,10 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
 
                 <button
                   onClick={() => {
+                    if (!isPaid) {
+                      onOpenUnlockModal();
+                      return;
+                    }
                     const blob = new Blob([generateStandupText()], { type: 'text/plain;charset=utf-8' });
                     const url = URL.createObjectURL(blob);
                     const link = document.createElement('a');
@@ -347,7 +397,7 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
                   className="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <FileText className="w-4 h-4" />
-                  <span>Download .txt</span>
+                  <span>{isPaid ? 'Download .txt' : '🔒 Download ($3)'}</span>
                 </button>
               </div>
 
@@ -441,15 +491,41 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
                   <span>Pre-written Diplomatic Client Response</span>
                 </h3>
                 <span className="text-[10px] text-purple-400 font-mono font-bold bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
-                  Ready to Send
+                  {isPaid ? '✓ Unlocked' : '🔒 $3 Paywall'}
                 </span>
               </div>
               <p className="text-xs text-slate-400 mt-1">
                 Polite, highly professional, protects your timeline, and embeds the ScopeLock enterprise link.
               </p>
 
-              <div className="mt-3 bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed max-h-[360px] overflow-y-auto">
-                {generateDiplomaticQuote()}
+              <div className="mt-3 relative rounded-xl bg-slate-950 border border-slate-800 p-4 overflow-hidden min-h-[220px]">
+                {isPaid ? (
+                  <div className="font-mono text-[11px] text-slate-300 whitespace-pre-wrap leading-relaxed max-h-[300px] overflow-y-auto">
+                    {generateDiplomaticQuote()}
+                  </div>
+                ) : (
+                  <>
+                    <div className="font-mono text-[11px] text-slate-400 whitespace-pre-wrap leading-relaxed blur-[3px] select-none max-h-[300px] overflow-hidden">
+                      {generateDiplomaticQuote()}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/85 to-slate-950 flex flex-col items-center justify-center p-4 text-center">
+                      <Lock className="w-5 h-5 text-purple-400 mb-1" />
+                      <h4 className="text-xs font-bold text-white">
+                        Executive Client Quote Response Locked
+                      </h4>
+                      <p className="text-[10px] text-slate-400 mt-0.5 max-w-xs">
+                        Unlock verbatim diplomatic response with statutory UCC § 2-209 boundary protection.
+                      </p>
+                      <button
+                        onClick={onOpenUnlockModal}
+                        className="mt-2.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold text-xs flex items-center gap-1 shadow cursor-pointer"
+                      >
+                        <Lock className="w-3 h-3" />
+                        <span>Unlock Instant Pass ($3 USD)</span>
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -457,12 +533,19 @@ Verified via ScopeLock AI — Enterprise SOW Governance (https://ahirwardhanmant
               <button
                 onClick={handleCopyQuote}
                 className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                  copiedQuote
+                  !isPaid
+                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-extrabold shadow-lg shadow-purple-600/20'
+                    : copiedQuote
                     ? 'bg-emerald-600 text-white'
                     : 'bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/20'
                 }`}
               >
-                {copiedQuote ? (
+                {!isPaid ? (
+                  <>
+                    <Lock className="w-4 h-4" />
+                    <span>Unlock Client Quote ($3 Instant Rail)</span>
+                  </>
+                ) : copiedQuote ? (
                   <>
                     <Check className="w-4 h-4" />
                     <span>Quote Copied to Clipboard!</span>
