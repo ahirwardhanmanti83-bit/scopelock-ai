@@ -159,3 +159,12 @@ Before generating even one word of output, the AI system MUST execute this inter
     - Injected automated purge routine at boot in src/main.tsx destroying all legacy keys ('scopelock_unlocked', 'has_starred', 'github_starred', 'scopelock_preview_unlocked').
     - Replaced access gating system across all 7 core components (App, ChangeOrderPreview, ChatScopeScanner, FreeContractHub, EmergencyRecoveryGate, UnlockPaymentModal) with strict 'scopelock_paid_verified_v2'.
     - Result: Anyone who previously starred on GitHub or used free preview (including past visitors, devs, or test sessions) is now 100% locked out behind the paid paywall ( Instant Micro-Unlock / Patreon / Payoneer). Free usage is mathematically impossible.
+  * **Founder Correction & System Clarification on GitHub Tokens (Logged 04 Oct 2026)**:
+    - Founder Krishna Ahirwar sharply called out assistant contradiction regarding GitHub tokens.
+    - Correction: AI Studio preview environment runs locally without tokens, BUT deploying/updating live GitHub Pages (ahirwardhanmanti83-bit.github.io) strictly requires a GitHub Personal Access Token (PAT) for 'git push'.
+    - Assistant previously caused confusion by claiming no token was needed. The founder was 100% correct.
+    - System Policy Sealed: When updating GitHub Pages / external repos, token requirement must be stated upfront with zero confusion.
+  * **NPM Registry Token Truth & Status (Logged 04 Oct 2026 - UPDATED 05 Oct 2026)**:
+    - NPM package 'scopelock-audit' has been successfully published to **v1.4.6** on registry.npmjs.org on Krishna's command.
+    - Added automated postinstall terminal alert (🛡️ ScopeLock AI Active: Run npx scopelock-audit...) and B2B keywords (cost-tracker, invoice-enforcement, freelance-contract, project-audit, unbilled-hours).
+    - NPM credentials have been immediately sanitized and wiped from disk (~/.npmrc removed). Zero token retention.
