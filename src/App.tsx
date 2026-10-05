@@ -31,9 +31,10 @@ import { PublicVaultCase } from './data/publicVaultData';
 // removed lead capture
 // removed viral badge
 import { saveLead } from './utils/leadCapture';
+import { DailyTrojanHorseEngine } from './components/DailyTrojanHorseEngine';
 import {
-  ShieldCheck, Shield, FileText, MessageSquareQuote, Calculator, Terminal, BarChart3, BookOpen, Github, Star, CheckCircle2, MessageSquare
-} from 'lucide-react';;
+  ShieldCheck, Shield, FileText, MessageSquareQuote, Calculator, Terminal, BarChart3, BookOpen, Github, Star, CheckCircle2, MessageSquare, Sparkles
+} from 'lucide-react';
 
 const DEFAULT_BRANDING: AgencyBranding = {
   agencyName: 'Apex Engineering Labs',
@@ -154,7 +155,7 @@ export function App() {
     setFeedbackText('');
   };
 
-  const [activeTab, setActiveTab] = useState<'audit' | 'vault' | 'chat' | 'calculator' | 'templates' | 'cli' >('audit');
+  const [activeTab, setActiveTab] = useState<'audit' | 'vault' | 'chat' | 'calculator' | 'templates' | 'cli' | 'daily'>('daily');
 
   // Initialize session telemetry on app launch
   useEffect(() => {
@@ -389,6 +390,18 @@ export function App() {
           <div className="pt-4 flex items-center justify-center">
             <div className="inline-flex items-center p-1 rounded-xl bg-slate-900/90 border border-slate-800 shadow-xl overflow-x-auto max-w-full">
               <button
+                onClick={() => setActiveTab('daily')}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  activeTab === 'daily'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-600/30 ring-1 ring-emerald-400'
+                    : 'text-emerald-400 hover:text-white hover:bg-emerald-950/40 border border-emerald-500/20'
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Daily Quoter & Standup (Trojan Horse)</span>
+              </button>
+
+              <button
                 onClick={() => setActiveTab('audit')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === 'audit'
@@ -553,6 +566,18 @@ export function App() {
 
         {activeTab === 'cli' && (
           <CliIntegrationSection />
+        )}
+
+        {activeTab === 'daily' && (
+          <DailyTrojanHorseEngine
+            hourlyRate={auditReport?.hourlyRate || 100}
+            onOpenUnlockModal={() => setIsUnlockModalOpen(true)}
+            onLoadChangeOrder={(title, scope, hours) => {
+              handleApplyChatScope(title, scope, hours);
+              setActiveTab('audit');
+              window.scrollTo({ top: 400, behavior: 'smooth' });
+            }}
+          />
         )}
 
         
