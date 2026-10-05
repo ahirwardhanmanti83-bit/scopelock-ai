@@ -265,20 +265,20 @@ ${items.length > 3 ? `| ... | 🔒 [LOCKED: +${items.length - 3} Additional Dete
 ---
 
 ## 2. STATUTORY LEGAL TERMS & STOP-WORK PROTECTIONS (UCC § 2-209)
-### 🔒 [REDACTED SECTION - $2 UNLOCK REQUIRED TO EXECUTE]
+### 🔒 [REDACTED SECTION - $3 UNLOCK REQUIRED TO EXECUTE]
 > *The following statutory clauses are withheld from this community preview:*
 > 1. **UCC § 2-209 Good-Faith Enforceability & Estoppel Clause** [REDACTED]
 > 2. **Unilateral Right to Halt Repository Work Upon Non-Payment** [REDACTED]
 > 3. **Mandatory 1.5% Per-Month Compounding Delinquency Penalty Toll** [REDACTED]
 > 4. **Milestone Tolling (+${Math.ceil(totalHours / 4)} Business Days Schedule Adjustment)** [REDACTED]
 >
-> 🔓 **Unlock Court-Enforceable Version Instantly ($2):**  
+> 🔓 **Unlock Court-Enforceable Version Instantly ($3):**  
 > Visit: ${unlockUrl}
 
 ---
 
 ## 3. DUAL EXECUTION & CLIENT RATIFICATION BLOCKS
-### 🔒 [LOCKED - COMMERCIAL LICENSE / $2 PASS REQUIRED]
+### 🔒 [LOCKED - COMMERCIAL LICENSE / $3 PASS REQUIRED]
 > **[REDACTED: CLIENT SIGNATURE RATIFICATION BLOCK & ATTESTATION CLAUSE]**
 > *Sending an unlicensed signature block without statutory rider is legally ineffective.*
 > *Unlock full enforceable document at: ${unlockUrl}*
