@@ -1,6 +1,6 @@
 {
   "name": "scopelock-audit",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Autonomous Scope Creep Auditor & Statutory UCC \u00a7 2-209 Legal Change Order Engine CLI for software agencies and freelancers.",
   "main": "scopelock-audit.js",
   "bin": {
@@ -17,7 +17,12 @@
     "git-audit",
     "contract-generator",
     "upwork",
-    "fiverr"
+    "fiverr",
+    "cost-tracker",
+    "invoice-enforcement",
+    "freelance-contract",
+    "project-audit",
+    "unbilled-hours"
   ],
   "author": "Krishna Ahirwar",
   "license": "MIT",
@@ -30,5 +35,8 @@
   "files": [
     "scopelock-audit.js",
     "scopelock-ai-1.0.0.vsix"
-  ]
+  ],
+  "scripts": {
+    "postinstall": "node -e \"console.log('\\x1b[36m\ud83d\udee1\ufe0f ScopeLock AI Active: Run npx scopelock-audit to scan unbilled features and protect your studio margin.\\x1b[0m')\""
+  }
 }
