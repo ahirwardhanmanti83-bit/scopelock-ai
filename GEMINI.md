@@ -84,3 +84,8 @@
     - NPM package 'scopelock-audit' is currently at v1.4.2 on registry.npmjs.org (published 29 Sep 2026).
     - To publish new CLI code (v1.4.5 with pre-commit hook and  rails) to npmjs.org, an NPM Automation/Publish Token is strictly required.
     - AI Studio environment does not have stored NPM credentials.
+  * **Lever 2: Viral NPM Pre-Commit & GitHub Actions CI Propagation Engine (Executed 05 Oct 2026)**:
+    - Added `--install-ci` / `--ci` command to `cli/scopelock-audit.js`: Automatically scaffolds `.github/workflows/scopelock.yml` in any target repository, enforcing UCC § 2-209 scope creep audits on every single Pull Request and push.
+    - Upgraded `--install-hook`: Added support for both native `.git/hooks/pre-commit` and modern `.husky/pre-commit` architecture.
+    - Synced version to `v1.4.7` across `cli/scopelock-audit.js` and `package.json`.
+    - Formatted terminal audit output with explicit `$3 USD` instant unlock and `$199/mo` agency defense rails.

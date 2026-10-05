@@ -180,3 +180,8 @@ Before generating even one word of output, the AI system MUST execute this inter
     - NPM package 'scopelock-audit' has been successfully published to **v1.4.6** on registry.npmjs.org on Krishna's command.
     - Added automated postinstall terminal alert (🛡️ ScopeLock AI Active: Run npx scopelock-audit...) and B2B keywords (cost-tracker, invoice-enforcement, freelance-contract, project-audit, unbilled-hours).
     - NPM credentials have been immediately sanitized and wiped from disk (~/.npmrc removed). Zero token retention.
+  * **Lever 2: Viral NPM Pre-Commit & GitHub Actions CI Propagation Engine (Executed 05 Oct 2026)**:
+    - Added `--install-ci` / `--ci` command to `cli/scopelock-audit.js`: Automatically scaffolds `.github/workflows/scopelock.yml` in any target repository, enforcing UCC § 2-209 scope creep audits on every single Pull Request and push.
+    - Upgraded `--install-hook`: Added support for both native `.git/hooks/pre-commit` and modern `.husky/pre-commit` architecture.
+    - Synced version to `v1.4.7` across `cli/scopelock-audit.js` and `package.json`.
+    - Formatted terminal audit output with explicit `$3 USD` instant unlock and `$199/mo` agency defense rails.
