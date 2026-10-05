@@ -1,22 +1,24 @@
-name: ScopeLock AI Autonomous Scope Audit
+name: ScopeLock AI Audit
 on:
-  push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
+    branches: [main, master, develop]
+  push:
+    branches: [main, master]
 
 jobs:
-  audit-scope:
-    name: ScopeLock Creep & Legal Variance Auditor
+  scope-audit:
+    name: UCC § 2-209 Scope Creep Audit
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository with Commit History
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Run ScopeLock AI Action
-        uses: ./
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          hourly_rate: '125'
-          fail_on_creep: 'false'
+          node-version: 20
+
+      - name: Execute ScopeLock Forensic Audit
+        run: npx --yes scopelock-audit

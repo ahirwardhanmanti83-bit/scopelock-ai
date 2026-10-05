@@ -1,6 +1,6 @@
 {
   "name": "scopelock-audit",
-  "version": "1.4.2",
+  "version": "1.4.7",
   "description": "Autonomous CI/CD & CLI Scope Creep Auditor & Statutory UCC \u00a7 2-209 Legal Change Order Engine",
   "keywords": [
     "scope-creep",

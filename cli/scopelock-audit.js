@@ -13,7 +13,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as https from 'node:https';
 
-const VERSION = '1.4.5';
+const VERSION = '1.4.7';
 const args = process.argv.slice(2);
 
 // Forensic Scope Leakage Patterns
@@ -33,19 +33,62 @@ function printBanner() {
   console.log('\x1b[1m\x1b[36m' + '═'.repeat(68) + '\x1b[0m\n');
 }
 
+if (args.includes('--install-ci') || args.includes('--ci')) {
+  printBanner();
+  console.log('\x1b[1m\x1b[36m[ScopeLock CI/CD Enforcer]\x1b[0m Installing GitHub Actions Scope Armor...');
+  const workflowDir = path.join(process.cwd(), '.github', 'workflows');
+  const workflowFile = path.join(workflowDir, 'scopelock.yml');
+
+  if (!fs.existsSync(workflowDir)) {
+    fs.mkdirSync(workflowDir, { recursive: true });
+  }
+
+  const ciYaml = [
+    'name: ScopeLock AI Audit',
+    'on:',
+    '  pull_request:',
+    '    branches: [main, master, develop]',
+    '  push:',
+    '    branches: [main, master]',
+    '',
+    'jobs:',
+    '  scope-audit:',
+    '    name: UCC § 2-209 Scope Creep Audit',
+    '    runs-on: ubuntu-latest',
+    '    steps:',
+    '      - name: Checkout Repository',
+    '        uses: actions/checkout@v4',
+    '        with:',
+    '          fetch-depth: 0',
+    '',
+    '      - name: Setup Node.js',
+    '        uses: actions/setup-node@v4',
+    '        with:',
+    '          node-version: 20',
+    '',
+    '      - name: Execute ScopeLock Forensic Audit',
+    '        run: npx --yes scopelock-audit',
+    ''
+  ].join('\n');
+
+  fs.writeFileSync(workflowFile, ciYaml, 'utf8');
+  console.log('\x1b[1m\x1b[32m✔ SUCCESS: GitHub Actions Workflow active at .github/workflows/scopelock.yml\x1b[0m');
+  console.log('Every Pull Request will now automatically audit and protect against unbilled client scope creep.\n');
+  process.exit(0);
+}
+
 if (args.includes('--install-hook') || args.includes('-i')) {
   printBanner();
   console.log('\x1b[1m\x1b[36m[ScopeLock CI/CD Enforcer]\x1b[0m Installing Git Pre-Commit Hook...');
   const gitDir = path.join(process.cwd(), '.git');
   const hooksDir = path.join(gitDir, 'hooks');
   const preCommitPath = path.join(hooksDir, 'pre-commit');
+  const huskyDir = path.join(process.cwd(), '.husky');
 
-  if (!fs.existsSync(gitDir)) {
-    console.log('\x1b[31m✖ Error: No .git directory found. Run inside a Git repository.\x1b[0m');
+  if (!fs.existsSync(gitDir) && !fs.existsSync(huskyDir)) {
+    console.log('\x1b[31m✖ Error: No .git or .husky directory found. Run inside a Git repository.\x1b[0m');
     process.exit(1);
   }
-
-  if (!fs.existsSync(hooksDir)) fs.mkdirSync(hooksDir, { recursive: true });
 
   const scriptLines = [
     '#!/bin/sh',
@@ -54,8 +97,21 @@ if (args.includes('--install-hook') || args.includes('-i')) {
     ''
   ];
 
-  fs.writeFileSync(preCommitPath, scriptLines.join('\n'), { mode: 0o755 });
-  console.log('\x1b[1m\x1b[32m✔ SUCCESS: ScopeLock Git Pre-Commit Hook active at .git/hooks/pre-commit\x1b[0m');
+  if (fs.existsSync(gitDir)) {
+    if (!fs.existsSync(hooksDir)) fs.mkdirSync(hooksDir, { recursive: true });
+    fs.writeFileSync(preCommitPath, scriptLines.join('\n'), { mode: 0o755 });
+    console.log('\x1b[1m\x1b[32m✔ SUCCESS: Native Git Pre-Commit Hook active at .git/hooks/pre-commit\x1b[0m');
+  }
+
+  if (fs.existsSync(huskyDir)) {
+    const huskyPreCommit = path.join(huskyDir, 'pre-commit');
+    const existing = fs.existsSync(huskyPreCommit) ? fs.readFileSync(huskyPreCommit, 'utf8') : '';
+    if (!existing.includes('scopelock-audit')) {
+      fs.appendFileSync(huskyPreCommit, '\nnpx scopelock-audit || true\n', { mode: 0o755 });
+      console.log('\x1b[1m\x1b[32m✔ SUCCESS: Husky Pre-Commit Hook updated at .husky/pre-commit\x1b[0m');
+    }
+  }
+
   console.log('Every commit in this repository is now protected against unpaid client scope leakage.\n');
   process.exit(0);
 }
@@ -136,15 +192,15 @@ function runAudit() {
   console.log(`\x1b[1m\x1b[32mTOTAL UNBILLED MARGIN RECOVERABLE: $${totalLoss.toLocaleString()} USD (${totalHours.toFixed(1)} billable hrs @ $${rate}/hr)\x1b[0m\n`);
 
   // IMMEDIATE HIGH-CONVERSION ACTIONS
-  console.log('\x1b[1m\x1b[37m🎯 INSTANT LEGAL DEFENSE & RECOVERY ACTIONS:\x1b[0m');
+  console.log('\x1b[1m\x1b[37m🎯 INSTANT LEGAL DEFENSE & REPO INGESTION ACTIONS:\x1b[0m');
   console.log('┌────────────────────────────────────────────────────────────────────────┐');
-  console.log('│ \x1b[1m\x1b[33m🔒 1. AUTOMATE REPO ARMOR (GIT PRE-COMMIT HOOK):\x1b[0m                       │');
-  console.log('│    👉 \x1b[1m\x1b[32mnpx scopelock --install-hook\x1b[0m                                        │');
-  console.log('│    Freezes uncontracted commits & blocks unbilled client work 24/7.    │');
+  console.log('│ \x1b[1m\x1b[33m🔒 1. AUTOMATE REPO ARMOR (GIT HOOK & CI/CD):\x1b[0m                          │');
+  console.log('│    👉 \x1b[1m\x1b[32mnpx scopelock --install-hook\x1b[0m  (Arm local Git pre-commit hook)    │');
+  console.log('│    👉 \x1b[1m\x1b[36mnpx scopelock --install-ci\x1b[0m    (Automate PR Audits via Actions)   │');
   console.log('├────────────────────────────────────────────────────────────────────────┤');
-  console.log('│ [1m[32m⚡ 2. INSTANT UCC § 2-209 CHANGE ORDER UNLOCK ( USD):[0m              │');
-  console.log('│    👉 Web: [4mhttps://ahirwardhanmanti83-bit.github.io/scopelock-ai/[0m            │');
-  console.log('│    👉 Patreon: [4mhttps://www.patreon.com/posts/single-ucc-ss-2-170903732[0m      │');
+  console.log('│ \x1b[1m\x1b[32m⚡ 2. INSTANT UCC § 2-209 CHANGE ORDER UNLOCK ($3 USD):\x1b[0m                │');
+  console.log('│    👉 Web: \x1b[4mhttps://ahirwardhanmanti83-bit.github.io/scopelock-ai/\x1b[0m             │');
+  console.log('│    👉 Patreon: \x1b[4mhttps://www.patreon.com/posts/single-ucc-ss-2-170903732\x1b[0m       │');
   console.log('│    Instant 1-Click Card / PayPal / Direct Unlock without registration. │');
   console.log('├────────────────────────────────────────────────────────────────────────┤');
   console.log('│ \x1b[1m\x1b[36m🏢 3. AGENCY UNLIMITED LICENSE ($199/mo):\x1b[0m                               │');
