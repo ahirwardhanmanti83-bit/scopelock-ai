@@ -77,6 +77,47 @@ if (args.includes('--install-ci') || args.includes('--ci')) {
   process.exit(0);
 }
 
+if (args.includes('--install-gitlab') || args.includes('--gitlab')) {
+  printBanner();
+  console.log('\x1b[1m\x1b[36m[ScopeLock CI/CD Enforcer]\x1b[0m Installing GitLab CI/CD Scope Armor...');
+  const gitlabCiFile = path.join(process.cwd(), '.gitlab-ci.yml');
+
+  const gitlabYaml = [
+    '# ScopeLock AI — Automated UCC § 2-209 Scope Creep & SOW Defense Pipeline',
+    'stages:',
+    '  - audit',
+    '',
+    'scopelock_scope_audit:',
+    '  stage: audit',
+    '  image: node:20-alpine',
+    '  rules:',
+    '    - if: $CI_PIPELINE_SOURCE == "merge_request_event"',
+    '    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH',
+    '  before_script:',
+    '    - apk add --no-cache git',
+    '  script:',
+    '    - echo "Executing ScopeLock Forensic Scope Audit..."',
+    '    - npx --yes scopelock-audit',
+    '  allow_failure: true',
+    ''
+  ].join('\n');
+
+  if (fs.existsSync(gitlabCiFile)) {
+    const existing = fs.readFileSync(gitlabCiFile, 'utf8');
+    if (!existing.includes('scopelock')) {
+      fs.appendFileSync(gitlabCiFile, '\n\n' + gitlabYaml, 'utf8');
+      console.log('\x1b[1m\x1b[32m✔ SUCCESS: ScopeLock audit appended to existing .gitlab-ci.yml\x1b[0m');
+    } else {
+      console.log('\x1b[1m\x1b[33m✔ ScopeLock audit already configured in .gitlab-ci.yml\x1b[0m');
+    }
+  } else {
+    fs.writeFileSync(gitlabCiFile, gitlabYaml, 'utf8');
+    console.log('\x1b[1m\x1b[32m✔ SUCCESS: Created .gitlab-ci.yml with active ScopeLock defense pipeline\x1b[0m');
+  }
+  console.log('Every GitLab Merge Request and default branch push will now audit and enforce against unbilled scope creep.\n');
+  process.exit(0);
+}
+
 if (args.includes('--install-hook') || args.includes('-i')) {
   printBanner();
   console.log('\x1b[1m\x1b[36m[ScopeLock CI/CD Enforcer]\x1b[0m Installing Git Pre-Commit Hook...');
