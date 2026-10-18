@@ -524,8 +524,22 @@ export function App() {
               <Shield className="w-4 h-4 text-indigo-400" />
               <span>ScopeLock AI • Enterprise Scope Defense Engine ($199/mo Agency SaaS)</span>
             </div>
-            <div className="text-[11px] text-slate-400">
-              Authorized Corporate Signatory: Dhanmanti Ahirwar (ahirwardhanmanti83@gmail.com)
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href="https://launchnest.io/p/scopelock-ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center hover:opacity-90 transition-opacity"
+              >
+                <img
+                  src="https://launchnest.io/badge/scopelock-ai.svg?variant=featured"
+                  alt="Featured on LaunchNest"
+                  className="h-7 w-auto"
+                />
+              </a>
+              <div className="text-[11px] text-slate-400">
+                Authorized Corporate Signatory: Dhanmanti Ahirwar (ahirwardhanmanti83@gmail.com)
+              </div>
             </div>
           </div>
 
