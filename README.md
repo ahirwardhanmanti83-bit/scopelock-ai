@@ -1,6 +1,5 @@
 # ScopeLock AI 🛡️
 
-[![Featured on LaunchNest](https://launchnest.io/badge/scopelock-ai.svg?variant=featured)](https://launchnest.io/p/scopelock-ai)
 > **Automated B2B Scope-Creep Detection, Developer Cost-Variance Calculator & Statutory UCC § 2-209 Change-Order Generator for Digital Agencies, Dev Studios & Independent Engineers.**
 
 [![GitHub Marketplace](https://img.shields.io/badge/GitHub_Marketplace-ScopeLock_AI_v1.0.0-24292e?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor)

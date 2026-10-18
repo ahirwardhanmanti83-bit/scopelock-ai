@@ -1,608 +1,207 @@
 import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { VSIX_BASE64, VSIX_FILENAME } from './data/vsixBase64';
-import { JETBRAINS_JAR_BASE64, JETBRAINS_JAR_FILENAME } from './jetbrains_bundle';
-import { ScopeInputForm } from './components/ScopeInputForm';
-import { CostImpactDashboard } from './components/CostImpactDashboard';
-import { ScopeForensicsPanel } from './components/ScopeForensicsPanel';
-import { ChangeOrderPreview } from './components/ChangeOrderPreview';
-import { CommercialLicenseModal } from './components/CommercialLicenseModal';
-import { BrandingSettingsModal } from './components/BrandingSettingsModal';
-import { RedeemModal } from './components/RedeemModal';
-import { TemplateGallery } from './components/TemplateGallery';
-import { FreeContractHub } from './components/FreeContractHub';
-import { SeoResourceSection } from './components/SeoResourceSection';
-import { ClientPayGate } from './components/ClientPayGate';
-import { ScopeBleedCalculator } from './components/ScopeBleedCalculator';
-import { CliIntegrationSection } from './components/CliIntegrationSection';
-import { ChatScopeScanner } from './components/ChatScopeScanner';
-import { UniversalWorkflowBridge } from './components/UniversalWorkflowBridge';
-import { FounderTelemetryDashboard } from './components/FounderTelemetryDashboard';
-import { ChromeExtensionModal } from './components/ChromeExtensionModal';
-import { UnlockPaymentModal } from './components/UnlockPaymentModal';
-import { AgencyPortalModal } from './components/AgencyPortalModal';
-import { ApexAuthorityBanner } from './components/ApexAuthorityBanner';
-import { InteractiveFlowHero } from './components/InteractiveFlowHero';
-import { ScopeAuditReport, AgencyBranding } from './types';
-import { parseScopeComparison } from './utils/parser';
-import { SeoTemplate } from './data/seoTemplates';
-import { initSessionTelemetry, recordTelemetryEvent } from './utils/telemetry';
-import { OpenVaultDirectory } from './components/OpenVaultDirectory';
-import { PublicVaultCase } from './data/publicVaultData';
-import { 
-  ShieldCheck, 
-  Shield, 
-  FileText, 
-  MessageSquareQuote, 
-  Calculator, 
-  Terminal, 
-  BarChart3,
-  BookOpen,
-  Github
-} from 'lucide-react';
+import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { DailyQuoterStandup } from './components/DailyQuoterStandup';
+import { ScopeAuditor } from './components/ScopeAuditor';
+import { ChangeOrderGenerator } from './components/ChangeOrderGenerator';
+import { MarginCalculator } from './components/MarginCalculator';
+import { VaultDefense } from './components/VaultDefense';
+import { PricingModal } from './components/PricingModal';
+import { ProfileModal } from './components/ProfileModal';
+import { ClientApprovalPortal } from './components/ClientApprovalPortal';
+import { LicenseState, ScopeAuditResult, ChangeOrderDocument } from './types';
+import { ShieldCheck, Lock, Crown } from 'lucide-react';
 
-const DEFAULT_BRANDING: AgencyBranding = {
-  agencyName: 'Apex Engineering Labs',
-  supportEmail: 'deliveries@apexlabs.dev'
-};
-
-export function App() {
-  const [downloadedVsixBanner, setDownloadedVsixBanner] = useState(false);
-  const [downloadedJetBrainsBanner, setDownloadedJetBrainsBanner] = useState(false);
-
-  const handleDirectJetBrainsDownload = () => {
-    try {
-      const byteCharacters = atob(JETBRAINS_JAR_BASE64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: 'application/java-archive' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = JETBRAINS_JAR_FILENAME;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      setDownloadedJetBrainsBanner(true);
-      setTimeout(() => setDownloadedJetBrainsBanner(false), 5000);
-    } catch (e) {
-      console.error('JetBrains direct download fallback:', e);
+export default function App() {
+  const [activeTab, setActiveTab] = useState<'daily_quoter' | 'auditor' | 'change_order' | 'margin' | 'vault'>('auditor');
+  const [isPricingOpen, setIsPricingOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('orderId');
     }
-  };
-  const handleDirectVsixDownload = () => {
-    try {
-      const byteCharacters = atob(VSIX_BASE64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "application/octet-stream" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = VSIX_FILENAME;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      setDownloadedVsixBanner(true);
-      setTimeout(() => setDownloadedVsixBanner(false), 4000);
-    } catch (err) {
-      console.error("VSIX download error", err);
-    }
-  };
-
-  const [branding, setBranding] = useState<AgencyBranding>(DEFAULT_BRANDING);
-  const [isLicenseOpen, setIsLicenseOpen] = useState(false);
-  const [isBrandingOpen, setIsBrandingOpen] = useState(false);
-  const [isRedeemOpen, setIsRedeemOpen] = useState(false);
-  const [isExtensionOpen, setIsExtensionOpen] = useState(false);
-  const [isUnlockModalOpen, setIsUnlockModalOpen] = useState(false);
-  const [isAgencyPortalOpen, setIsAgencyPortalOpen] = useState(false);
-  const [, setActivePlan] = useState('Agency Pro Suite');
-  const [activeTab, setActiveTab] = useState<'audit' | 'vault' | 'chat' | 'calculator' | 'templates' | 'cli' | 'telemetry'>('audit');
-
-  // Initialize session telemetry on app launch
-  useEffect(() => {
-    initSessionTelemetry();
-  }, []);
-
-  // Initialize with ready audit report
-  const [auditReport, setAuditReport] = useState<ScopeAuditReport>(() => {
-    return parseScopeComparison(
-      `1. Responsive Web Application with Next.js & Tailwind CSS\n2. User Authentication (Google & Email/Password)\n3. Stripe Standard Subscription Checkout\n4. PostgreSQL Database with Prisma ORM on Supabase`,
-      `1. Add complete native iOS and Android Mobile App alongside web version\n2. Integrate ChatGPT API for automated content generation in client dashboard\n3. Add Salesforce and HubSpot Bi-directional Two-way CRM sync\n4. Complete UI redesign with customized Dark Mode and Theme Switcher`,
-      125,
-      15000,
-      6,
-      'Fintech Web Portal MVP',
-      'Apex Horizon Ventures LLC',
-      'founder@apexventures.io',
-      DEFAULT_BRANDING
-    );
+    return null;
   });
 
-  const handleSelectTemplate = (template: SeoTemplate) => {
-    recordTelemetryEvent('template_select', `Selected SOW template: "${template.title}" ($${template.defaultBudget.toLocaleString()} baseline)`);
-    const report = parseScopeComparison(
-      template.originalScope,
-      template.requestedScope,
-      template.hourlyRate,
-      template.defaultBudget,
-      6,
-      template.title,
-      'Enterprise Client Principal',
-      'client.sponsor@enterprise.com',
-      branding
-    );
-    setAuditReport(report);
-    setActiveTab('audit');
-    window.scrollTo({ top: 380, behavior: 'smooth' });
-  };
+  const [license, setLicense] = useState<LicenseState>({
+    isPro: false,
+    isInstantUnlocked: false,
+    tier: 'free',
+    tierName: 'Free Community Tier',
+  });
 
-  const handleLoadFromCalculator = (rate: number, budget: number, hours: number) => {
-    recordTelemetryEvent('calculator_calc', `Calculated margin bleed: ${hours} unbilled hours @ $${rate}/hr (Budget $${budget.toLocaleString()})`);
-    const report = parseScopeComparison(
-      `1. Core Milestone Deliverables (Baseline SOW)\n2. Primary API & Database schema endpoints\n3. Scheduled staging deployment and user testing`,
-      `1. Emergency Client Out-of-Scope revision batch (${hours} uncontracted hours)\n2. Additional custom third-party integrations and unbilled design revisions\n3. Expedited priority deployment timeline request`,
-      rate,
-      budget,
-      4,
-      'Active Client SOW Recovery',
-      'Client Sponsor (Unbilled Revisions)',
-      'sponsor@clientcorp.com',
-      branding
-    );
-    setAuditReport(report);
-    setActiveTab('audit');
-    window.scrollTo({ top: 380, behavior: 'smooth' });
-  };
+  const [changeOrderData, setChangeOrderData] = useState<Partial<ChangeOrderDocument> | undefined>(undefined);
 
-  const handleApplyChatScope = (detectedTitle: string, detectedScope: string, estHours: number) => {
-    recordTelemetryEvent('chat_scan', `Applied chat scanner detection: "${detectedTitle}" (${estHours}h variance)`);
-    const report = parseScopeComparison(
-      `1. Approved Statement of Work (SOW) Scope Freeze\n2. Production Web Deployment milestone\n3. Standard QA and staging handover`,
-      detectedScope,
-      auditReport?.hourlyRate || 125,
-      auditReport?.contractBudget || 15000,
-      auditReport?.contractTimelineWeeks || 6,
-      detectedTitle || 'Client Message Scope Variance',
-      auditReport?.clientName || 'Client Principal',
-      auditReport?.clientEmail || 'client@company.com',
-      branding
-    );
-    setAuditReport(report);
-    setActiveTab('audit');
-    window.scrollTo({ top: 380, behavior: 'smooth' });
-  };
+  // Load saved license on mount and check for redeem url parameter
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('scopelock_license');
+      if (saved) {
+        setLicense(JSON.parse(saved));
+      }
 
-  const handleLoadVaultCase = (caseItem: PublicVaultCase) => {
-    recordTelemetryEvent('vault_case_select', `Loaded public vault defense case: "${caseItem.slug}"`);
-    const avgHours = Math.round((caseItem.unbilledHoursMin + caseItem.unbilledHoursMax) / 2);
-    const report = parseScopeComparison(
-      `1. Approved Statement of Work baseline deliverable\n2. Production release milestone\n3. Staging and acceptance sign-off`,
-      `Client Scope Expansion: ${caseItem.searchIntentKeywords[0]}\nDetails: ${caseItem.clientMessage}\nStatutory Clause: ${caseItem.statuteClause}`,
-      auditReport?.hourlyRate || 125,
-      auditReport?.contractBudget || 15000,
-      auditReport?.contractTimelineWeeks || 6,
-      caseItem.searchIntentKeywords[0],
-      'Client Principal',
-      'client@organization.com',
-      branding
-    );
-    setAuditReport(report);
-    setActiveTab('audit');
-    window.scrollTo({ top: 380, behavior: 'smooth' });
-  };
-
-  
-  const handleFlowHeroCalculate = (clientText: string, title: string, hours: number) => {
-    recordTelemetryEvent('flow_hero_calculate', `Interactive Flow Hero trigger: ${title} (${hours}h)`);
-    const rate = auditReport?.hourlyRate || 125;
-    const report = parseScopeComparison(
-      `1. Initial Statement of Work (SOW) Scope Baseline\n2. Core Milestone Deliverables\n3. Standard QA and Staging Handover`,
-      clientText,
-      rate,
-      auditReport?.contractBudget || 15000,
-      auditReport?.contractTimelineWeeks || 6,
-      title,
-      'Client Sponsor (Unbilled Request)',
-      'sponsor@clientcorp.com',
-      branding
-    );
-    setAuditReport(report);
-    setActiveTab('audit');
-    const target = document.getElementById('audit-engine-section');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      if (typeof window !== 'undefined') {
+        const p = new URLSearchParams(window.location.search);
+        if (p.get('redeem') || p.get('appsumo') || p.get('code') || p.get('key')) {
+          setIsPricingOpen(true);
+        }
+      }
+    } catch (e) {
+      console.error(e);
     }
+  }, []);
+
+  const handleUnlockInstantPass = (code: string): boolean => {
+    const clean = code.trim().toUpperCase();
+    if (
+      clean.includes('PASS-3') ||
+      clean.includes('PASS3') ||
+      clean.includes('3USD') ||
+      clean === 'UNLOCK3' ||
+      clean === 'VIP-3' ||
+      clean === 'DEMO-PRO-2026'
+    ) {
+      const updated: LicenseState = {
+        ...license,
+        isInstantUnlocked: true,
+        tier: clean === 'DEMO-PRO-2026' ? 'agency_pro' : 'instant_pass',
+        isPro: clean === 'DEMO-PRO-2026' ? true : license.isPro,
+        tierName: clean === 'DEMO-PRO-2026' ? 'Agency Pro ($199/mo)' : 'Instant $3 Export Pass',
+      };
+      setLicense(updated);
+      localStorage.setItem('scopelock_license', JSON.stringify(updated));
+      return true;
+    }
+    return false;
   };
 
-  const handleSelectInterceptorCase = (title: string, scopeText: string, hours: number) => {
-    recordTelemetryEvent('interceptor_select', `Selected apex dispute interceptor: "${title}" (${hours}h variance)`);
-    const rate = auditReport?.hourlyRate || 125;
-    const report = parseScopeComparison(
-      `1. Approved Statement of Work (SOW) Scope Freeze\n2. Primary Milestone Deliverables\n3. Standard QA and Staging Handover`,
-      scopeText,
-      rate,
-      auditReport?.contractBudget || 15000,
-      auditReport?.contractTimelineWeeks || 6,
-      title,
-      'Client Sponsor (Unbilled Revisions)',
-      'sponsor@clientcorp.com',
-      branding
+  const handleLoadAuditIntoChangeOrder = (audit: ScopeAuditResult, hourlyRate: number) => {
+    const formattedItems = (audit.detectedItems || []).map((item) => ({
+      description: item.title + (item.riskExplanation ? ` (${item.riskExplanation})` : ''),
+      hours: item.estimatedHours,
+      cost: item.costImpact,
+    }));
+
+    setChangeOrderData({
+      projectName: 'Client Milestone Revision Deliverable',
+      hourlyRate,
+      totalHours: audit.totalHours,
+      totalCost: audit.totalCostUSD,
+      timelineExtensionDays: audit.timelineDelayDays,
+      items: formattedItems.length > 0 ? formattedItems : [
+        { description: 'Unscheduled feature revisions outside baseline SOW', hours: audit.totalHours, cost: audit.totalCostUSD }
+      ],
+    });
+
+    setActiveTab('change_order');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (orderId) {
+    return (
+      <ClientApprovalPortal
+        orderId={orderId}
+        onExitToDashboard={() => {
+          setOrderId(null);
+          try {
+            const url = new URL(window.location.href);
+            url.searchParams.delete('orderId');
+            window.history.replaceState({}, '', url.pathname);
+          } catch {
+            window.location.href = '/';
+          }
+        }}
+      />
     );
-    setAuditReport(report);
-    setActiveTab('audit');
-    window.scrollTo({ top: 500, behavior: 'smooth' });
-  };
-
-  const handleSendEmail = () => {
-    recordTelemetryEvent('change_order_copy', `Initiated statutory client change order email notice for "${auditReport.projectName}" ($${auditReport.totalScopeCreepCost.toLocaleString()})`);
-    const subject = encodeURIComponent(`Statutory Notice: Scope Variance & Change Order - ${auditReport.projectName}`);
-    const body = encodeURIComponent(`Hi ${auditReport.clientName},\n\nPlease find attached the statutory Scope Forensic Audit report documenting uncontracted feature requests and the formal Change Order.\n\nTotal Scope Creep Value: $${auditReport.totalScopeCreepCost.toLocaleString()}\nTimeline Adjustment: +${auditReport.totalDelayDays} days.\n\nPlease review and countersign under UCC § 2-209.\n\nCertified via ScopeLock AI: https://scopelock.ai`);
-    window.open(`mailto:${auditReport.clientEmail || 'client@company.com'}?subject=${subject}&body=${body}`, '_blank');
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
-      {/* Microsoft Marketplace Upload Banner */}
-      <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-700 text-white px-4 py-3 shadow-xl border-b border-emerald-400/40 sticky top-0 z-50 flex items-center justify-between flex-wrap gap-3">
-        <div className="flex items-center gap-2.5">
-          <span className="p-1.5 bg-black/20 rounded-lg text-lg">📦</span>
-          <div>
-            <div className="font-extrabold text-sm flex items-center gap-2">
-              Microsoft VS Code Extension (.vsix)
-              <span className="text-[10px] uppercase tracking-wider bg-black/30 px-2 py-0.5 rounded text-emerald-200">Ready to Upload</span>
-            </div>
-            <p className="text-xs text-emerald-100 hidden sm:block">Required file for Microsoft Marketplace Visual Studio Code publisher</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap">
-          <button
-            onClick={handleDirectVsixDownload}
-            className="flex-1 sm:flex-none px-3.5 py-2 bg-white hover:bg-emerald-50 text-emerald-950 font-black text-xs uppercase tracking-wider rounded-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-white"
-          >
-            <span>{downloadedVsixBanner ? "✅ VS CODE SAVED!" : "📥 VS CODE .VSIX (8 KB)"}</span>
-          </button>
-          <button
-            onClick={handleDirectJetBrainsDownload}
-            className="flex-1 sm:flex-none px-3.5 py-2 bg-indigo-950 hover:bg-indigo-900 text-indigo-200 border border-indigo-400/40 font-black text-xs uppercase tracking-wider rounded-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-          >
-            <span>{downloadedJetBrainsBanner ? "✅ JETBRAINS SAVED!" : "⚡ JETBRAINS PLUGIN (.JAR)"}</span>
-          </button>
-        </div>
-      </div>
-
-      <Header
-        branding={branding}
-        onOpenBranding={() => setIsBrandingOpen(true)}
-        onOpenLicense={() => setIsLicenseOpen(true)}
-        onOpenRedeem={() => setIsRedeemOpen(true)}
-        onOpenExtension={() => setIsExtensionOpen(true)}
-        onOpenAgencyPortal={() => setIsAgencyPortalOpen(true)}
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white pb-20">
+      {/* Navigation & Header */}
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        license={license}
+        onOpenPricing={() => setIsPricingOpen(true)}
+        onOpenProfile={() => setIsProfileOpen(true)}
       />
 
-      <div className="border-b border-slate-900 bg-gradient-to-b from-indigo-950/40 via-slate-950 to-slate-950 px-4 py-6 sm:py-8">
-        <div className="max-w-7xl mx-auto text-center space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Proprietary B2B Scope Defense Infrastructure • Zero Direct Competitors</span>
-          </div>
-          <h1 className="text-xl sm:text-3xl font-black text-white tracking-tight">
-            Stop Doing Free Work. The Unassailable Defense Against Client Scope Creep.
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
-            Combines algorithmic contract forensics, automated margin recovery ($/hr), and UCC-enforceable legal change orders into an untouchable monopoly engine.
-          </p>
+      {/* Main Content View */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+        {activeTab === 'daily_quoter' && (
+          <DailyQuoterStandup
+            license={license}
+            onOpenPricing={() => setIsPricingOpen(true)}
+            onUnlockInstantPass={handleUnlockInstantPass}
+            onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder}
+          />
+        )}
 
-          {/* Quick Terminal Run Badge & GitHub in Hero */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-2.5">
-            <div className="inline-flex items-center gap-2 bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 rounded-lg px-3 py-1.5 font-mono text-xs text-slate-300 shadow-md">
-              <span className="text-emerald-400 font-bold">$</span>
-              <span className="text-slate-200">npx scopelock-audit</span>
-              <span className="text-[10px] text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 px-1.5 py-0.5 rounded ml-1 font-sans font-medium">NPM Live</span>
-            </div>
-            
-            <a
-              href="https://github.com/ahirwardhanmanti83-bit/scopelock-ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md cursor-pointer"
-            >
-              <Github className="w-3.5 h-3.5" />
-              <span>GitHub Repo</span>
-              <span className="text-[10px] text-amber-300 font-mono">★</span>
-            </a>
+        {activeTab === 'auditor' && (
+          <ScopeAuditor onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder} />
+        )}
 
-            <a
-              href="https://github.com/marketplace/actions/scopelock-ai-autonomous-scope-creep-auditor"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-indigo-500/40 text-indigo-300 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-md cursor-pointer"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>GitHub Action</span>
-            </a>
-          </div>
+        {activeTab === 'change_order' && (
+          <ChangeOrderGenerator
+            initialDocument={changeOrderData}
+            license={license}
+            onOpenPricing={() => setIsPricingOpen(true)}
+          />
+        )}
 
-          {/* Navigation Tab Bar */}
-          <div className="pt-4 flex items-center justify-center">
-            <div className="inline-flex items-center p-1 rounded-xl bg-slate-900/90 border border-slate-800 shadow-xl overflow-x-auto max-w-full">
-              <button
-                onClick={() => setActiveTab('audit')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'audit'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <Shield className="w-3.5 h-3.5" />
-                <span>Scope Audit & Change Orders</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('vault')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'vault'
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-1 ring-emerald-400'
-                    : 'text-emerald-400 hover:text-white hover:bg-emerald-950/40 border border-emerald-500/20'
-                }`}
-              >
-                <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Free Defense Vault (Public Index)</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('chat')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'chat'
-                    ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <MessageSquareQuote className="w-3.5 h-3.5" />
-                <span>Chat Scope Scanner</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('calculator')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'calculator'
-                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <Calculator className="w-3.5 h-3.5" />
-                <span>Margin Bleed Calculator</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('templates')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'templates'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <FileText className="w-3.5 h-3.5" />
-                <span>Contract Templates</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('cli')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'cli'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <Terminal className="w-3.5 h-3.5" />
-                <span>Developer CLI</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('telemetry')}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'telemetry'
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-                }`}
-              >
-                <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Founder Telemetry HUD</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 space-y-6 sm:space-y-8">
-        <ApexAuthorityBanner
-          onSelectInterceptorCase={handleSelectInterceptorCase}
-          hourlyRate={auditReport?.hourlyRate || 125}
-        />
-
-        {activeTab === 'audit' && (
-          <>
-            <ChatScopeScanner 
-              onApplyToAudit={handleApplyChatScope} 
-              onOpenLicense={() => setIsLicenseOpen(true)}
-              onTriggerUnlock={() => setIsUnlockModalOpen(true)}
-              hourlyRate={auditReport?.hourlyRate || 125}
-            />
-            <ScopeInputForm
-              onAuditComplete={(report) => setAuditReport(report)}
-              branding={branding}
-            />
-            {auditReport && (
-              <>
-                <CostImpactDashboard 
-                  report={auditReport} 
-                  onTriggerUnlock={() => setIsUnlockModalOpen(true)}
-                  onOpenLicense={() => setIsLicenseOpen(true)}
-                />
-                <ScopeForensicsPanel report={auditReport} />
-                <ChangeOrderPreview
-                  report={auditReport}
-                  onSendEmail={handleSendEmail}
-                />
-                <UniversalWorkflowBridge report={auditReport} />
-                <ClientPayGate report={auditReport} />
-              </>
-            )}
-          </>
+        {activeTab === 'margin' && (
+          <MarginCalculator onOpenPricing={() => setIsPricingOpen(true)} />
         )}
 
         {activeTab === 'vault' && (
-          <OpenVaultDirectory
-            onLoadCaseToAudit={handleLoadVaultCase}
-            onOpenLicense={() => setIsLicenseOpen(true)}
-            hourlyRate={auditReport?.hourlyRate || 125}
-          />
+          <VaultDefense />
         )}
-
-        {activeTab === 'chat' && (
-          <div className="space-y-6">
-            <ChatScopeScanner 
-              onApplyToAudit={handleApplyChatScope} 
-              onOpenLicense={() => setIsLicenseOpen(true)}
-              onTriggerUnlock={() => setIsUnlockModalOpen(true)}
-              hourlyRate={auditReport?.hourlyRate || 125}
-            />
-            {auditReport && (
-              <ChangeOrderPreview
-                report={auditReport}
-                onSendEmail={handleSendEmail}
-              />
-            )}
-          </div>
-        )}
-
-        {activeTab === 'calculator' && (
-          <ScopeBleedCalculator
-            onLoadTemplate={handleLoadFromCalculator}
-            onOpenLicense={() => setIsLicenseOpen(true)}
-          />
-        )}
-
-        {activeTab === 'templates' && (
-          <div className="space-y-6">
-            <TemplateGallery onSelectTemplate={handleSelectTemplate} />
-            <FreeContractHub
-              onUnlockTool={() => setActiveTab('audit')}
-              onOpenLicenseModal={() => setIsLicenseOpen(true)}
-            />
-          </div>
-        )}
-
-        {activeTab === 'cli' && (
-          <CliIntegrationSection />
-        )}
-
-        {activeTab === 'telemetry' && (
-          <FounderTelemetryDashboard />
-        )}
-
-        <SeoResourceSection
-          onSelectKeywordTemplate={() => {
-            setActiveTab('templates');
-            window.scrollTo({ top: 380, behavior: 'smooth' });
-          }}
-        />
       </main>
 
-      <footer className="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500 px-4">
-        <div className="max-w-7xl mx-auto space-y-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-900 pb-4">
-            <div className="flex items-center gap-2 text-slate-300 font-semibold">
-              <Shield className="w-4 h-4 text-indigo-400" />
-              <span>ScopeLock AI • Enterprise Scope Defense Engine ($199/mo Agency SaaS)</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="https://launchnest.io/p/scopelock-ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center hover:opacity-90 transition-opacity"
-              >
-                <img
-                  src="https://launchnest.io/badge/scopelock-ai.svg?variant=featured"
-                  alt="Featured on LaunchNest"
-                  className="h-7 w-auto"
-                />
-              </a>
-              <div className="text-[11px] text-slate-400">
-                Authorized Corporate Signatory: Dhanmanti Ahirwar (ahirwardhanmanti83@gmail.com)
-              </div>
-            </div>
+      {/* Sticky Bottom Floating Bar (Matching User Screenshot) */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800 px-4 py-2.5 backdrop-blur-md shadow-2xl">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-bold">Scope Defense Shield Active:</span>
+            <span className="text-slate-400 hidden sm:inline">Stop unpaid scope creep before shipping.</span>
           </div>
 
-          <div className="text-[11px] text-slate-500 leading-relaxed max-w-5xl mx-auto space-y-1.5 text-center">
-            <p>
-              <strong className="text-slate-400">ZERO LEGAL LIABILITY & SAFE HARBOR DISCLAIMER:</strong> ScopeLock AI provides automated software tooling, mathematical variance calculators, and standard commercial contract templates for informational and administrative workflow purposes only.
-            </p>
-            <p>
-              ScopeLock AI is not a law firm, does not provide legal representation or legal advice, and does not establish an attorney-client relationship. All calculations, estimates, and generated change-order templates run 100% locally on the user's browser under client-side execution. Users retain complete discretion and responsibility for their own contracts, client communications, and legal obligations.
-            </p>
-            <p className="text-[10px] text-slate-600">
-              © {new Date().getFullYear()} ScopeLock AI. All rights reserved. Zero server logging. Zero customer data retention.
-            </p>
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <button
+              onClick={() => setIsPricingOpen(true)}
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer hover:scale-105"
+            >
+              <span>⚡ Instant $3 PDF Unlock</span>
+            </button>
+
+            <button
+              onClick={() => setIsPricingOpen(true)}
+              className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+            >
+              <span>🏛️ Agency Pro ($199/mo)</span>
+            </button>
           </div>
         </div>
-      </footer>
+      </div>
 
-      <CommercialLicenseModal
-        isOpen={isLicenseOpen}
-        onClose={() => setIsLicenseOpen(false)}
+      {/* Pricing / Licensing Modal */}
+      <PricingModal
+        isOpen={isPricingOpen}
+        onClose={() => setIsPricingOpen(false)}
+        license={license}
+        onActivateLicense={(newLic) => setLicense(newLic)}
       />
 
-      <UnlockPaymentModal
-        isOpen={isUnlockModalOpen}
-        onClose={() => setIsUnlockModalOpen(false)}
-        onUnlockSuccess={() => {
-          setIsUnlockModalOpen(false);
-        }}
-        potentialSavedCost={auditReport?.totalScopeCreepCost || 5000}
+      {/* Creator Signatory & Payout Profile Modal */}
+      <ProfileModal
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
       />
 
-      <ChromeExtensionModal
-        isOpen={isExtensionOpen}
-        onClose={() => setIsExtensionOpen(false)}
-        onOpenPayment={() => {
-          setIsExtensionOpen(false);
-          setIsLicenseOpen(true);
-        }}
-      />
-
-      <BrandingSettingsModal
-        isOpen={isBrandingOpen}
-        branding={branding}
-        onSave={(newBranding) => {
-          setBranding(newBranding);
-          setAuditReport(prev => ({ ...prev, agencyBranding: newBranding }));
-        }}
-        onClose={() => setIsBrandingOpen(false)}
-      />
-
-      <RedeemModal
-        isOpen={isRedeemOpen}
-        onClose={() => setIsRedeemOpen(false)}
-        onSuccess={(tier) => setActivePlan(tier)}
-      />
-
-      {isAgencyPortalOpen && (
-        <AgencyPortalModal
-          onClose={() => setIsAgencyPortalOpen(false)}
-        />
-      )}
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
-
-export default App;
