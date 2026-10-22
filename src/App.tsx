@@ -9,11 +9,12 @@ import { VaultDefense } from './components/VaultDefense';
 import { PricingModal } from './components/PricingModal';
 import { ProfileModal } from './components/ProfileModal';
 import { ClientApprovalPortal } from './components/ClientApprovalPortal';
+import { LandingSections } from './components/LandingSections';
 import { LicenseState, ScopeAuditResult, ChangeOrderDocument } from './types';
-import { ShieldCheck, Lock, Crown } from 'lucide-react';
+import { GitBranch, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'daily_quoter' | 'auditor' | 'change_order' | 'margin' | 'vault'>('auditor');
+  const [activeTab, setActiveTab] = useState<'daily_quoter' | 'auditor' | 'change_order' | 'margin' | 'vault' | 'chat'>('auditor');
   const [isPricingOpen, setIsPricingOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(() => {
@@ -26,9 +27,9 @@ export default function App() {
 
   const [license, setLicense] = useState<LicenseState>({
     isPro: false,
-    isInstantUnlocked: false,
     tier: 'free',
     tierName: 'Free Community Tier',
+    scansUsedThisMonth: 0,
   });
 
   const [changeOrderData, setChangeOrderData] = useState<Partial<ChangeOrderDocument> | undefined>(undefined);
@@ -40,7 +41,6 @@ export default function App() {
       if (saved) {
         setLicense(JSON.parse(saved));
       }
-
       if (typeof window !== 'undefined') {
         const p = new URLSearchParams(window.location.search);
         if (p.get('redeem') || p.get('appsumo') || p.get('code') || p.get('key')) {
@@ -52,22 +52,20 @@ export default function App() {
     }
   }, []);
 
-  const handleUnlockInstantPass = (code: string): boolean => {
+  const handleUnlockPass = (code: string): boolean => {
     const clean = code.trim().toUpperCase();
     if (
-      clean.includes('PASS-3') ||
-      clean.includes('PASS3') ||
-      clean.includes('3USD') ||
-      clean === 'UNLOCK3' ||
-      clean === 'VIP-3' ||
-      clean === 'DEMO-PRO-2026'
+      clean.includes('PRO') ||
+      clean.includes('AGENCY') ||
+      clean === 'DEMO-PRO-2026' ||
+      clean === 'PRO-DEMO-2026'
     ) {
+      const isAgency = clean.includes('AGENCY') || clean === 'DEMO-PRO-2026';
       const updated: LicenseState = {
         ...license,
-        isInstantUnlocked: true,
-        tier: clean === 'DEMO-PRO-2026' ? 'agency_pro' : 'instant_pass',
-        isPro: clean === 'DEMO-PRO-2026' ? true : license.isPro,
-        tierName: clean === 'DEMO-PRO-2026' ? 'Agency Pro ($199/mo)' : 'Instant $3 Export Pass',
+        tier: isAgency ? 'agency' : 'pro',
+        isPro: true,
+        tierName: isAgency ? 'Agency ($199/mo)' : 'Pro ($19/mo)',
       };
       setLicense(updated);
       localStorage.setItem('scopelock_license', JSON.stringify(updated));
@@ -93,7 +91,6 @@ export default function App() {
         { description: 'Unscheduled feature revisions outside baseline SOW', hours: audit.totalHours, cost: audit.totalCostUSD }
       ],
     });
-
     setActiveTab('change_order');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -117,7 +114,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white pb-20">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white pb-24">
       {/* Navigation & Header */}
       <Navbar
         activeTab={activeTab}
@@ -128,18 +125,18 @@ export default function App() {
       />
 
       {/* Main Content View */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-12">
+        {activeTab === 'auditor' && (
+          <ScopeAuditor onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder} />
+        )}
+
         {activeTab === 'daily_quoter' && (
           <DailyQuoterStandup
             license={license}
             onOpenPricing={() => setIsPricingOpen(true)}
-            onUnlockInstantPass={handleUnlockInstantPass}
+            onUnlockInstantPass={handleUnlockPass}
             onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder}
           />
-        )}
-
-        {activeTab === 'auditor' && (
-          <ScopeAuditor onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder} />
         )}
 
         {activeTab === 'change_order' && (
@@ -157,30 +154,49 @@ export default function App() {
         {activeTab === 'vault' && (
           <VaultDefense />
         )}
+
+        {activeTab === 'chat' && (
+          <ScopeAuditor onLoadIntoChangeOrder={handleLoadAuditIntoChangeOrder} />
+        )}
+
+        {/* Landing Page Content: 3 Screenshots, 3 Simple Steps, Free Email Signup, and FAQs */}
+        <LandingSections
+          license={license}
+          onOpenPricing={() => setIsPricingOpen(true)}
+          onStartScanning={() => {
+            setActiveTab('auditor');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onEmailSignupSuccess={(email) => {
+            setLicense((prev) => ({ ...prev, email }));
+          }}
+        />
       </main>
 
-      {/* Sticky Bottom Floating Bar (Matching User Screenshot) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800 px-4 py-2.5 backdrop-blur-md shadow-2xl">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+      {/* Sticky Bottom Floating Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800 px-4 py-3 backdrop-blur-md shadow-2xl">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-bold">Scope Defense Shield Active:</span>
-            <span className="text-slate-400 hidden sm:inline">Stop unpaid scope creep before shipping.</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="font-semibold text-slate-200">Scope Defense Active:</span>
+            <span className="text-slate-400 hidden sm:inline">
+              Stop doing free work. Detect scope creep in your Git repo before you ship.
+            </span>
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
             <button
               onClick={() => setIsPricingOpen(true)}
-              className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer hover:scale-105"
+              className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-md shadow-indigo-600/20"
             >
-              <span>⚡ Instant $3 PDF Unlock</span>
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Pro Plan ($19/mo)</span>
             </button>
-
             <button
               onClick={() => setIsPricingOpen(true)}
-              className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-medium text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <span>🏛️ Agency Pro ($199/mo)</span>
+              <span>Agency ($199/mo)</span>
             </button>
           </div>
         </div>
